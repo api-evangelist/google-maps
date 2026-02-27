@@ -1,0 +1,103 @@
+name: Google Maps Platform
+description: Google Maps Platform offers APIs and SDKs for maps, routes, and places functionality
+image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+url: https://developers.google.com/maps
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+tags:
+- maps
+- geolocation
+- routing
+- places
+- geocoding
+apis:
+- name: Maps JavaScript API
+  description: Embed customizable maps in web pages with the JavaScript API
+  image: https://developers.google.com/maps/images/maps-icon.svg
+  humanUrl: https://developers.google.com/maps/documentation/javascript
+  baseUrl: https://maps.googleapis.com/maps/api/js
+  tags:
+  - javascript
+  - maps
+  - visualization
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: OpenAPI
+    url: https://api.example.com/openapi/maps-js.yaml
+  contact:
+  - FN: Google Maps Support
+    email: maps-api-support@google.com
+- name: Geocoding API
+  description: Convert addresses into geographic coordinates and vice versa
+  humanUrl: https://developers.google.com/maps/documentation/geocoding
+  baseUrl: https://maps.googleapis.com/maps/api/geocode
+  tags:
+  - geocoding
+  - coordinates
+  - addresses
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+- name: Places API
+  description: Access information about places using HTTP requests
+  humanUrl: https://developers.google.com/maps/documentation/places
+  baseUrl: https://maps.googleapis.com/maps/api/place
+  tags:
+  - places
+  - search
+  - poi
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service
+- name: Directions API
+  description: Get directions for transit, driving, walking, or cycling
+  humanUrl: https://developers.google.com/maps/documentation/directions
+  baseUrl: https://maps.googleapis.com/maps/api/directions
+  tags:
+  - routing
+  - directions
+  - navigation
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+- name: Distance Matrix API
+  description: Calculate travel distance and time for multiple origins and destinations
+  humanUrl: https://developers.google.com/maps/documentation/distance-matrix
+  baseUrl: https://maps.googleapis.com/maps/api/distancematrix
+  tags:
+  - distance
+  - matrix
+  - routing
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/distance-matrix/overview
+- name: Roads API
+  description: Snap GPS coordinates to roads and find speed limits
+  humanUrl: https://developers.google.com/maps/documentation/roads
+  baseUrl: https://roads.googleapis.com/v1
+  tags:
+  - roads
+  - snap-to-road
+  - speed-limits
+  properties:
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/roads/overview
+maintainers:
+- FN: Google Maps Platform Team
+  email: maps-api-support@google.com
+  url: https://developers.google.com/maps
+common:
+- type: Authentication
+  url: https://developers.google.com/maps/documentation/javascript/get-api-key
+- type: Console
+  url: https://console.cloud.google.com/google/maps-apis
+- type: Terms of Service
+  url: https://cloud.google.com/maps-platform/terms
+- type: Pricing
+  url: https://mapsplatform.google.com/pricing
+- type: Status
+  url: https://status.cloud.google.com
