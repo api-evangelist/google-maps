@@ -1,0 +1,342 @@
+{
+  "@context": {
+    "@version": 1.1,
+
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "goog": "https://developers.google.com/maps/terms#",
+    "gmaps": "https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#",
+
+    "Place": "schema:Place",
+    "LocalBusiness": "schema:LocalBusiness",
+    "PostalAddress": "schema:PostalAddress",
+    "GeoCoordinates": "schema:GeoCoordinates",
+    "OpeningHoursSpecification": "schema:OpeningHoursSpecification",
+    "AggregateRating": "schema:AggregateRating",
+    "Review": "schema:Review",
+    "Person": "schema:Person",
+    "ImageObject": "schema:ImageObject",
+
+    "id": "@id",
+    "type": "@type",
+
+    "placeId": {
+      "@id": "gmaps:placeId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "formattedAddress": {
+      "@id": "schema:address",
+      "@type": "xsd:string"
+    },
+    "shortFormattedAddress": {
+      "@id": "gmaps:shortFormattedAddress",
+      "@type": "xsd:string"
+    },
+    "addressComponents": {
+      "@id": "gmaps:addressComponents",
+      "@container": "@list"
+    },
+    "longText": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "shortText": {
+      "@id": "schema:alternateName",
+      "@type": "xsd:string"
+    },
+
+    "location": {
+      "@id": "schema:geo",
+      "@type": "@id"
+    },
+    "latitude": {
+      "@id": "geo:lat",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "geo:long",
+      "@type": "xsd:double"
+    },
+    "lat": {
+      "@id": "geo:lat",
+      "@type": "xsd:double"
+    },
+    "lng": {
+      "@id": "geo:long",
+      "@type": "xsd:double"
+    },
+
+    "viewport": {
+      "@id": "gmaps:viewport",
+      "@type": "@id"
+    },
+    "northeast": {
+      "@id": "gmaps:northeast",
+      "@type": "@id"
+    },
+    "southwest": {
+      "@id": "gmaps:southwest",
+      "@type": "@id"
+    },
+
+    "rating": {
+      "@id": "schema:ratingValue",
+      "@type": "xsd:double"
+    },
+    "userRatingCount": {
+      "@id": "schema:ratingCount",
+      "@type": "xsd:integer"
+    },
+    "aggregateRating": {
+      "@id": "schema:aggregateRating",
+      "@type": "AggregateRating"
+    },
+
+    "nationalPhoneNumber": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "internationalPhoneNumber": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "websiteUri": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "googleMapsUri": {
+      "@id": "schema:hasMap",
+      "@type": "@id"
+    },
+
+    "types": {
+      "@id": "schema:additionalType",
+      "@container": "@set"
+    },
+    "primaryType": {
+      "@id": "gmaps:primaryType",
+      "@type": "xsd:string"
+    },
+
+    "regularOpeningHours": {
+      "@id": "schema:openingHoursSpecification",
+      "@type": "OpeningHoursSpecification"
+    },
+    "currentOpeningHours": {
+      "@id": "gmaps:currentOpeningHours",
+      "@type": "OpeningHoursSpecification"
+    },
+    "openNow": {
+      "@id": "gmaps:openNow",
+      "@type": "xsd:boolean"
+    },
+    "weekdayDescriptions": {
+      "@id": "schema:openingHours",
+      "@container": "@list"
+    },
+
+    "priceLevel": {
+      "@id": "schema:priceRange",
+      "@type": "xsd:string"
+    },
+    "businessStatus": {
+      "@id": "gmaps:businessStatus",
+      "@type": "xsd:string"
+    },
+
+    "reviews": {
+      "@id": "schema:review",
+      "@container": "@list"
+    },
+    "reviewRating": {
+      "@id": "schema:reviewRating",
+      "@type": "schema:Rating"
+    },
+    "reviewBody": {
+      "@id": "schema:reviewBody",
+      "@type": "xsd:string"
+    },
+    "authorAttribution": {
+      "@id": "schema:author",
+      "@type": "Person"
+    },
+    "publishTime": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:dateTime"
+    },
+
+    "photos": {
+      "@id": "schema:photo",
+      "@container": "@list"
+    },
+    "widthPx": {
+      "@id": "schema:width",
+      "@type": "xsd:integer"
+    },
+    "heightPx": {
+      "@id": "schema:height",
+      "@type": "xsd:integer"
+    },
+
+    "editorialSummary": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+
+    "plusCode": {
+      "@id": "gmaps:plusCode",
+      "@type": "@id"
+    },
+    "globalCode": {
+      "@id": "gmaps:globalCode",
+      "@type": "xsd:string"
+    },
+    "compoundCode": {
+      "@id": "gmaps:compoundCode",
+      "@type": "xsd:string"
+    },
+
+    "dineIn": {
+      "@id": "gmaps:dineIn",
+      "@type": "xsd:boolean"
+    },
+    "takeout": {
+      "@id": "gmaps:takeout",
+      "@type": "xsd:boolean"
+    },
+    "delivery": {
+      "@id": "gmaps:delivery",
+      "@type": "xsd:boolean"
+    },
+    "curbsidePickup": {
+      "@id": "gmaps:curbsidePickup",
+      "@type": "xsd:boolean"
+    },
+    "reservable": {
+      "@id": "schema:acceptsReservations",
+      "@type": "xsd:boolean"
+    },
+
+    "servesBreakfast": {
+      "@id": "gmaps:servesBreakfast",
+      "@type": "xsd:boolean"
+    },
+    "servesLunch": {
+      "@id": "gmaps:servesLunch",
+      "@type": "xsd:boolean"
+    },
+    "servesDinner": {
+      "@id": "gmaps:servesDinner",
+      "@type": "xsd:boolean"
+    },
+    "servesBeer": {
+      "@id": "gmaps:servesBeer",
+      "@type": "xsd:boolean"
+    },
+    "servesWine": {
+      "@id": "gmaps:servesWine",
+      "@type": "xsd:boolean"
+    },
+    "servesVegetarianFood": {
+      "@id": "gmaps:servesVegetarianFood",
+      "@type": "xsd:boolean"
+    },
+
+    "accessibilityOptions": {
+      "@id": "schema:accessibilityFeature",
+      "@type": "@id"
+    },
+    "wheelchairAccessibleParking": {
+      "@id": "gmaps:wheelchairAccessibleParking",
+      "@type": "xsd:boolean"
+    },
+    "wheelchairAccessibleEntrance": {
+      "@id": "gmaps:wheelchairAccessibleEntrance",
+      "@type": "xsd:boolean"
+    },
+    "wheelchairAccessibleRestroom": {
+      "@id": "gmaps:wheelchairAccessibleRestroom",
+      "@type": "xsd:boolean"
+    },
+    "wheelchairAccessibleSeating": {
+      "@id": "gmaps:wheelchairAccessibleSeating",
+      "@type": "xsd:boolean"
+    },
+
+    "parkingOptions": {
+      "@id": "schema:amenityFeature",
+      "@type": "@id"
+    },
+    "paymentOptions": {
+      "@id": "schema:paymentAccepted",
+      "@type": "@id"
+    },
+
+    "formatted_address": {
+      "@id": "schema:address",
+      "@type": "xsd:string"
+    },
+    "address_components": {
+      "@id": "gmaps:addressComponents",
+      "@container": "@list"
+    },
+    "long_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "short_name": {
+      "@id": "schema:alternateName",
+      "@type": "xsd:string"
+    },
+    "geometry": {
+      "@id": "schema:geo",
+      "@type": "@id"
+    },
+    "location_type": {
+      "@id": "gmaps:locationType",
+      "@type": "xsd:string"
+    },
+    "place_id": {
+      "@id": "gmaps:placeId",
+      "@type": "xsd:string"
+    },
+    "partial_match": {
+      "@id": "gmaps:partialMatch",
+      "@type": "xsd:boolean"
+    },
+    "plus_code": {
+      "@id": "gmaps:plusCode",
+      "@type": "@id"
+    },
+    "global_code": {
+      "@id": "gmaps:globalCode",
+      "@type": "xsd:string"
+    },
+    "compound_code": {
+      "@id": "gmaps:compoundCode",
+      "@type": "xsd:string"
+    },
+
+    "utcOffsetMinutes": {
+      "@id": "gmaps:utcOffsetMinutes",
+      "@type": "xsd:integer"
+    },
+    "iconMaskBaseUri": {
+      "@id": "gmaps:iconMaskBaseUri",
+      "@type": "@id"
+    },
+    "iconBackgroundColor": {
+      "@id": "gmaps:iconBackgroundColor",
+      "@type": "xsd:string"
+    },
+    "adrFormatAddress": {
+      "@id": "gmaps:adrFormatAddress",
+      "@type": "xsd:string"
+    }
+  }
+}

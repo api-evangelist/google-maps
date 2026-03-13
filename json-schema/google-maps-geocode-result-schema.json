@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/google-maps/json-schema/google-maps-geocode-result-schema.json",
+  "title": "Google Maps Geocode Result",
+  "description": "A geocoding result from the Google Maps Geocoding API. Represents the conversion between a human-readable address and geographic coordinates. Contains the formatted address, individual address components, geometry with precise location and viewport, place ID, plus code, and address type classifications. Based on the Google Maps Platform Geocoding API documentation.",
+  "type": "object",
+  "properties": {
+    "address_components": {
+      "type": "array",
+      "description": "An array of address components that together compose the full address. Each component includes long and short names along with type classifications that describe the role of that component (e.g., street_number, route, locality, country).",
+      "items": {
+        "$ref": "#/$defs/AddressComponent"
+      }
+    },
+    "formatted_address": {
+      "type": "string",
+      "description": "The human-readable address of this location, composed from the individual address components. This is typically the full postal address.",
+      "examples": [
+        "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
+        "277 Bedford Ave, Brooklyn, NY 11211, USA"
+      ]
+    },
+    "geometry": {
+      "$ref": "#/$defs/Geometry",
+      "description": "The geographic geometry of this geocoding result, including the precise location coordinates, location type classification, recommended viewport, and optional bounds"
+    },
+    "place_id": {
+      "type": "string",
+      "description": "A unique identifier for this place that can be used with other Google APIs (Places API, Place Details, etc.). Place IDs are stable across sessions and can be stored for later retrieval.",
+      "examples": ["ChIJ2eUgeAK6j4ARbn5u_wAGqWA", "ChIJd8BlQ2BZwokRAFUEcm_qrcA"]
+    },
+    "plus_code": {
+      "$ref": "#/$defs/PlusCode",
+      "description": "The Open Location Code (plus code) for this location. Plus codes provide a simple way to encode locations that can be used where traditional addresses are unavailable."
+    },
+    "types": {
+      "type": "array",
+      "description": "An array of type tags describing this address result. These types indicate the nature of the geocoded entity (e.g., street_address, route, locality, political, country, postal_code).",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["street_address"],
+        ["locality", "political"],
+        ["country", "political"]
+      ]
+    },
+    "partial_match": {
+      "type": "boolean",
+      "description": "Indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address. Partial matches most often occur for street addresses that do not exist within the locality you pass in the request."
+    },
+    "postcode_localities": {
+      "type": "array",
+      "description": "An array of locality names (city/town names) contained within a postal code result. Only present when the result is a postal code that contains multiple localities.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "address_components",
+    "formatted_address",
+    "geometry",
+    "place_id",
+    "types"
+  ],
+  "$defs": {
+    "AddressComponent": {
+      "type": "object",
+      "description": "An individual component of a geocoded address. Each component has a type that describes its role in the address (street_number, route, locality, administrative_area_level_1, country, postal_code, etc.).",
+      "properties": {
+        "long_name": {
+          "type": "string",
+          "description": "The full text description of the address component as returned by the geocoder",
+          "examples": ["Mountain View", "California", "United States", "1600"]
+        },
+        "short_name": {
+          "type": "string",
+          "description": "An abbreviated textual name for the address component, if available. For example, 'CA' for California, 'US' for United States.",
+          "examples": ["MV", "CA", "US", "1600"]
+        },
+        "types": {
+          "type": "array",
+          "description": "An array of strings indicating the type(s) of this address component. Multiple types may be present. Common types include: street_number, route, locality, administrative_area_level_1, administrative_area_level_2, country, postal_code, sublocality, neighborhood, premise, subpremise.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            ["locality", "political"],
+            ["administrative_area_level_1", "political"],
+            ["country", "political"],
+            ["postal_code"]
+          ]
+        }
+      },
+      "required": ["long_name", "short_name", "types"]
+    },
+    "Geometry": {
+      "type": "object",
+      "description": "The geometric information about a geocoding result, providing location coordinates, location precision type, and bounding areas",
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/LatLng",
+          "description": "The geocoded latitude/longitude value. This is the primary coordinate result for this geocoded address."
+        },
+        "location_type": {
+          "type": "string",
+          "description": "Stores additional data about the specified location. ROOFTOP indicates a precise geocode for which Google has location information accurate down to street address precision. RANGE_INTERPOLATED indicates an approximation (usually on a road) interpolated between two precise points. GEOMETRIC_CENTER indicates a geometric center of a result such as a polyline (e.g., a street) or polygon (e.g., a region). APPROXIMATE indicates that the returned result is approximate.",
+          "enum": [
+            "ROOFTOP",
+            "RANGE_INTERPOLATED",
+            "GEOMETRIC_CENTER",
+            "APPROXIMATE"
+          ]
+        },
+        "viewport": {
+          "$ref": "#/$defs/Bounds",
+          "description": "The recommended viewport for displaying the returned result. This viewport is suitable for framing the result on a map."
+        },
+        "bounds": {
+          "$ref": "#/$defs/Bounds",
+          "description": "The bounding box which can fully contain the returned result. Note that these bounds may not match the recommended viewport. For example, San Francisco includes the Farallon Islands, which are technically part of the city but should not be included in the viewport."
+        }
+      },
+      "required": ["location", "location_type", "viewport"]
+    },
+    "LatLng": {
+      "type": "object",
+      "description": "A geographic coordinate pair expressed as latitude and longitude in decimal degrees (WGS84 datum)",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "description": "Latitude in decimal degrees. Positive values are north of the equator, negative values are south.",
+          "minimum": -90.0,
+          "maximum": 90.0,
+          "examples": [37.4224764, 40.714224, -33.8688]
+        },
+        "lng": {
+          "type": "number",
+          "description": "Longitude in decimal degrees. Positive values are east of the Prime Meridian, negative values are west.",
+          "minimum": -180.0,
+          "maximum": 180.0,
+          "examples": [-122.0842499, -73.961452, 151.2093]
+        }
+      },
+      "required": ["lat", "lng"]
+    },
+    "Bounds": {
+      "type": "object",
+      "description": "A geographic bounding box defined by its northeast (top-right) and southwest (bottom-left) corners",
+      "properties": {
+        "northeast": {
+          "$ref": "#/$defs/LatLng",
+          "description": "The northeast corner of the bounding box"
+        },
+        "southwest": {
+          "$ref": "#/$defs/LatLng",
+          "description": "The southwest corner of the bounding box"
+        }
+      },
+      "required": ["northeast", "southwest"]
+    },
+    "PlusCode": {
+      "type": "object",
+      "description": "An Open Location Code (plus code), which is a location reference derived from latitude and longitude coordinates. Plus codes can represent an area (approximately 14m x 14m at the most precise level) rather than a point. They provide an alternative to traditional addresses.",
+      "properties": {
+        "global_code": {
+          "type": "string",
+          "description": "The global (full) plus code, consisting of a four-character area code and a six-character (or longer) local code. The global code can be used independently to identify a location.",
+          "pattern": "^[23456789CFGHJMPQRVWX]{4,8}\\+[23456789CFGHJMPQRVWX]{2,}$",
+          "examples": ["849VCWC8+R9"]
+        },
+        "compound_code": {
+          "type": "string",
+          "description": "The compound plus code, which consists of the local code portion (after the +) combined with a locality name for easier human reference",
+          "examples": ["CWC8+R9 Mountain View, CA, USA"]
+        }
+      }
+    }
+  }
+}

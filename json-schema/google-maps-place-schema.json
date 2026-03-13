@@ -1,0 +1,555 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/google-maps/json-schema/google-maps-place-schema.json",
+  "title": "Google Maps Place",
+  "description": "A place as represented by the Google Maps Places API (New). Contains comprehensive information about a physical location including identity, contact details, location data, ratings, reviews, opening hours, and service options. Based on the Google Maps Platform Places API documentation.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The resource name of this place in the format places/{placeId}",
+      "pattern": "^places/.+$",
+      "examples": ["places/ChIJN1t_tDeuEmsRUsoyG83frY4"]
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique place ID. A textual identifier that uniquely identifies a place in the Google Places database and on Google Maps.",
+      "examples": ["ChIJN1t_tDeuEmsRUsoyG83frY4"]
+    },
+    "displayName": {
+      "$ref": "#/$defs/LocalizedText",
+      "description": "The localized display name of the place, suitable for short textual identification"
+    },
+    "types": {
+      "type": "array",
+      "description": "A set of type tags for this place. A place can have multiple types. Full list defined by Google Maps Place Types.",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["restaurant", "food", "point_of_interest", "establishment"]]
+    },
+    "primaryType": {
+      "type": "string",
+      "description": "The primary type of this place, representing the most specific type tag",
+      "examples": ["restaurant", "cafe", "park", "museum"]
+    },
+    "primaryTypeDisplayName": {
+      "$ref": "#/$defs/LocalizedText",
+      "description": "The display name of the primary type, localized to the request language"
+    },
+    "nationalPhoneNumber": {
+      "type": "string",
+      "description": "The place's phone number in national format",
+      "examples": ["(02) 9374 4000"]
+    },
+    "internationalPhoneNumber": {
+      "type": "string",
+      "description": "The place's phone number in international format, including country code",
+      "examples": ["+61 2 9374 4000"]
+    },
+    "formattedAddress": {
+      "type": "string",
+      "description": "The full human-readable address for this place, including street, city, state/province, postal code, and country",
+      "examples": ["48 Pirrama Rd, Pyrmont NSW 2009, Australia"]
+    },
+    "shortFormattedAddress": {
+      "type": "string",
+      "description": "A short human-readable address, typically including only the street address and city",
+      "examples": ["48 Pirrama Rd, Pyrmont"]
+    },
+    "addressComponents": {
+      "type": "array",
+      "description": "The individual address components of the place's address, broken down by type (street number, route, locality, etc.)",
+      "items": {
+        "$ref": "#/$defs/AddressComponent"
+      }
+    },
+    "location": {
+      "$ref": "#/$defs/LatLng",
+      "description": "The geographic location of the place as latitude/longitude coordinates"
+    },
+    "viewport": {
+      "$ref": "#/$defs/Viewport",
+      "description": "A viewport suitable for displaying the place on a map of average size"
+    },
+    "rating": {
+      "type": "number",
+      "description": "The place's overall rating based on aggregated user reviews, on a scale of 1.0 to 5.0",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "examples": [4.2]
+    },
+    "userRatingCount": {
+      "type": "integer",
+      "description": "The total number of user ratings that contributed to the place's overall rating",
+      "minimum": 0,
+      "examples": [1234]
+    },
+    "googleMapsUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL pointing to this place's page on Google Maps"
+    },
+    "websiteUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "The authoritative website URL for this place, if known"
+    },
+    "regularOpeningHours": {
+      "$ref": "#/$defs/OpeningHours",
+      "description": "The regular (non-holiday) opening hours for this place"
+    },
+    "currentOpeningHours": {
+      "$ref": "#/$defs/OpeningHours",
+      "description": "The current opening hours, which may differ from regular hours due to holidays or special events"
+    },
+    "priceLevel": {
+      "type": "string",
+      "description": "The price level of the place, indicating relative cost",
+      "enum": [
+        "PRICE_LEVEL_UNSPECIFIED",
+        "PRICE_LEVEL_FREE",
+        "PRICE_LEVEL_INEXPENSIVE",
+        "PRICE_LEVEL_MODERATE",
+        "PRICE_LEVEL_EXPENSIVE",
+        "PRICE_LEVEL_VERY_EXPENSIVE"
+      ]
+    },
+    "businessStatus": {
+      "type": "string",
+      "description": "The operational status of the business",
+      "enum": [
+        "BUSINESS_STATUS_UNSPECIFIED",
+        "OPERATIONAL",
+        "CLOSED_TEMPORARILY",
+        "CLOSED_PERMANENTLY"
+      ]
+    },
+    "utcOffsetMinutes": {
+      "type": "integer",
+      "description": "Number of minutes this place's current timezone is offset from UTC"
+    },
+    "reviews": {
+      "type": "array",
+      "description": "A list of up to 5 reviews for this place, sorted by relevance",
+      "items": {
+        "$ref": "#/$defs/Review"
+      },
+      "maxItems": 5
+    },
+    "photos": {
+      "type": "array",
+      "description": "Photos associated with this place, including references for fetching photo media",
+      "items": {
+        "$ref": "#/$defs/Photo"
+      }
+    },
+    "editorialSummary": {
+      "$ref": "#/$defs/LocalizedText",
+      "description": "A brief editorial summary of the place, written by Google"
+    },
+    "adrFormatAddress": {
+      "type": "string",
+      "description": "The place's address in adr microformat (http://microformats.org/wiki/adr)"
+    },
+    "iconMaskBaseUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL to an SVG icon mask that can be used to represent the place's type"
+    },
+    "iconBackgroundColor": {
+      "type": "string",
+      "description": "The background color for the place's type icon, in hex format",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "examples": ["#FF9E67"]
+    },
+    "plusCode": {
+      "$ref": "#/$defs/PlusCode",
+      "description": "The Open Location Code (plus code) for this place"
+    },
+    "accessibilityOptions": {
+      "$ref": "#/$defs/AccessibilityOptions",
+      "description": "Accessibility features available at this place"
+    },
+    "parkingOptions": {
+      "$ref": "#/$defs/ParkingOptions",
+      "description": "Parking options available at this place"
+    },
+    "paymentOptions": {
+      "$ref": "#/$defs/PaymentOptions",
+      "description": "Payment methods accepted at this place"
+    },
+    "dineIn": {
+      "type": "boolean",
+      "description": "Whether the place supports dine-in service"
+    },
+    "takeout": {
+      "type": "boolean",
+      "description": "Whether the place offers takeout service"
+    },
+    "delivery": {
+      "type": "boolean",
+      "description": "Whether the place offers delivery service"
+    },
+    "curbsidePickup": {
+      "type": "boolean",
+      "description": "Whether the place offers curbside pickup"
+    },
+    "reservable": {
+      "type": "boolean",
+      "description": "Whether the place accepts reservations"
+    },
+    "servesBreakfast": {
+      "type": "boolean",
+      "description": "Whether the place serves breakfast"
+    },
+    "servesLunch": {
+      "type": "boolean",
+      "description": "Whether the place serves lunch"
+    },
+    "servesDinner": {
+      "type": "boolean",
+      "description": "Whether the place serves dinner"
+    },
+    "servesBeer": {
+      "type": "boolean",
+      "description": "Whether the place serves beer"
+    },
+    "servesWine": {
+      "type": "boolean",
+      "description": "Whether the place serves wine"
+    },
+    "servesVegetarianFood": {
+      "type": "boolean",
+      "description": "Whether the place serves vegetarian food"
+    }
+  },
+  "required": ["name", "id"],
+  "$defs": {
+    "LocalizedText": {
+      "type": "object",
+      "description": "A localized text string with its associated language code",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The localized text value"
+        },
+        "languageCode": {
+          "type": "string",
+          "description": "The BCP-47 language code of the text",
+          "examples": ["en", "fr", "ja"]
+        }
+      },
+      "required": ["text"]
+    },
+    "LatLng": {
+      "type": "object",
+      "description": "A geographic coordinate expressed as latitude and longitude in decimal degrees (WGS84)",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude in decimal degrees. Must be in the range [-90.0, +90.0].",
+          "minimum": -90.0,
+          "maximum": 90.0,
+          "examples": [-33.8688]
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude in decimal degrees. Must be in the range [-180.0, +180.0].",
+          "minimum": -180.0,
+          "maximum": 180.0,
+          "examples": [151.2093]
+        }
+      },
+      "required": ["latitude", "longitude"]
+    },
+    "Viewport": {
+      "type": "object",
+      "description": "A rectangular viewport defined by its low (southwest) and high (northeast) points",
+      "properties": {
+        "low": {
+          "$ref": "#/$defs/LatLng",
+          "description": "The southwest corner of the viewport"
+        },
+        "high": {
+          "$ref": "#/$defs/LatLng",
+          "description": "The northeast corner of the viewport"
+        }
+      },
+      "required": ["low", "high"]
+    },
+    "AddressComponent": {
+      "type": "object",
+      "description": "An individual component of a structured address",
+      "properties": {
+        "longText": {
+          "type": "string",
+          "description": "The full text description of the address component",
+          "examples": ["Mountain View"]
+        },
+        "shortText": {
+          "type": "string",
+          "description": "An abbreviated textual name for the address component",
+          "examples": ["MV"]
+        },
+        "types": {
+          "type": "array",
+          "description": "An array of strings indicating the type of this address component (e.g., locality, administrative_area_level_1, country)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "languageCode": {
+          "type": "string",
+          "description": "The language code for this component"
+        }
+      },
+      "required": ["longText", "shortText", "types"]
+    },
+    "PlusCode": {
+      "type": "object",
+      "description": "An Open Location Code (plus code) representing a geographic area",
+      "properties": {
+        "globalCode": {
+          "type": "string",
+          "description": "The full plus code (global code) that identifies a geographic area",
+          "examples": ["4RRH57G3+6R"]
+        },
+        "compoundCode": {
+          "type": "string",
+          "description": "The compound plus code, which includes a locality reference for easier human readability",
+          "examples": ["57G3+6R Pyrmont, New South Wales, Australia"]
+        }
+      }
+    },
+    "OpeningHours": {
+      "type": "object",
+      "description": "Information about when a place is open for business",
+      "properties": {
+        "openNow": {
+          "type": "boolean",
+          "description": "Whether the place is currently open"
+        },
+        "periods": {
+          "type": "array",
+          "description": "Time periods the place is open during the week, structured as open/close pairs",
+          "items": {
+            "$ref": "#/$defs/Period"
+          }
+        },
+        "weekdayDescriptions": {
+          "type": "array",
+          "description": "Localized strings describing the opening hours for each day of the week",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["Monday: 9:00 AM - 5:00 PM", "Tuesday: 9:00 AM - 5:00 PM"]]
+        }
+      }
+    },
+    "Period": {
+      "type": "object",
+      "description": "A single time period when a place is open, defined by open and close points",
+      "properties": {
+        "open": {
+          "$ref": "#/$defs/TimePoint",
+          "description": "The time when the place opens"
+        },
+        "close": {
+          "$ref": "#/$defs/TimePoint",
+          "description": "The time when the place closes. Absent for places open 24 hours."
+        }
+      },
+      "required": ["open"]
+    },
+    "TimePoint": {
+      "type": "object",
+      "description": "A specific point in time on a weekly schedule",
+      "properties": {
+        "day": {
+          "type": "integer",
+          "description": "Day of the week as an integer (0 = Sunday, 6 = Saturday)",
+          "minimum": 0,
+          "maximum": 6
+        },
+        "hour": {
+          "type": "integer",
+          "description": "Hour in 24-hour format (0-23)",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "minute": {
+          "type": "integer",
+          "description": "Minute of the hour (0-59)",
+          "minimum": 0,
+          "maximum": 59
+        }
+      },
+      "required": ["day", "hour", "minute"]
+    },
+    "Review": {
+      "type": "object",
+      "description": "A user-submitted review of a place",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The resource name of the review"
+        },
+        "relativePublishTimeDescription": {
+          "type": "string",
+          "description": "A human-readable relative time description (e.g., 'a month ago')",
+          "examples": ["a month ago", "2 weeks ago"]
+        },
+        "rating": {
+          "type": "number",
+          "description": "The star rating of this review, from 1.0 to 5.0",
+          "minimum": 1.0,
+          "maximum": 5.0
+        },
+        "text": {
+          "$ref": "#/$defs/LocalizedText",
+          "description": "The review text"
+        },
+        "originalText": {
+          "$ref": "#/$defs/LocalizedText",
+          "description": "The review text in its original language"
+        },
+        "authorAttribution": {
+          "$ref": "#/$defs/AuthorAttribution",
+          "description": "Information about the review author"
+        },
+        "publishTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the review was published"
+        }
+      }
+    },
+    "AuthorAttribution": {
+      "type": "object",
+      "description": "Attribution information for a content author",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the author"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URI to the author's profile"
+        },
+        "photoUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URI to the author's profile photo"
+        }
+      }
+    },
+    "Photo": {
+      "type": "object",
+      "description": "A photo associated with a place",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The resource name of the photo in the format places/{placeId}/photos/{photoReference}",
+          "pattern": "^places/.+/photos/.+$"
+        },
+        "widthPx": {
+          "type": "integer",
+          "description": "Maximum available width of the photo in pixels",
+          "minimum": 1
+        },
+        "heightPx": {
+          "type": "integer",
+          "description": "Maximum available height of the photo in pixels",
+          "minimum": 1
+        },
+        "authorAttributions": {
+          "type": "array",
+          "description": "The authors/contributors of this photo",
+          "items": {
+            "$ref": "#/$defs/AuthorAttribution"
+          }
+        }
+      }
+    },
+    "AccessibilityOptions": {
+      "type": "object",
+      "description": "Accessibility features available at a place",
+      "properties": {
+        "wheelchairAccessibleParking": {
+          "type": "boolean",
+          "description": "Whether the place has wheelchair-accessible parking"
+        },
+        "wheelchairAccessibleEntrance": {
+          "type": "boolean",
+          "description": "Whether the place has a wheelchair-accessible entrance"
+        },
+        "wheelchairAccessibleRestroom": {
+          "type": "boolean",
+          "description": "Whether the place has a wheelchair-accessible restroom"
+        },
+        "wheelchairAccessibleSeating": {
+          "type": "boolean",
+          "description": "Whether the place has wheelchair-accessible seating"
+        }
+      }
+    },
+    "ParkingOptions": {
+      "type": "object",
+      "description": "Parking options available at a place",
+      "properties": {
+        "freeParkingLot": {
+          "type": "boolean",
+          "description": "Whether the place has a free parking lot"
+        },
+        "paidParkingLot": {
+          "type": "boolean",
+          "description": "Whether the place has a paid parking lot"
+        },
+        "freeStreetParking": {
+          "type": "boolean",
+          "description": "Whether free street parking is available nearby"
+        },
+        "paidStreetParking": {
+          "type": "boolean",
+          "description": "Whether paid street parking is available nearby"
+        },
+        "valetParking": {
+          "type": "boolean",
+          "description": "Whether the place offers valet parking"
+        },
+        "freeGarageParking": {
+          "type": "boolean",
+          "description": "Whether the place has a free parking garage"
+        },
+        "paidGarageParking": {
+          "type": "boolean",
+          "description": "Whether the place has a paid parking garage"
+        }
+      }
+    },
+    "PaymentOptions": {
+      "type": "object",
+      "description": "Payment methods accepted at a place",
+      "properties": {
+        "acceptsCreditCards": {
+          "type": "boolean",
+          "description": "Whether the place accepts credit cards"
+        },
+        "acceptsDebitCards": {
+          "type": "boolean",
+          "description": "Whether the place accepts debit cards"
+        },
+        "acceptsCashOnly": {
+          "type": "boolean",
+          "description": "Whether the place only accepts cash"
+        },
+        "acceptsNfc": {
+          "type": "boolean",
+          "description": "Whether the place accepts NFC/contactless payments"
+        }
+      }
+    }
+  }
+}
