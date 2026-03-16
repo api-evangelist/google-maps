@@ -1,10 +1,12 @@
+aid: google-maps
 name: Google Maps Platform
 description: Google Maps Platform offers APIs and SDKs for maps, routes, and places functionality
 image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
 url: https://developers.google.com/maps
-created: '2024'
-modified: '2026-03-03'
-specificationVersion: '0.18'
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+type: Index
 tags:
 - maps
 - geolocation
@@ -637,9 +639,6 @@ apis:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-- FN: Google Maps Platform Team
-  email: maps-api-support@google.com
-  url: https://developers.google.com/maps
 common:
 - type: Authentication
   url: https://developers.google.com/maps/documentation/javascript/get-api-key
