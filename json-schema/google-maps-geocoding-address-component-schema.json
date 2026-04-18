@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AddressComponent",
+  "type": "object",
+  "description": "An individual address component of a geocoding result",
+  "properties": {
+    "long_name": {
+      "type": "string",
+      "description": "The full text description of the address component"
+    },
+    "short_name": {
+      "type": "string",
+      "description": "An abbreviated textual name for the address component"
+    },
+    "types": {
+      "type": "array",
+      "description": "Array indicating the type of the address component"
+    }
+  }
+}

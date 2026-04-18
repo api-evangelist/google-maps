@@ -5,7 +5,7 @@ description: >-
 image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
 url: https://developers.google.com/maps
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-04-18'
 specificationVersion: '0.19'
 type: Index
 tags:
@@ -157,7 +157,7 @@ apis:
         url: openapi/google-maps-geocoding-api.yml
       - type: JSONSchema
         url: json-schema/google-maps-geocode-result-schema.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/google-maps-context.jsonld
       - type: Pricing
         url: https://developers.google.com/maps/billing-and-pricing/pricing
@@ -202,7 +202,7 @@ apis:
         url: openapi/google-maps-places-api.yml
       - type: JSONSchema
         url: json-schema/google-maps-place-schema.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/google-maps-context.jsonld
       - type: GettingStarted
         url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
@@ -248,7 +248,7 @@ apis:
         url: https://developers.google.com/maps/documentation/directions/overview
       - type: OpenAPI
         url: openapi/google-maps-directions-api.yml
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/google-maps-context.jsonld
       - type: GettingStarted
         url: https://developers.google.com/maps/documentation/directions/overview
@@ -713,15 +713,15 @@ common:
     url: https://developers.google.com/maps/documentation/javascript/get-api-key
   - type: Console
     url: https://console.cloud.google.com/google/maps-apis
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://cloud.google.com/maps-platform/terms
   - type: Pricing
     url: https://mapsplatform.google.com/pricing
-  - type: PricingDetails
+  - type: Pricing
     url: https://developers.google.com/maps/billing-and-pricing/pricing
-  - type: BillingOverview
+  - type: Pricing
     url: https://developers.google.com/maps/billing-and-pricing/overview
-  - type: Status
+  - type: StatusPage
     url: https://status.cloud.google.com
   - type: Blog
     url: https://mapsplatform.google.com/resources/blog/
@@ -731,11 +731,43 @@ common:
     url: https://developers.google.com/maps/faq
   - type: GettingStarted
     url: https://developers.google.com/maps/get-started
-  - type: Community
+  - type: Support
     url: https://developers.google.com/maps/developer-community
-  - type: GitHubOrg
+  - type: GitHubOrganization
     url: https://github.com/googlemaps
-  - type: APIsByPlatform
+  - type: Documentation
     url: https://developers.google.com/maps/apis-by-platform
-  - type: ClientLibraries
+  - type: SDK
     url: https://developers.google.com/maps/documentation/routes/client-libraries
+  - type: Features
+    data:
+      - Geocoding and reverse geocoding for address-to-coordinate conversion
+      - Directions and route optimization for driving, walking, bicycling, and transit
+      - Place search, details, autocomplete, and photo retrieval
+      - Real-time traffic-aware routing with toll and fare estimation
+      - Environmental data including air quality, pollen, solar, and weather APIs
+      - 3D aerial views, map tiles, and street view imagery
+  - type: UseCases
+    data:
+      - Building location-aware mobile and web applications with embedded maps
+      - Calculating optimal delivery routes and fleet logistics
+      - Validating and standardizing customer shipping addresses
+      - Finding nearby businesses, restaurants, and points of interest
+      - Analyzing environmental conditions for real estate and energy planning
+  - type: Integrations
+    data:
+      - Google Cloud Platform for authentication and billing management
+      - Mobile apps via Android SDK, iOS SDK, and Flutter packages
+      - Navigation SDKs for turn-by-turn driving experiences
+      - BigQuery for large-scale geospatial analytics and place insights
+      - Cross-platform frameworks including Flutter and React Native
+  - type: Rules
+    url: rules/google-maps-spectral-rules.yml
+  - type: Capabilities
+    url: capabilities/shared/directions.yaml
+  - type: Capabilities
+    url: capabilities/shared/geocoding.yaml
+  - type: Capabilities
+    url: capabilities/shared/places.yaml
+  - type: Capabilities
+    url: capabilities/location-intelligence.yaml

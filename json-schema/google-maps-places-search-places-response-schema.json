@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchPlacesResponse",
+  "type": "object",
+  "description": "Response from text search and nearby search",
+  "properties": {
+    "places": {
+      "type": "array",
+      "description": "List of places matching the search criteria"
+    },
+    "nextPageToken": {
+      "type": "string",
+      "description": "A token that can be sent as pageToken in a subsequent request to retrieve the next page of results."
+    }
+  }
+}

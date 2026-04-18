@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Place",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array"
+    },
+    "primaryType": {
+      "type": "string"
+    },
+    "nationalPhoneNumber": {
+      "type": "string"
+    },
+    "internationalPhoneNumber": {
+      "type": "string"
+    },
+    "formattedAddress": {
+      "type": "string"
+    },
+    "shortFormattedAddress": {
+      "type": "string"
+    },
+    "addressComponents": {
+      "type": "array"
+    },
+    "rating": {
+      "type": "number"
+    },
+    "userRatingCount": {
+      "type": "integer"
+    },
+    "googleMapsUri": {
+      "type": "string"
+    },
+    "websiteUri": {
+      "type": "string"
+    },
+    "priceLevel": {
+      "type": "string"
+    },
+    "businessStatus": {
+      "type": "string"
+    },
+    "utcOffsetMinutes": {
+      "type": "integer"
+    },
+    "reviews": {
+      "type": "array"
+    },
+    "photos": {
+      "type": "array"
+    },
+    "adrFormatAddress": {
+      "type": "string"
+    },
+    "iconMaskBaseUri": {
+      "type": "string"
+    },
+    "iconBackgroundColor": {
+      "type": "string"
+    },
+    "dineIn": {
+      "type": "boolean"
+    },
+    "takeout": {
+      "type": "boolean"
+    },
+    "delivery": {
+      "type": "boolean"
+    },
+    "curbsidePickup": {
+      "type": "boolean"
+    },
+    "reservable": {
+      "type": "boolean"
+    },
+    "servesBreakfast": {
+      "type": "boolean"
+    },
+    "servesLunch": {
+      "type": "boolean"
+    },
+    "servesDinner": {
+      "type": "boolean"
+    },
+    "servesBeer": {
+      "type": "boolean"
+    },
+    "servesWine": {
+      "type": "boolean"
+    },
+    "servesVegetarianFood": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Review",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "relativePublishTimeDescription": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number"
+    },
+    "publishTime": {
+      "type": "string"
+    }
+  }
+}

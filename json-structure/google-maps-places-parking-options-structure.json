@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ParkingOptions",
+  "type": "object",
+  "properties": {
+    "freeParkingLot": {
+      "type": "boolean"
+    },
+    "paidParkingLot": {
+      "type": "boolean"
+    },
+    "freeStreetParking": {
+      "type": "boolean"
+    },
+    "paidStreetParking": {
+      "type": "boolean"
+    },
+    "valetParking": {
+      "type": "boolean"
+    },
+    "freeGarageParking": {
+      "type": "boolean"
+    },
+    "paidGarageParking": {
+      "type": "boolean"
+    }
+  }
+}

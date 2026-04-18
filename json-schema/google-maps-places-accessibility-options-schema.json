@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccessibilityOptions",
+  "type": "object",
+  "description": "Accessibility features of a place",
+  "properties": {
+    "wheelchairAccessibleParking": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleEntrance": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleRestroom": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleSeating": {
+      "type": "boolean"
+    }
+  }
+}

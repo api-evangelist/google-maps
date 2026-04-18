@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AddressComponent",
+  "type": "object",
+  "properties": {
+    "long_name": {
+      "type": "string"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array"
+    }
+  }
+}

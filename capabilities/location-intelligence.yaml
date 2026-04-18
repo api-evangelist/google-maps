@@ -1,0 +1,172 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Google Maps Location Intelligence"
+  description: "Unified workflow combining Google Maps Directions, Geocoding, and Places APIs for location-aware applications. Enables developers to geocode addresses, compute routes, search for places, and retrieve place details in a single integration."
+  tags:
+    - Google Maps
+    - Location
+    - Geocoding
+    - Directions
+    - Places
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      GOOGLE_MAPS_API_KEY: GOOGLE_MAPS_API_KEY
+
+capability:
+  consumes:
+    - import: google-maps-directions
+      location: ./shared/directions.yaml
+    - import: google-maps-geocoding
+      location: ./shared/geocoding.yaml
+    - import: google-maps-places
+      location: ./shared/places.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: location-intelligence-api
+      description: "Unified REST API for location intelligence combining geocoding, directions, and places."
+      resources:
+        - path: /v1/geocode
+          name: geocoding
+          description: "Address to coordinate conversion and reverse geocoding"
+          operations:
+            - method: GET
+              name: geocode
+              description: "Geocode an address or reverse geocode coordinates"
+              call: "google-maps-geocoding.geocode"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/directions
+          name: directions
+          description: "Route computation between locations"
+          operations:
+            - method: GET
+              name: get-directions
+              description: "Get directions between two or more locations"
+              call: "google-maps-directions.get-directions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/places/{placeId}
+          name: place-details
+          description: "Place details retrieval"
+          operations:
+            - method: GET
+              name: get-place-details
+              description: "Get detailed information about a place"
+              call: "google-maps-places.get-place-details"
+              with:
+                placeId: "rest.placeId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/places/search-text
+          name: text-search
+          description: "Text-based place search"
+          operations:
+            - method: POST
+              name: search-places-text
+              description: "Search for places using a text query"
+              call: "google-maps-places.search-places-text"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/places/search-nearby
+          name: nearby-search
+          description: "Location-based place search"
+          operations:
+            - method: POST
+              name: search-places-nearby
+              description: "Search for places near a location"
+              call: "google-maps-places.search-places-nearby"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/places/autocomplete
+          name: autocomplete
+          description: "Place autocomplete predictions"
+          operations:
+            - method: POST
+              name: autocomplete-places
+              description: "Get place predictions for input text"
+              call: "google-maps-places.autocomplete-places"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: location-intelligence-mcp
+      transport: http
+      description: "MCP server for AI-assisted location intelligence combining geocoding, directions, and places search."
+      tools:
+        - name: geocode
+          description: "Geocode an address to coordinates or reverse geocode coordinates to an address"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-geocoding.geocode"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-directions
+          description: "Get directions between two or more locations with support for driving, walking, bicycling, and transit"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-directions.get-directions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-place-details
+          description: "Get detailed information about a place including address, rating, hours, and reviews"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-places.get-place-details"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-places-text
+          description: "Search for places using a natural language text query like 'pizza in New York'"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-places.search-places-text"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-places-nearby
+          description: "Search for places near a specific location with type filters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-places.search-places-nearby"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: autocomplete-places
+          description: "Get place autocomplete predictions as the user types"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-places.autocomplete-places"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-place-photo
+          description: "Get a photo for a place by place ID and photo reference"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-places.get-place-photo"
+          outputParameters:
+            - type: object
+              mapping: "$."

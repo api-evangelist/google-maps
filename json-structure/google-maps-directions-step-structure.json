@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Step",
+  "type": "object",
+  "properties": {
+    "html_instructions": {
+      "type": "string"
+    },
+    "travel_mode": {
+      "type": "string"
+    },
+    "maneuver": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array"
+    }
+  }
+}

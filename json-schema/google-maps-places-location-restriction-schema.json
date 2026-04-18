@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocationRestriction",
+  "type": "object",
+  "description": "The region to restrict results to. Only results inside the restriction are returned.",
+  "properties": {}
+}

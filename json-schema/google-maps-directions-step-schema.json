@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Step",
+  "type": "object",
+  "description": "A single step of a route leg",
+  "properties": {
+    "html_instructions": {
+      "type": "string",
+      "description": "Formatted instructions for this step, presented as an HTML text string."
+    },
+    "travel_mode": {
+      "type": "string",
+      "description": "The travel mode for this step"
+    },
+    "maneuver": {
+      "type": "string",
+      "description": "The maneuver action for this step (e.g., turn-left, roundabout-right, merge, straight, etc.)."
+    },
+    "steps": {
+      "type": "array",
+      "description": "Sub-steps for walking or transit legs in multi-modal routes"
+    }
+  }
+}

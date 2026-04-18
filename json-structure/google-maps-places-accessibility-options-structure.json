@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AccessibilityOptions",
+  "type": "object",
+  "properties": {
+    "wheelchairAccessibleParking": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleEntrance": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleRestroom": {
+      "type": "boolean"
+    },
+    "wheelchairAccessibleSeating": {
+      "type": "boolean"
+    }
+  }
+}

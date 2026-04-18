@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fare",
+  "type": "object",
+  "description": "The total fare for a transit route",
+  "properties": {
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code"
+    },
+    "value": {
+      "type": "number",
+      "description": "The total fare amount in the specified currency"
+    },
+    "text": {
+      "type": "string",
+      "description": "Human-readable fare text"
+    }
+  }
+}

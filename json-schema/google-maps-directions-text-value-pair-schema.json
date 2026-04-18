@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TextValuePair",
+  "type": "object",
+  "description": "A text and numeric value pair used for distance, duration, and fare amounts",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Human-readable text representation"
+    },
+    "value": {
+      "type": "number",
+      "description": "Numeric value. For distance, expressed in meters. For duration, expressed in seconds. For fare, expressed in the currency indicated."
+    }
+  }
+}

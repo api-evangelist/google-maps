@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlusCode",
+  "type": "object",
+  "description": "A plus code (Open Location Code)",
+  "properties": {
+    "globalCode": {
+      "type": "string",
+      "description": "The full plus code (global code)"
+    },
+    "compoundCode": {
+      "type": "string",
+      "description": "The compound plus code with locality reference"
+    }
+  }
+}

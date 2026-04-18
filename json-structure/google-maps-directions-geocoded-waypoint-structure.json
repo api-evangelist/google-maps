@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GeocodedWaypoint",
+  "type": "object",
+  "properties": {
+    "geocoder_status": {
+      "type": "string"
+    },
+    "place_id": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array"
+    },
+    "partial_match": {
+      "type": "boolean"
+    }
+  }
+}

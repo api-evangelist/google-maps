@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Suggestion",
+  "type": "object",
+  "description": "A single autocomplete suggestion",
+  "properties": {}
+}

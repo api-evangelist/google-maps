@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchTextRequest",
+  "type": "object",
+  "description": "Request body for text search",
+  "properties": {
+    "textQuery": {
+      "type": "string",
+      "description": "The text query for the search"
+    },
+    "includedType": {
+      "type": "string",
+      "description": "Restrict results to a specific place type"
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for results"
+    },
+    "regionCode": {
+      "type": "string",
+      "description": "The region code for biasing results"
+    },
+    "rankPreference": {
+      "type": "string",
+      "description": "How results should be ranked"
+    },
+    "maxResultCount": {
+      "type": "integer",
+      "description": "Maximum number of results to return (1-20)"
+    },
+    "priceLevels": {
+      "type": "array",
+      "description": "Filter results by price level"
+    },
+    "openNow": {
+      "type": "boolean",
+      "description": "Return only places that are currently open"
+    },
+    "minRating": {
+      "type": "number",
+      "description": "Filter results to those with at least this rating"
+    },
+    "strictTypeFiltering": {
+      "type": "boolean",
+      "description": "If true, only return results that match the includedType exactly"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+name: google-maps API Vocabulary
+provider: google-maps
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 7
+schemas: 51
+tags:
+- Autocomplete
+- Directions
+- Geocoding
+- Nearby Search
+- Photos
+- Place Details
+- Text Search

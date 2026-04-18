@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchNearbyRequest",
+  "type": "object",
+  "description": "Request body for nearby search",
+  "properties": {
+    "includedTypes": {
+      "type": "array",
+      "description": "Place types to include in results"
+    },
+    "excludedTypes": {
+      "type": "array",
+      "description": "Place types to exclude from results"
+    },
+    "includedPrimaryTypes": {
+      "type": "array",
+      "description": "Primary place types to include"
+    },
+    "excludedPrimaryTypes": {
+      "type": "array",
+      "description": "Primary place types to exclude"
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for results"
+    },
+    "regionCode": {
+      "type": "string",
+      "description": "The region code for biasing results"
+    },
+    "rankPreference": {
+      "type": "string",
+      "description": "How results should be ranked"
+    },
+    "maxResultCount": {
+      "type": "integer",
+      "description": "Maximum number of results (1-20)"
+    }
+  }
+}

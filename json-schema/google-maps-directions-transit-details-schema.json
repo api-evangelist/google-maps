@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransitDetails",
+  "type": "object",
+  "description": "Transit-specific information for transit steps",
+  "properties": {
+    "headsign": {
+      "type": "string",
+      "description": "The direction in which to travel on this transit line"
+    },
+    "headway": {
+      "type": "integer",
+      "description": "The expected number of seconds between departures from the same stop at the current time"
+    },
+    "num_stops": {
+      "type": "integer",
+      "description": "The number of stops from departure to arrival"
+    }
+  }
+}

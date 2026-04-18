@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SearchNearbyRequest",
+  "type": "object",
+  "properties": {
+    "includedTypes": {
+      "type": "array"
+    },
+    "excludedTypes": {
+      "type": "array"
+    },
+    "includedPrimaryTypes": {
+      "type": "array"
+    },
+    "excludedPrimaryTypes": {
+      "type": "array"
+    },
+    "languageCode": {
+      "type": "string"
+    },
+    "regionCode": {
+      "type": "string"
+    },
+    "rankPreference": {
+      "type": "string"
+    },
+    "maxResultCount": {
+      "type": "integer"
+    }
+  }
+}

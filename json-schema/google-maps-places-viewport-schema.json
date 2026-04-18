@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Viewport",
+  "type": "object",
+  "description": "A rectangular viewport defined by two diagonally opposite points",
+  "properties": {}
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Leg",
+  "type": "object",
+  "description": "A leg of a route, representing the journey between two waypoints or the origin/destination.",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "description": "Array of steps representing each instruction along the leg"
+    },
+    "start_address": {
+      "type": "string",
+      "description": "The human-readable address of the leg's starting point"
+    },
+    "end_address": {
+      "type": "string",
+      "description": "The human-readable address of the leg's ending point"
+    }
+  }
+}

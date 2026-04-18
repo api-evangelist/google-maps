@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StructuredFormat",
+  "type": "object",
+  "description": "Contains the main text and secondary text of a prediction",
+  "properties": {}
+}

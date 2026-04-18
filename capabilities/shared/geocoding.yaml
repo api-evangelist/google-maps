@@ -1,0 +1,120 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Google Maps Geocoding"
+  description: "The Google Maps Geocoding API converts between addresses and geographic coordinates with support for forward and reverse geocoding."
+  tags:
+    - Google Maps
+    - Geocoding
+    - Addresses
+    - Coordinates
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      GOOGLE_MAPS_API_KEY: GOOGLE_MAPS_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: google-maps-geocoding
+      baseUri: https://maps.googleapis.com/maps/api
+      description: "Google Maps Geocoding API for converting addresses to coordinates and vice versa."
+      authentication:
+        type: apikey
+        key: key
+        value: "{{GOOGLE_MAPS_API_KEY}}"
+        placement: query
+      resources:
+        - name: geocoding
+          path: /geocode/json
+          description: "Forward and reverse geocoding operations"
+          operations:
+            - name: geocode
+              method: GET
+              description: "Converts an address to coordinates or coordinates to an address."
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: "The street address or plus code to geocode"
+                - name: latlng
+                  in: query
+                  type: string
+                  required: false
+                  description: "Latitude and longitude for reverse geocoding"
+                - name: place_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "The place ID to obtain the address for"
+                - name: components
+                  in: query
+                  type: string
+                  required: false
+                  description: "Component filter as pipe-separated pairs"
+                - name: bounds
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box to bias geocode results"
+                - name: region
+                  in: query
+                  type: string
+                  required: false
+                  description: "Region code for biasing results"
+                - name: language
+                  in: query
+                  type: string
+                  required: false
+                  description: "Language code for results"
+                - name: result_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by address type for reverse geocoding"
+                - name: location_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by location type for reverse geocoding"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: google-maps-geocoding-rest
+      resources:
+        - path: /v1/geocode
+          name: geocoding
+          description: "Geocoding operations"
+          operations:
+            - method: GET
+              name: geocode
+              description: "Geocode an address or reverse geocode coordinates"
+              call: "google-maps-geocoding.geocode"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: google-maps-geocoding-mcp
+      transport: http
+      tools:
+        - name: geocode
+          description: "Geocode an address to coordinates or reverse geocode coordinates to an address"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-geocoding.geocode"
+          outputParameters:
+            - type: object
+              mapping: "$."

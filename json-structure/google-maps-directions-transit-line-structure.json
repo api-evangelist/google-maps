@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TransitLine",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "text_color": {
+      "type": "string"
+    },
+    "vehicle": {
+      "type": "object"
+    },
+    "agencies": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParkingOptions",
+  "type": "object",
+  "description": "Parking options at a place",
+  "properties": {
+    "freeParkingLot": {
+      "type": "boolean"
+    },
+    "paidParkingLot": {
+      "type": "boolean"
+    },
+    "freeStreetParking": {
+      "type": "boolean"
+    },
+    "paidStreetParking": {
+      "type": "boolean"
+    },
+    "valetParking": {
+      "type": "boolean"
+    },
+    "freeGarageParking": {
+      "type": "boolean"
+    },
+    "paidGarageParking": {
+      "type": "boolean"
+    }
+  }
+}

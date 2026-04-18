@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlaceAddressComponent",
+  "type": "object",
+  "description": "An address component of a place",
+  "properties": {
+    "longText": {
+      "type": "string",
+      "description": "The full text of the address component"
+    },
+    "shortText": {
+      "type": "string",
+      "description": "An abbreviated text for the address component"
+    },
+    "types": {
+      "type": "array",
+      "description": "The types of this address component"
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for this component"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AuthorAttribution",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string"
+    },
+    "uri": {
+      "type": "string"
+    },
+    "photoUri": {
+      "type": "string"
+    }
+  }
+}

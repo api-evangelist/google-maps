@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GeocodingResult",
+  "type": "object",
+  "properties": {
+    "address_components": {
+      "type": "array"
+    },
+    "formatted_address": {
+      "type": "string"
+    },
+    "place_id": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array"
+    },
+    "partial_match": {
+      "type": "boolean"
+    }
+  }
+}

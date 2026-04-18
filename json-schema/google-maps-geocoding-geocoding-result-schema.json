@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeocodingResult",
+  "type": "object",
+  "description": "A single geocoding result",
+  "properties": {
+    "address_components": {
+      "type": "array",
+      "description": "Array of address component objects"
+    },
+    "formatted_address": {
+      "type": "string",
+      "description": "The human-readable address of this location, composed from the individual address components."
+    },
+    "place_id": {
+      "type": "string",
+      "description": "A unique identifier for this place that can be used with other Google APIs."
+    },
+    "types": {
+      "type": "array",
+      "description": "Array of feature types describing the address component. See the list of supported types."
+    },
+    "partial_match": {
+      "type": "boolean",
+      "description": "Indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address."
+    }
+  }
+}

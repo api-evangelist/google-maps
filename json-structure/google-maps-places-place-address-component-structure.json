@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PlaceAddressComponent",
+  "type": "object",
+  "properties": {
+    "longText": {
+      "type": "string"
+    },
+    "shortText": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array"
+    },
+    "languageCode": {
+      "type": "string"
+    }
+  }
+}

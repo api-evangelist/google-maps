@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransitLine",
+  "type": "object",
+  "description": "Information about a transit line",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The full name of this transit line"
+    },
+    "short_name": {
+      "type": "string",
+      "description": "The short name of this transit line"
+    },
+    "color": {
+      "type": "string",
+      "description": "The color commonly used in signage for this line"
+    },
+    "text_color": {
+      "type": "string",
+      "description": "The color of the text commonly used for this line"
+    },
+    "vehicle": {
+      "type": "object"
+    },
+    "agencies": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocationBias",
+  "type": "object",
+  "description": "The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.",
+  "properties": {}
+}

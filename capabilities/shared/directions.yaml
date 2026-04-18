@@ -1,0 +1,128 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Google Maps Directions"
+  description: "The Google Maps Directions API returns directions between locations using HTTP requests with support for driving, walking, bicycling, and transit travel modes."
+  tags:
+    - Google Maps
+    - Directions
+    - Routing
+    - Navigation
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      GOOGLE_MAPS_API_KEY: GOOGLE_MAPS_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: google-maps-directions
+      baseUri: https://maps.googleapis.com/maps/api
+      description: "Google Maps Directions API for computing routes between locations."
+      authentication:
+        type: apikey
+        key: key
+        value: "{{GOOGLE_MAPS_API_KEY}}"
+        placement: query
+      resources:
+        - name: directions
+          path: /directions/json
+          description: "Route computation between origin and destination"
+          operations:
+            - name: get-directions
+              method: GET
+              description: "Calculates directions between an origin and a destination with support for waypoints, travel modes, and traffic awareness."
+              inputParameters:
+                - name: origin
+                  in: query
+                  type: string
+                  required: true
+                  description: "The starting point address, place ID, or coordinates"
+                - name: destination
+                  in: query
+                  type: string
+                  required: true
+                  description: "The ending point address, place ID, or coordinates"
+                - name: mode
+                  in: query
+                  type: string
+                  required: false
+                  description: "Travel mode: driving, walking, bicycling, or transit"
+                - name: waypoints
+                  in: query
+                  type: string
+                  required: false
+                  description: "Intermediate locations as pipe-separated values"
+                - name: alternatives
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Return alternative routes when available"
+                - name: avoid
+                  in: query
+                  type: string
+                  required: false
+                  description: "Features to avoid: tolls, highways, ferries"
+                - name: language
+                  in: query
+                  type: string
+                  required: false
+                  description: "Language code for results"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Unit system: metric or imperial"
+                - name: departure_time
+                  in: query
+                  type: string
+                  required: false
+                  description: "Desired departure time as epoch seconds or 'now'"
+                - name: traffic_model
+                  in: query
+                  type: string
+                  required: false
+                  description: "Traffic model: best_guess, pessimistic, or optimistic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: google-maps-directions-rest
+      resources:
+        - path: /v1/directions
+          name: directions
+          description: "Route computation"
+          operations:
+            - method: GET
+              name: get-directions
+              description: "Get directions between two locations"
+              call: "google-maps-directions.get-directions"
+              with:
+                origin: "rest.origin"
+                destination: "rest.destination"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: google-maps-directions-mcp
+      transport: http
+      tools:
+        - name: get-directions
+          description: "Get directions between two or more locations with support for multiple travel modes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-maps-directions.get-directions"
+          outputParameters:
+            - type: object
+              mapping: "$."

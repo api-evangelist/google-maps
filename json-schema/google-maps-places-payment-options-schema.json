@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaymentOptions",
+  "type": "object",
+  "description": "Payment options accepted by a place",
+  "properties": {
+    "acceptsCreditCards": {
+      "type": "boolean"
+    },
+    "acceptsDebitCards": {
+      "type": "boolean"
+    },
+    "acceptsCashOnly": {
+      "type": "boolean"
+    },
+    "acceptsNfc": {
+      "type": "boolean"
+    }
+  }
+}

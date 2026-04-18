@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeocodingResponse",
+  "type": "object",
+  "description": "The response from the Geocoding API",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Status code indicating the outcome of the request."
+    },
+    "results": {
+      "type": "array",
+      "description": "Array of geocoded address results"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Human-readable description of the error, present when status is not OK."
+    }
+  }
+}

@@ -24,49 +24,49 @@ externalDocs:
   url: https://developers.google.com/maps/documentation/places/web-service/op-overview
 
 servers:
-  - url: https://places.googleapis.com/v1
-    description: Google Maps Places API (New) production server
+- url: https://places.googleapis.com/v1
+  description: Google Maps Places API (New) production server
 
 security:
-  - apiKey: []
+- apiKey: []
 
 tags:
-  - name: Place Details
-    description: Get detailed information about a specific place
-  - name: Text Search
-    description: Search for places using a text query
-  - name: Nearby Search
-    description: Search for places near a specific location
-  - name: Autocomplete
-    description: Get place predictions based on text input
-  - name: Photos
-    description: Access photos associated with places
+- name: Place Details
+  description: Get detailed information about a specific place
+- name: Text Search
+  description: Search for places using a text query
+- name: Nearby Search
+  description: Search for places near a specific location
+- name: Autocomplete
+  description: Get place predictions based on text input
+- name: Photos
+  description: Access photos associated with places
 
 paths:
   /places/{placeId}:
     get:
       operationId: getPlaceDetails
-      summary: Get details about a place
+      summary: Get Details About a Place
       description: >-
         Returns detailed information about a place identified by its resource
         name. Use the fieldMask parameter to specify which fields to return.
         Only fields specified in the field mask are returned; requesting
         fewer fields reduces cost and improves performance.
       tags:
-        - Place Details
+      - Place Details
       parameters:
-        - name: placeId
-          in: path
-          required: true
-          description: >-
-            The resource name of a place in the format places/{placeId}.
-          schema:
-            type: string
-          example: "ChIJN1t_tDeuEmsRUsoyG83frY4"
-        - $ref: "#/components/parameters/fieldMask"
-        - $ref: "#/components/parameters/languageCode"
-        - $ref: "#/components/parameters/regionCode"
-        - $ref: "#/components/parameters/sessionToken"
+      - name: placeId
+        in: path
+        required: true
+        description: >-
+          The resource name of a place in the format places/{placeId}.
+        schema:
+          type: string
+        example: "ChIJN1t_tDeuEmsRUsoyG83frY4"
+      - $ref: "#/components/parameters/fieldMask"
+      - $ref: "#/components/parameters/languageCode"
+      - $ref: "#/components/parameters/regionCode"
+      - $ref: "#/components/parameters/sessionToken"
       responses:
         "200":
           description: Place details response
@@ -74,6 +74,102 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Place"
+              examples:
+                Getplacedetails200Example:
+                  summary: Default getPlaceDetails 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    id: abc123
+                    displayName:
+                      text: example_value
+                      languageCode: example_value
+                    types:
+                    - example_value
+                    primaryType: example_value
+                    primaryTypeDisplayName:
+                      text: example_value
+                      languageCode: example_value
+                    nationalPhoneNumber: example_value
+                    internationalPhoneNumber: example_value
+                    formattedAddress: example_value
+                    shortFormattedAddress: example_value
+                    addressComponents:
+                    - longText: example_value
+                      shortText: example_value
+                      types: {}
+                      languageCode: example_value
+                    location:
+                      latitude: 42.5
+                      longitude: 42.5
+                    viewport: {}
+                    rating: 42.5
+                    userRatingCount: 10
+                    googleMapsUri: https://www.example.com
+                    websiteUri: https://www.example.com
+                    regularOpeningHours:
+                      openNow: true
+                      periods:
+                      - {}
+                      weekdayDescriptions:
+                      - {}
+                    currentOpeningHours:
+                      openNow: true
+                      periods:
+                      - {}
+                      weekdayDescriptions:
+                      - {}
+                    priceLevel: PRICE_LEVEL_UNSPECIFIED
+                    businessStatus: BUSINESS_STATUS_UNSPECIFIED
+                    utcOffsetMinutes: 10
+                    reviews:
+                    - name: Example Title
+                      relativePublishTimeDescription: example_value
+                      rating: 42.5
+                      publishTime: '2026-01-15T10:30:00Z'
+                    photos:
+                    - name: Example Title
+                      widthPx: 10
+                      heightPx: 10
+                      authorAttributions: {}
+                    editorialSummary:
+                      text: example_value
+                      languageCode: example_value
+                    adrFormatAddress: example_value
+                    iconMaskBaseUri: https://www.example.com
+                    iconBackgroundColor: example_value
+                    plusCode:
+                      globalCode: example_value
+                      compoundCode: example_value
+                    accessibilityOptions:
+                      wheelchairAccessibleParking: true
+                      wheelchairAccessibleEntrance: true
+                      wheelchairAccessibleRestroom: true
+                      wheelchairAccessibleSeating: true
+                    parkingOptions:
+                      freeParkingLot: true
+                      paidParkingLot: true
+                      freeStreetParking: true
+                      paidStreetParking: true
+                      valetParking: true
+                      freeGarageParking: true
+                      paidGarageParking: true
+                    paymentOptions:
+                      acceptsCreditCards: true
+                      acceptsDebitCards: true
+                      acceptsCashOnly: true
+                      acceptsNfc: true
+                    dineIn: true
+                    takeout: true
+                    delivery: true
+                    curbsidePickup: true
+                    reservable: true
+                    servesBreakfast: true
+                    servesLunch: true
+                    servesDinner: true
+                    servesBeer: true
+                    servesWine: true
+                    servesVegetarianFood: true
         "400":
           description: Bad request
         "403":
@@ -83,10 +179,13 @@ paths:
         "429":
           description: Too many requests
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /places:searchText:
     post:
       operationId: searchPlacesText
-      summary: Search for places using a text query
+      summary: Search for Places Using a Text Query
       description: >-
         Returns a list of places matching a text query. You can use natural
         language queries such as "pizza in New York" or "shoe stores near
@@ -95,15 +194,33 @@ paths:
         set. The service is especially useful for making ambiguous address
         queries in an automated system.
       tags:
-        - Text Search
+      - Text Search
       parameters:
-        - $ref: "#/components/parameters/fieldMask"
+      - $ref: "#/components/parameters/fieldMask"
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/SearchTextRequest"
+            examples:
+              SearchplacestextRequestExample:
+                summary: Default searchPlacesText request
+                x-microcks-default: true
+                value:
+                  textQuery: example_value
+                  includedType: example_value
+                  languageCode: example_value
+                  regionCode: example_value
+                  rankPreference: RELEVANCE
+                  maxResultCount: 10
+                  locationBias: {}
+                  locationRestriction: {}
+                  priceLevels:
+                  - PRICE_LEVEL_INEXPENSIVE
+                  openNow: true
+                  minRating: 42.5
+                  strictTypeFiltering: true
       responses:
         "200":
           description: Text search response
@@ -111,6 +228,45 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchPlacesResponse"
+              examples:
+                Searchplacestext200Example:
+                  summary: Default searchPlacesText 200 response
+                  x-microcks-default: true
+                  value:
+                    places:
+                    - name: Example Title
+                      id: abc123
+                      types: {}
+                      primaryType: example_value
+                      nationalPhoneNumber: example_value
+                      internationalPhoneNumber: example_value
+                      formattedAddress: example_value
+                      shortFormattedAddress: example_value
+                      addressComponents: {}
+                      rating: 42.5
+                      userRatingCount: 10
+                      googleMapsUri: https://www.example.com
+                      websiteUri: https://www.example.com
+                      priceLevel: PRICE_LEVEL_UNSPECIFIED
+                      businessStatus: BUSINESS_STATUS_UNSPECIFIED
+                      utcOffsetMinutes: 10
+                      reviews: {}
+                      photos: {}
+                      adrFormatAddress: example_value
+                      iconMaskBaseUri: https://www.example.com
+                      iconBackgroundColor: example_value
+                      dineIn: true
+                      takeout: true
+                      delivery: true
+                      curbsidePickup: true
+                      reservable: true
+                      servesBreakfast: true
+                      servesLunch: true
+                      servesDinner: true
+                      servesBeer: true
+                      servesWine: true
+                      servesVegetarianFood: true
+                    nextPageToken: example_value
         "400":
           description: Bad request
         "403":
@@ -118,24 +274,45 @@ paths:
         "429":
           description: Too many requests
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /places:searchNearby:
     post:
       operationId: searchPlacesNearby
-      summary: Search for places near a location
+      summary: Search for Places Near a Location
       description: >-
         Returns a list of places near a specified location. You can refine
         results by specifying included types, excluded types, primary types,
         and ranking preferences. A location restriction (circle) is required.
       tags:
-        - Nearby Search
+      - Nearby Search
       parameters:
-        - $ref: "#/components/parameters/fieldMask"
+      - $ref: "#/components/parameters/fieldMask"
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/SearchNearbyRequest"
+            examples:
+              SearchplacesnearbyRequestExample:
+                summary: Default searchPlacesNearby request
+                x-microcks-default: true
+                value:
+                  includedTypes:
+                  - example_value
+                  excludedTypes:
+                  - example_value
+                  includedPrimaryTypes:
+                  - example_value
+                  excludedPrimaryTypes:
+                  - example_value
+                  languageCode: example_value
+                  regionCode: example_value
+                  rankPreference: POPULARITY
+                  maxResultCount: 10
+                  locationRestriction: {}
       responses:
         "200":
           description: Nearby search response
@@ -143,6 +320,45 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchPlacesResponse"
+              examples:
+                Searchplacesnearby200Example:
+                  summary: Default searchPlacesNearby 200 response
+                  x-microcks-default: true
+                  value:
+                    places:
+                    - name: Example Title
+                      id: abc123
+                      types: {}
+                      primaryType: example_value
+                      nationalPhoneNumber: example_value
+                      internationalPhoneNumber: example_value
+                      formattedAddress: example_value
+                      shortFormattedAddress: example_value
+                      addressComponents: {}
+                      rating: 42.5
+                      userRatingCount: 10
+                      googleMapsUri: https://www.example.com
+                      websiteUri: https://www.example.com
+                      priceLevel: PRICE_LEVEL_UNSPECIFIED
+                      businessStatus: BUSINESS_STATUS_UNSPECIFIED
+                      utcOffsetMinutes: 10
+                      reviews: {}
+                      photos: {}
+                      adrFormatAddress: example_value
+                      iconMaskBaseUri: https://www.example.com
+                      iconBackgroundColor: example_value
+                      dineIn: true
+                      takeout: true
+                      delivery: true
+                      curbsidePickup: true
+                      reservable: true
+                      servesBreakfast: true
+                      servesLunch: true
+                      servesDinner: true
+                      servesBeer: true
+                      servesWine: true
+                      servesVegetarianFood: true
+                    nextPageToken: example_value
         "400":
           description: Bad request
         "403":
@@ -150,22 +366,45 @@ paths:
         "429":
           description: Too many requests
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /places:autocomplete:
     post:
       operationId: autocompletePlaces
-      summary: Get place autocomplete predictions
+      summary: Get Place Autocomplete Predictions
       description: >-
         Returns predictions for the given input text. Predictions include
         place predictions and query predictions. Use session tokens to
         group autocomplete requests for billing purposes.
       tags:
-        - Autocomplete
+      - Autocomplete
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/AutocompleteRequest"
+            examples:
+              AutocompleteplacesRequestExample:
+                summary: Default autocompletePlaces request
+                x-microcks-default: true
+                value:
+                  input: example_value
+                  locationBias: {}
+                  locationRestriction: {}
+                  includedPrimaryTypes:
+                  - example_value
+                  includedRegionCodes:
+                  - example_value
+                  languageCode: example_value
+                  regionCode: example_value
+                  origin:
+                    latitude: 42.5
+                    longitude: 42.5
+                  inputOffset: 10
+                  includeQueryPredictions: true
+                  sessionToken: example_value
       responses:
         "200":
           description: Autocomplete response
@@ -173,6 +412,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AutocompleteResponse"
+              examples:
+                Autocompleteplaces200Example:
+                  summary: Default autocompletePlaces 200 response
+                  x-microcks-default: true
+                  value:
+                    suggestions:
+                    - {}
         "400":
           description: Bad request
         "403":
@@ -180,58 +426,66 @@ paths:
         "429":
           description: Too many requests
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /places/{placeId}/photos/{photoReference}/media:
     get:
       operationId: getPlacePhoto
-      summary: Get a place photo
+      summary: Get a Place Photo
       description: >-
         Returns a photo for a place. After you get the photo resource name
         from a Place Details or Search response, use this endpoint to get
         the photo bytes. Specify maxHeightPx or maxWidthPx (or both) to
         control the image dimensions.
       tags:
-        - Photos
+      - Photos
       parameters:
-        - name: placeId
-          in: path
-          required: true
-          description: The place ID
-          schema:
-            type: string
-        - name: photoReference
-          in: path
-          required: true
-          description: The photo resource reference
-          schema:
-            type: string
-        - name: maxHeightPx
-          in: query
-          description: >-
-            Maximum height of the image in pixels. Must be between 1 and
-            4800. If maxHeightPx is set without maxWidthPx, the image is
-            resized to the specified height, preserving aspect ratio.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 4800
-        - name: maxWidthPx
-          in: query
-          description: >-
-            Maximum width of the image in pixels. Must be between 1 and
-            4800. If maxWidthPx is set without maxHeightPx, the image is
-            resized to the specified width, preserving aspect ratio.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 4800
-        - name: skipHttpRedirect
-          in: query
-          description: >-
-            If set to true, skip the default HTTP redirect behavior and
-            return a JSON response containing the photo URI.
-          schema:
-            type: boolean
-            default: false
+      - name: placeId
+        in: path
+        required: true
+        description: The place ID
+        schema:
+          type: string
+        example: '500123'
+      - name: photoReference
+        in: path
+        required: true
+        description: The photo resource reference
+        schema:
+          type: string
+        example: example_value
+      - name: maxHeightPx
+        in: query
+        description: >-
+          Maximum height of the image in pixels. Must be between 1 and
+          4800. If maxHeightPx is set without maxWidthPx, the image is
+          resized to the specified height, preserving aspect ratio.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4800
+        example: 10
+      - name: maxWidthPx
+        in: query
+        description: >-
+          Maximum width of the image in pixels. Must be between 1 and
+          4800. If maxWidthPx is set without maxHeightPx, the image is
+          resized to the specified width, preserving aspect ratio.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4800
+        example: 10
+      - name: skipHttpRedirect
+        in: query
+        description: >-
+          If set to true, skip the default HTTP redirect behavior and
+          return a JSON response containing the photo URI.
+        schema:
+          type: boolean
+          default: false
+        example: true
       responses:
         "200":
           description: Photo media
@@ -240,9 +494,21 @@ paths:
               schema:
                 type: string
                 format: binary
+              examples:
+                Getplacephoto200Example:
+                  summary: Default getPlacePhoto 200 response
+                  x-microcks-default: true
+                  value: example_value
             application/json:
               schema:
                 $ref: "#/components/schemas/PhotoMedia"
+              examples:
+                Getplacephoto200Example:
+                  summary: Default getPlacePhoto 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    photoUri: https://www.example.com
         "400":
           description: Bad request
         "403":
@@ -250,6 +516,9 @@ paths:
         "404":
           description: Photo not found
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -327,10 +596,10 @@ components:
           items:
             type: string
           example:
-            - restaurant
-            - food
-            - point_of_interest
-            - establishment
+          - restaurant
+          - food
+          - point_of_interest
+          - establishment
         primaryType:
           type: string
           description: The primary type of this place
@@ -358,6 +627,7 @@ components:
           description: The individual address components of the place
           items:
             $ref: "#/components/schemas/PlaceAddressComponent"
+          example: []
         location:
           $ref: "#/components/schemas/LatLng"
         viewport:
@@ -377,10 +647,12 @@ components:
           type: string
           format: uri
           description: A URL to the place's page on Google Maps
+          example: https://www.example.com
         websiteUri:
           type: string
           format: uri
           description: The place's website URL
+          example: https://www.example.com
         regularOpeningHours:
           $ref: "#/components/schemas/OpeningHours"
         currentOpeningHours:
@@ -389,44 +661,51 @@ components:
           type: string
           description: The price level of the place
           enum:
-            - PRICE_LEVEL_UNSPECIFIED
-            - PRICE_LEVEL_FREE
-            - PRICE_LEVEL_INEXPENSIVE
-            - PRICE_LEVEL_MODERATE
-            - PRICE_LEVEL_EXPENSIVE
-            - PRICE_LEVEL_VERY_EXPENSIVE
+          - PRICE_LEVEL_UNSPECIFIED
+          - PRICE_LEVEL_FREE
+          - PRICE_LEVEL_INEXPENSIVE
+          - PRICE_LEVEL_MODERATE
+          - PRICE_LEVEL_EXPENSIVE
+          - PRICE_LEVEL_VERY_EXPENSIVE
+          example: PRICE_LEVEL_UNSPECIFIED
         businessStatus:
           type: string
           description: The business status of the place
           enum:
-            - BUSINESS_STATUS_UNSPECIFIED
-            - OPERATIONAL
-            - CLOSED_TEMPORARILY
-            - CLOSED_PERMANENTLY
+          - BUSINESS_STATUS_UNSPECIFIED
+          - OPERATIONAL
+          - CLOSED_TEMPORARILY
+          - CLOSED_PERMANENTLY
+          example: BUSINESS_STATUS_UNSPECIFIED
         utcOffsetMinutes:
           type: integer
           description: >-
             Number of minutes this place's current timezone is offset
             from UTC
+          example: 10
         reviews:
           type: array
           description: Up to 5 reviews for this place
           items:
             $ref: "#/components/schemas/Review"
+          example: []
         photos:
           type: array
           description: Photos associated with this place
           items:
             $ref: "#/components/schemas/Photo"
+          example: []
         editorialSummary:
           $ref: "#/components/schemas/LocalizedText"
         adrFormatAddress:
           type: string
           description: The place's address in adr microformat
+          example: example_value
         iconMaskBaseUri:
           type: string
           format: uri
           description: A URL for an SVG icon mask
+          example: https://www.example.com
         iconBackgroundColor:
           type: string
           description: Background color for the icon in hex format
@@ -442,31 +721,42 @@ components:
         dineIn:
           type: boolean
           description: Whether the place supports dine-in
+          example: true
         takeout:
           type: boolean
           description: Whether the place supports takeout
+          example: true
         delivery:
           type: boolean
           description: Whether the place supports delivery
+          example: true
         curbsidePickup:
           type: boolean
           description: Whether the place supports curbside pickup
+          example: true
         reservable:
           type: boolean
           description: Whether the place supports reservations
+          example: true
         servesBreakfast:
           type: boolean
+          example: true
         servesLunch:
           type: boolean
+          example: true
         servesDinner:
           type: boolean
+          example: true
         servesBeer:
           type: boolean
+          example: true
         servesWine:
           type: boolean
+          example: true
         servesVegetarianFood:
           type: boolean
 
+          example: true
     SearchTextRequest:
       type: object
       description: Request body for text search
@@ -491,14 +781,16 @@ components:
           type: string
           description: How results should be ranked
           enum:
-            - RELEVANCE
-            - DISTANCE
+          - RELEVANCE
+          - DISTANCE
+          example: RELEVANCE
         maxResultCount:
           type: integer
           description: >-
             Maximum number of results to return (1-20)
           minimum: 1
           maximum: 20
+          example: 10
         locationBias:
           $ref: "#/components/schemas/LocationBias"
         locationRestriction:
@@ -509,25 +801,29 @@ components:
           items:
             type: string
             enum:
-              - PRICE_LEVEL_INEXPENSIVE
-              - PRICE_LEVEL_MODERATE
-              - PRICE_LEVEL_EXPENSIVE
-              - PRICE_LEVEL_VERY_EXPENSIVE
+            - PRICE_LEVEL_INEXPENSIVE
+            - PRICE_LEVEL_MODERATE
+            - PRICE_LEVEL_EXPENSIVE
+            - PRICE_LEVEL_VERY_EXPENSIVE
+          example: []
         openNow:
           type: boolean
           description: Return only places that are currently open
+          example: true
         minRating:
           type: number
           format: double
           description: Filter results to those with at least this rating
           minimum: 0.0
           maximum: 5.0
+          example: 42.5
         strictTypeFiltering:
           type: boolean
           description: >-
             If true, only return results that match the includedType exactly
+          example: true
       required:
-        - textQuery
+      - textQuery
 
     SearchNearbyRequest:
       type: object
@@ -539,43 +835,50 @@ components:
           items:
             type: string
           example:
-            - restaurant
+          - restaurant
         excludedTypes:
           type: array
           description: Place types to exclude from results
           items:
             type: string
+          example: []
         includedPrimaryTypes:
           type: array
           description: Primary place types to include
           items:
             type: string
+          example: []
         excludedPrimaryTypes:
           type: array
           description: Primary place types to exclude
           items:
             type: string
+          example: []
         languageCode:
           type: string
           description: The language code for results
+          example: example_value
         regionCode:
           type: string
           description: The region code for biasing results
+          example: example_value
         rankPreference:
           type: string
           description: How results should be ranked
           enum:
-            - POPULARITY
-            - DISTANCE
+          - POPULARITY
+          - DISTANCE
+          example: POPULARITY
         maxResultCount:
           type: integer
           description: Maximum number of results (1-20)
           minimum: 1
           maximum: 20
+          example: 10
         locationRestriction:
           $ref: "#/components/schemas/LocationRestriction"
       required:
-        - locationRestriction
+      - locationRestriction
 
     AutocompleteRequest:
       type: object
@@ -594,17 +897,21 @@ components:
           description: Restrict results to primary types
           items:
             type: string
+          example: []
         includedRegionCodes:
           type: array
           description: Restrict results to these region codes
           items:
             type: string
+          example: []
         languageCode:
           type: string
           description: The language code for predictions
+          example: example_value
         regionCode:
           type: string
           description: Region code for biasing
+          example: example_value
         origin:
           $ref: "#/components/schemas/LatLng"
         inputOffset:
@@ -612,16 +919,19 @@ components:
           description: >-
             Zero-based Unicode character offset of input indicating the
             cursor position. Use to return more relevant predictions.
+          example: 10
         includeQueryPredictions:
           type: boolean
           description: Whether to include query predictions in results
+          example: true
         sessionToken:
           type: string
           description: >-
             A random string that groups this request with subsequent
             Place Details requests for billing.
+          example: example_value
       required:
-        - input
+      - input
 
     AutocompleteResponse:
       type: object
@@ -633,6 +943,7 @@ components:
           items:
             $ref: "#/components/schemas/Suggestion"
 
+          example: []
     Suggestion:
       type: object
       description: A single autocomplete suggestion
@@ -651,9 +962,11 @@ components:
           description: >-
             The resource name of the suggested place in the format
             places/{placeId}
+          example: example_value
         placeId:
           type: string
           description: The place ID of the suggested place
+          example: '500123'
         text:
           $ref: "#/components/schemas/FormattableText"
         structuredFormat:
@@ -663,10 +976,12 @@ components:
           description: List of types that apply to this place
           items:
             type: string
+          example: []
         distanceMeters:
           type: integer
           description: The distance in meters from the origin
 
+          example: 10
     QueryPrediction:
       type: object
       description: A query prediction
@@ -683,6 +998,7 @@ components:
         text:
           type: string
           description: The full text string
+          example: example_value
         matches:
           type: array
           description: >-
@@ -696,6 +1012,7 @@ components:
               endOffset:
                 type: integer
 
+          example: []
     StructuredFormat:
       type: object
       description: Contains the main text and secondary text of a prediction
@@ -714,12 +1031,14 @@ components:
           description: List of places matching the search criteria
           items:
             $ref: "#/components/schemas/Place"
+          example: []
         nextPageToken:
           type: string
           description: >-
             A token that can be sent as pageToken in a subsequent request
             to retrieve the next page of results.
 
+          example: example_value
     LocationBias:
       type: object
       description: >-
@@ -754,8 +1073,8 @@ components:
           description: The radius of the circle in meters
           example: 500.0
       required:
-        - center
-        - radius
+      - center
+      - radius
 
     Rectangle:
       type: object
@@ -766,8 +1085,8 @@ components:
         high:
           $ref: "#/components/schemas/LatLng"
       required:
-        - low
-        - high
+      - low
+      - high
 
     LocalizedText:
       type: object
@@ -776,11 +1095,13 @@ components:
         text:
           type: string
           description: The localized text value
+          example: example_value
         languageCode:
           type: string
           description: BCP-47 language code of the text
+          example: example_value
       required:
-        - text
+      - text
 
     LatLng:
       type: object
@@ -797,8 +1118,8 @@ components:
           description: Longitude in decimal degrees
           example: 151.2093
       required:
-        - latitude
-        - longitude
+      - latitude
+      - longitude
 
     Viewport:
       type: object
@@ -809,8 +1130,8 @@ components:
         high:
           $ref: "#/components/schemas/LatLng"
       required:
-        - low
-        - high
+      - low
+      - high
 
     PlusCode:
       type: object
@@ -833,18 +1154,22 @@ components:
         longText:
           type: string
           description: The full text of the address component
+          example: example_value
         shortText:
           type: string
           description: An abbreviated text for the address component
+          example: example_value
         types:
           type: array
           description: The types of this address component
           items:
             type: string
+          example: []
         languageCode:
           type: string
           description: The language code for this component
 
+          example: example_value
     OpeningHours:
       type: object
       description: Information about the opening hours of a place
@@ -852,6 +1177,7 @@ components:
         openNow:
           type: boolean
           description: Whether the place is currently open
+          example: true
         periods:
           type: array
           description: >-
@@ -860,6 +1186,7 @@ components:
             and time 0000, and no close event.
           items:
             $ref: "#/components/schemas/Period"
+          example: []
         weekdayDescriptions:
           type: array
           description: >-
@@ -868,8 +1195,8 @@ components:
           items:
             type: string
           example:
-            - "Monday: 9:00 AM - 5:00 PM"
-            - "Tuesday: 9:00 AM - 5:00 PM"
+          - "Monday: 9:00 AM - 5:00 PM"
+          - "Tuesday: 9:00 AM - 5:00 PM"
 
     Period:
       type: object
@@ -880,7 +1207,7 @@ components:
         close:
           $ref: "#/components/schemas/Point"
       required:
-        - open
+      - open
 
     Point:
       type: object
@@ -891,16 +1218,19 @@ components:
           description: Day of the week (0=Sunday, 6=Saturday)
           minimum: 0
           maximum: 6
+          example: 10
         hour:
           type: integer
           description: Hour in 24-hour format (0-23)
           minimum: 0
           maximum: 23
+          example: 10
         minute:
           type: integer
           description: Minute (0-59)
           minimum: 0
           maximum: 59
+          example: 10
         date:
           type: object
           description: A specific date for current opening hours
@@ -911,10 +1241,11 @@ components:
               type: integer
             day:
               type: integer
+          example: example_value
       required:
-        - day
-        - hour
-        - minute
+      - day
+      - hour
+      - minute
 
     Review:
       type: object
@@ -923,6 +1254,7 @@ components:
         name:
           type: string
           description: The resource name of the review
+          example: Example Title
         relativePublishTimeDescription:
           type: string
           description: A human-readable relative time description
@@ -933,6 +1265,7 @@ components:
           description: The star rating of this review (1.0-5.0)
           minimum: 1.0
           maximum: 5.0
+          example: 42.5
         text:
           $ref: "#/components/schemas/LocalizedText"
         originalText:
@@ -944,6 +1277,7 @@ components:
           format: date-time
           description: Timestamp of when the review was published
 
+          example: '2026-01-15T10:30:00Z'
     AuthorAttribution:
       type: object
       description: Information about the author of a review
@@ -951,15 +1285,18 @@ components:
         displayName:
           type: string
           description: Name of the review author
+          example: example_value
         uri:
           type: string
           format: uri
           description: URI of the author's profile
+          example: https://www.example.com
         photoUri:
           type: string
           format: uri
           description: URI of the author's profile photo
 
+          example: https://www.example.com
     Photo:
       type: object
       description: A photo associated with a place
@@ -969,18 +1306,22 @@ components:
           description: >-
             The resource name of the photo in the format
             places/{placeId}/photos/{photoReference}
+          example: Example Title
         widthPx:
           type: integer
           description: Maximum available width in pixels
+          example: 10
         heightPx:
           type: integer
           description: Maximum available height in pixels
+          example: 10
         authorAttributions:
           type: array
           description: The authors of this photo
           items:
             $ref: "#/components/schemas/AuthorAttribution"
 
+          example: []
     PhotoMedia:
       type: object
       description: Photo media metadata returned when skipHttpRedirect is true
@@ -988,52 +1329,69 @@ components:
         name:
           type: string
           description: The resource name of the photo media
+          example: Example Title
         photoUri:
           type: string
           format: uri
           description: A short-lived URI for the photo
 
+          example: https://www.example.com
     AccessibilityOptions:
       type: object
       description: Accessibility features of a place
       properties:
         wheelchairAccessibleParking:
           type: boolean
+          example: true
         wheelchairAccessibleEntrance:
           type: boolean
+          example: true
         wheelchairAccessibleRestroom:
           type: boolean
+          example: true
         wheelchairAccessibleSeating:
           type: boolean
 
+          example: true
     ParkingOptions:
       type: object
       description: Parking options at a place
       properties:
         freeParkingLot:
           type: boolean
+          example: true
         paidParkingLot:
           type: boolean
+          example: true
         freeStreetParking:
           type: boolean
+          example: true
         paidStreetParking:
           type: boolean
+          example: true
         valetParking:
           type: boolean
+          example: true
         freeGarageParking:
           type: boolean
+          example: true
         paidGarageParking:
           type: boolean
 
+          example: true
     PaymentOptions:
       type: object
       description: Payment options accepted by a place
       properties:
         acceptsCreditCards:
           type: boolean
+          example: true
         acceptsDebitCards:
           type: boolean
+          example: true
         acceptsCashOnly:
           type: boolean
+          example: true
         acceptsNfc:
           type: boolean
+          example: true

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Geometry",
+  "type": "object",
+  "description": "Geometry information about the geocoding result",
+  "properties": {
+    "location_type": {
+      "type": "string",
+      "description": "The type of location returned. ROOFTOP indicates a precise geocode, RANGE_INTERPOLATED indicates an approximation between two precise points, GEOMETRIC_CENTER indicates a geometric center, and APPROXIMATE indicates an approximation."
+    }
+  }
+}

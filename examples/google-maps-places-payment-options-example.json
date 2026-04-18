@@ -1,0 +1,6 @@
+{
+  "acceptsCreditCards": true,
+  "acceptsDebitCards": true,
+  "acceptsCashOnly": true,
+  "acceptsNfc": true
+}

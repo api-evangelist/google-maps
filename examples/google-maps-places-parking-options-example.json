@@ -1,0 +1,9 @@
+{
+  "freeParkingLot": true,
+  "paidParkingLot": true,
+  "freeStreetParking": true,
+  "paidStreetParking": true,
+  "valetParking": true,
+  "freeGarageParking": true,
+  "paidGarageParking": true
+}

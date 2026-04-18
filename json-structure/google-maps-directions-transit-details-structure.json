@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TransitDetails",
+  "type": "object",
+  "properties": {
+    "headsign": {
+      "type": "string"
+    },
+    "headway": {
+      "type": "integer"
+    },
+    "num_stops": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DirectionsResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "routes": {
+      "type": "array"
+    },
+    "geocoded_waypoints": {
+      "type": "array"
+    },
+    "error_message": {
+      "type": "string"
+    }
+  }
+}

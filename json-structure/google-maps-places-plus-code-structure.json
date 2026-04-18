@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PlusCode",
+  "type": "object",
+  "properties": {
+    "globalCode": {
+      "type": "string"
+    },
+    "compoundCode": {
+      "type": "string"
+    }
+  }
+}

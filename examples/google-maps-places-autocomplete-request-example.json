@@ -1,0 +1,10 @@
+{
+  "input": "example_value",
+  "includedPrimaryTypes": [],
+  "includedRegionCodes": [],
+  "languageCode": "example_value",
+  "regionCode": "example_value",
+  "inputOffset": 10,
+  "includeQueryPredictions": true,
+  "sessionToken": "example_value"
+}

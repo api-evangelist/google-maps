@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Leg",
+  "type": "object",
+  "properties": {
+    "steps": {
+      "type": "array"
+    },
+    "start_address": {
+      "type": "string"
+    },
+    "end_address": {
+      "type": "string"
+    }
+  }
+}

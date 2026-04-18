@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlacePrediction",
+  "type": "object",
+  "description": "A place prediction",
+  "properties": {
+    "place": {
+      "type": "string",
+      "description": "The resource name of the suggested place in the format places/{placeId}"
+    },
+    "placeId": {
+      "type": "string",
+      "description": "The place ID of the suggested place"
+    },
+    "types": {
+      "type": "array",
+      "description": "List of types that apply to this place"
+    },
+    "distanceMeters": {
+      "type": "integer",
+      "description": "The distance in meters from the origin"
+    }
+  }
+}

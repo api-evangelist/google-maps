@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Route",
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "legs": {
+      "type": "array"
+    },
+    "waypoint_order": {
+      "type": "array"
+    },
+    "copyrights": {
+      "type": "string"
+    },
+    "warnings": {
+      "type": "array"
+    }
+  }
+}

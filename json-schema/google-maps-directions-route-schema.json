@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Route",
+  "type": "object",
+  "description": "A single route containing a set of legs from the origin to the destination with any specified waypoints.",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "A short textual description for the route, suitable for naming and disambiguating the route from alternatives."
+    },
+    "legs": {
+      "type": "array",
+      "description": "Array of route legs, one for each segment between waypoints. A route with no waypoints will contain one leg."
+    },
+    "waypoint_order": {
+      "type": "array",
+      "description": "An array indicating the order of any waypoints in the calculated route. Waypoints may be reordered if the request was passed optimize:true."
+    },
+    "copyrights": {
+      "type": "string",
+      "description": "Copyright text for display"
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Warnings to be displayed when showing the route"
+    }
+  }
+}

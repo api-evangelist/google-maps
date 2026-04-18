@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LatLng",
+  "type": "object",
+  "description": "A latitude/longitude coordinate pair",
+  "properties": {
+    "lat": {
+      "type": "number",
+      "description": "Latitude in decimal degrees"
+    },
+    "lng": {
+      "type": "number",
+      "description": "Longitude in decimal degrees"
+    }
+  }
+}

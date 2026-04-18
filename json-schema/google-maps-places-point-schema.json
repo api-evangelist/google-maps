@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Point",
+  "type": "object",
+  "description": "A point in time on a weekly schedule",
+  "properties": {
+    "day": {
+      "type": "integer",
+      "description": "Day of the week (0=Sunday, 6=Saturday)"
+    },
+    "hour": {
+      "type": "integer",
+      "description": "Hour in 24-hour format (0-23)"
+    },
+    "minute": {
+      "type": "integer",
+      "description": "Minute (0-59)"
+    },
+    "date": {
+      "type": "object",
+      "description": "A specific date for current opening hours"
+    }
+  }
+}

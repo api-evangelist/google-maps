@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AutocompleteRequest",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "string"
+    },
+    "includedPrimaryTypes": {
+      "type": "array"
+    },
+    "includedRegionCodes": {
+      "type": "array"
+    },
+    "languageCode": {
+      "type": "string"
+    },
+    "regionCode": {
+      "type": "string"
+    },
+    "inputOffset": {
+      "type": "integer"
+    },
+    "includeQueryPredictions": {
+      "type": "boolean"
+    },
+    "sessionToken": {
+      "type": "string"
+    }
+  }
+}

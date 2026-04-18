@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Circle",
+  "type": "object",
+  "description": "A circle defined by center point and radius",
+  "properties": {
+    "radius": {
+      "type": "number",
+      "description": "The radius of the circle in meters"
+    }
+  }
+}

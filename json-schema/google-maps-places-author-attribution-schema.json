@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AuthorAttribution",
+  "type": "object",
+  "description": "Information about the author of a review",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "description": "Name of the review author"
+    },
+    "uri": {
+      "type": "string",
+      "description": "URI of the author's profile"
+    },
+    "photoUri": {
+      "type": "string",
+      "description": "URI of the author's profile photo"
+    }
+  }
+}
