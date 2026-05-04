@@ -1,0 +1,75 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Google Maps Platform
+providerId: google-maps
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Maps and Location
+description: FOCUS-aligned FinOps for Google Maps Platform.
+sources:
+  - https://mapsplatform.google.com/pricing/
+  - https://focus.finops.org/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Google Maps Platform
+serviceCategory: Maps and Location
+billingModel:
+  pricingCategory: Pay-As-You-Go + Committed Use
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Google Maps Platform
+  ServiceCategory: Maps and Location
+  ProviderName: Google Maps Platform
+  PublisherName: Google Maps Platform
+  BillingCurrency: USD
+meters:
+  - name: compute_hours
+    unit: instance-hour
+    aggregation: sum
+    dimensions:
+      - service
+      - region
+      - instance_type
+      - tenant
+  - name: storage
+    unit: GB-month
+    aggregation: max
+    dimensions:
+      - service
+      - tier
+  - name: data_transfer
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - egress_type
+      - region_pair
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - service
+      - operation
+  - name: managed_services
+    unit: varies
+    aggregation: sum
+    dimensions:
+      - service
+principles:
+  - name: Visibility
+    description: Track Google Maps Platform consumption monthly.
+  - name: Allocation
+    description: Tag usage to teams/cost centers for chargeback.
+  - name: Optimization
+    description: Right-size; reclaim unused entitlements.
+  - name: Accountability
+    description: Set spend alerts; quarterly review.
