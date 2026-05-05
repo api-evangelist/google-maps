@@ -1,0 +1,13 @@
+{
+  "repo": "google-maps",
+  "feeds": [
+    {
+      "source": "https://mapsplatform.google.com/resources/blog/",
+      "feed_url": "https://mapsplatform.google.com/resources/blog/rss.xml",
+      "saved": 10,
+      "title": "Google Maps Platform Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:28:51Z"
+}
