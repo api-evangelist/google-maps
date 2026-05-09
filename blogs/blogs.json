@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://mapsplatform.google.com/resources/blog/",
-      "feed_url": "https://mapsplatform.google.com/resources/blog/rss.xml",
-      "saved": 10,
-      "title": "Google Maps Platform Blog"
+      "feed_url": "https://mapsplatform.google.com/resources/blog/rss/",
+      "title": "Google Maps Platform Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:28:51Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
