@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Maps Places API (New) — Place Details
+  description: 'Google Maps Places API (New) — Place Details. 1 operations. Lead operation: Get Details About a Place. Self-contained
+    Naftiko capability covering one Google Maps business surface.'
+  tags:
+  - Google Maps
+  - Place Details
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_MAPS_API_KEY: GOOGLE_MAPS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: places-place-details
+    baseUri: https://places.googleapis.com/v1
+    description: Google Maps Places API (New) — Place Details business capability. Self-contained, no shared references.
+    resources:
+    - name: places-placeId
+      path: /places/{placeId}
+      operations:
+      - name: getplacedetails
+        method: GET
+        description: Get Details About a Place
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: placeId
+          in: path
+          type: string
+          description: The resource name of a place in the format places/{placeId}.
+          required: true
+    authentication:
+      type: apikey
+      key: X-Goog-Api-Key
+      value: '{{env.GOOGLE_MAPS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: places-place-details-rest
+    port: 8080
+    description: REST adapter for Google Maps Places API (New) — Place Details. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/places/{placeid}
+      name: places-placeid
+      description: REST surface for places-placeId.
+      operations:
+      - method: GET
+        name: getplacedetails
+        description: Get Details About a Place
+        call: places-place-details.getplacedetails
+        with:
+          placeId: rest.placeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: places-place-details-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google Maps Places API (New) — Place Details. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-details-about-place
+      description: Get Details About a Place
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: places-place-details.getplacedetails
+      with:
+        placeId: tools.placeId
+      outputParameters:
+      - type: object
+        mapping: $.
