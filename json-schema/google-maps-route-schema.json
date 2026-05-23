@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Route",
+  "title": "Route",
+  "type": "object",
+  "description": "A single route containing a set of legs from the origin to the destination with any specified waypoints.",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "A short textual description for the route, suitable for naming and disambiguating the route from alternatives.",
+      "example": "I-93 N"
+    },
+    "legs": {
+      "type": "array",
+      "description": "Array of route legs, one for each segment between waypoints. A route with no waypoints will contain one leg.",
+      "items": {
+        "$ref": "#/components/schemas/Leg"
+      },
+      "example": []
+    },
+    "waypoint_order": {
+      "type": "array",
+      "description": "An array indicating the order of any waypoints in the calculated route. Waypoints may be reordered if the request was passed optimize:true.",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    },
+    "overview_polyline": {
+      "$ref": "#/components/schemas/Polyline"
+    },
+    "bounds": {
+      "$ref": "#/components/schemas/Bounds"
+    },
+    "copyrights": {
+      "type": "string",
+      "description": "Copyright text for display",
+      "example": "Map data \u00a92026 Google"
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Warnings to be displayed when showing the route",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "fare": {
+      "$ref": "#/components/schemas/Fare"
+    }
+  },
+  "required": [
+    "summary",
+    "legs",
+    "overview_polyline",
+    "bounds",
+    "copyrights"
+  ]
+}

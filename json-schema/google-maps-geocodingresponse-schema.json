@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GeocodingResponse",
+  "title": "GeocodingResponse",
+  "type": "object",
+  "description": "The response from the Geocoding API",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Status code indicating the outcome of the request.",
+      "enum": [
+        "OK",
+        "ZERO_RESULTS",
+        "OVER_DAILY_LIMIT",
+        "OVER_QUERY_LIMIT",
+        "REQUEST_DENIED",
+        "INVALID_REQUEST",
+        "UNKNOWN_ERROR"
+      ],
+      "example": "OK"
+    },
+    "results": {
+      "type": "array",
+      "description": "Array of geocoded address results",
+      "items": {
+        "$ref": "#/components/schemas/GeocodingResult"
+      },
+      "example": []
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Human-readable description of the error, present when status is not OK.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "status",
+    "results"
+  ]
+}

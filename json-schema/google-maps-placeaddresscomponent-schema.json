@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PlaceAddressComponent",
+  "title": "PlaceAddressComponent",
+  "type": "object",
+  "description": "An address component of a place",
+  "properties": {
+    "longText": {
+      "type": "string",
+      "description": "The full text of the address component",
+      "example": "example_value"
+    },
+    "shortText": {
+      "type": "string",
+      "description": "An abbreviated text for the address component",
+      "example": "example_value"
+    },
+    "types": {
+      "type": "array",
+      "description": "The types of this address component",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for this component",
+      "example": "example_value"
+    }
+  }
+}

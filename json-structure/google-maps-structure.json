@@ -1,0 +1,263 @@
+{
+  "provider": "Google Maps Platform",
+  "providerId": "google-maps",
+  "kind": "json-structure",
+  "description": "Structural overview of the Google Maps Platform API surface; extracted from openapi/.",
+  "schemaCount": 30,
+  "operationCount": 5,
+  "schemas": [
+    {
+      "name": "Place",
+      "type": "object",
+      "propertyCount": 43,
+      "required": []
+    },
+    {
+      "name": "SearchTextRequest",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "textQuery"
+      ]
+    },
+    {
+      "name": "SearchNearbyRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "locationRestriction"
+      ]
+    },
+    {
+      "name": "AutocompleteRequest",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "input"
+      ]
+    },
+    {
+      "name": "AutocompleteResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Suggestion",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PlacePrediction",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "QueryPrediction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "FormattableText",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "StructuredFormat",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SearchPlacesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LocationBias",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LocationRestriction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Circle",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "center",
+        "radius"
+      ]
+    },
+    {
+      "name": "Rectangle",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "name": "LocalizedText",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "text"
+      ]
+    },
+    {
+      "name": "LatLng",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    },
+    {
+      "name": "Viewport",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "name": "PlusCode",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PlaceAddressComponent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "OpeningHours",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Period",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "open"
+      ]
+    },
+    {
+      "name": "Point",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "day",
+        "hour",
+        "minute"
+      ]
+    },
+    {
+      "name": "Review",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AuthorAttribution",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Photo",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "PhotoMedia",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AccessibilityOptions",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ParkingOptions",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "PaymentOptions",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/places/{placeId}",
+      "operationId": "getPlaceDetails",
+      "summary": "Get Details About a Place",
+      "tags": [
+        "Place Details"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/places:searchText",
+      "operationId": "searchPlacesText",
+      "summary": "Search for Places Using a Text Query",
+      "tags": [
+        "Text Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/places:searchNearby",
+      "operationId": "searchPlacesNearby",
+      "summary": "Search for Places Near a Location",
+      "tags": [
+        "Nearby Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/places:autocomplete",
+      "operationId": "autocompletePlaces",
+      "summary": "Get Place Autocomplete Predictions",
+      "tags": [
+        "Autocomplete"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/places/{placeId}/photos/{photoReference}/media",
+      "operationId": "getPlacePhoto",
+      "summary": "Get a Place Photo",
+      "tags": [
+        "Photos"
+      ]
+    }
+  ]
+}

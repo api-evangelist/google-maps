@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Bounds",
+  "title": "Bounds",
+  "type": "object",
+  "description": "A bounding box defined by northeast and southwest corners",
+  "properties": {
+    "northeast": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "southwest": {
+      "$ref": "#/components/schemas/LatLng"
+    }
+  },
+  "required": [
+    "northeast",
+    "southwest"
+  ]
+}

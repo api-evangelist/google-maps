@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Polyline",
+  "title": "Polyline",
+  "type": "object",
+  "description": "An encoded polyline representation of a route or step",
+  "properties": {
+    "points": {
+      "type": "string",
+      "description": "An encoded polyline string using the Encoded Polyline Algorithm. Decode to obtain a series of lat/lng coordinates.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "points"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocalizedText",
+  "title": "LocalizedText",
+  "type": "object",
+  "description": "A localized text string",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The localized text value",
+      "example": "example_value"
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "BCP-47 language code of the text",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "text"
+  ]
+}

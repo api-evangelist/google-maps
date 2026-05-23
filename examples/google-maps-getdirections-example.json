@@ -1,0 +1,35 @@
+{
+  "operationId": "getDirections",
+  "method": "GET",
+  "path": "/directions/json",
+  "summary": "Get Directions Between Two or More Locations",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getdirections200Example",
+      "example": {
+        "status": "OK",
+        "routes": [
+          {
+            "summary": "example_value",
+            "legs": {},
+            "waypoint_order": {},
+            "copyrights": "example_value",
+            "warnings": {}
+          }
+        ],
+        "geocoded_waypoints": [
+          {
+            "geocoder_status": "OK",
+            "place_id": "500123",
+            "types": {},
+            "partial_match": true
+          }
+        ],
+        "error_message": "example_value"
+      }
+    }
+  ]
+}

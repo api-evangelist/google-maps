@@ -1,0 +1,24 @@
+{
+  "operationId": "getPlacePhoto",
+  "method": "GET",
+  "path": "/places/{placeId}/photos/{photoReference}/media",
+  "summary": "Get a Place Photo",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "image/*",
+      "name": "Getplacephoto200Example",
+      "example": "example_value"
+    },
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getplacephoto200Example",
+      "example": {
+        "name": "Example Title",
+        "photoUri": "https://www.example.com"
+      }
+    }
+  ]
+}

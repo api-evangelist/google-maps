@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PhotoMedia",
+  "title": "PhotoMedia",
+  "type": "object",
+  "description": "Photo media metadata returned when skipHttpRedirect is true",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The resource name of the photo media",
+      "example": "Example Title"
+    },
+    "photoUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "A short-lived URI for the photo",
+      "example": "https://www.example.com"
+    }
+  }
+}

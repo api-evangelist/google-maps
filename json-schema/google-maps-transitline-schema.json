@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransitLine",
+  "title": "TransitLine",
+  "type": "object",
+  "description": "Information about a transit line",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The full name of this transit line",
+      "example": "Example Title"
+    },
+    "short_name": {
+      "type": "string",
+      "description": "The short name of this transit line",
+      "example": "example_value"
+    },
+    "color": {
+      "type": "string",
+      "description": "The color commonly used in signage for this line",
+      "example": "example_value"
+    },
+    "text_color": {
+      "type": "string",
+      "description": "The color of the text commonly used for this line",
+      "example": "example_value"
+    },
+    "vehicle": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "example": "example_value"
+    },
+    "agencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

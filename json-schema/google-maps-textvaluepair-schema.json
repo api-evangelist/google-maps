@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextValuePair",
+  "title": "TextValuePair",
+  "type": "object",
+  "description": "A text and numeric value pair used for distance, duration, and fare amounts",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Human-readable text representation",
+      "example": "541 km"
+    },
+    "value": {
+      "type": "number",
+      "description": "Numeric value. For distance, expressed in meters. For duration, expressed in seconds. For fare, expressed in the currency indicated.",
+      "example": 541000
+    }
+  },
+  "required": [
+    "text",
+    "value"
+  ]
+}

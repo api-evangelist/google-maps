@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rectangle",
+  "title": "Rectangle",
+  "type": "object",
+  "description": "A rectangular area defined by two corners",
+  "properties": {
+    "low": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "high": {
+      "$ref": "#/components/schemas/LatLng"
+    }
+  },
+  "required": [
+    "low",
+    "high"
+  ]
+}

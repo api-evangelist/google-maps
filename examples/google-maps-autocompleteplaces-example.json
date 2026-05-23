@@ -1,0 +1,44 @@
+{
+  "operationId": "autocompletePlaces",
+  "method": "POST",
+  "path": "/places:autocomplete",
+  "summary": "Get Place Autocomplete Predictions",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AutocompleteplacesRequestExample",
+      "example": {
+        "input": "example_value",
+        "locationBias": {},
+        "locationRestriction": {},
+        "includedPrimaryTypes": [
+          "example_value"
+        ],
+        "includedRegionCodes": [
+          "example_value"
+        ],
+        "languageCode": "example_value",
+        "regionCode": "example_value",
+        "origin": {
+          "latitude": 42.5,
+          "longitude": 42.5
+        },
+        "inputOffset": 10,
+        "includeQueryPredictions": true,
+        "sessionToken": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Autocompleteplaces200Example",
+      "example": {
+        "suggestions": [
+          {}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpeningHours",
+  "title": "OpeningHours",
+  "type": "object",
+  "description": "Information about the opening hours of a place",
+  "properties": {
+    "openNow": {
+      "type": "boolean",
+      "description": "Whether the place is currently open",
+      "example": true
+    },
+    "periods": {
+      "type": "array",
+      "description": "The periods that this place is open during the week. Periods covering a full day have an open event with day 0 and time 0000, and no close event.",
+      "items": {
+        "$ref": "#/components/schemas/Period"
+      },
+      "example": []
+    },
+    "weekdayDescriptions": {
+      "type": "array",
+      "description": "Localized strings describing the opening hours for each day of the week",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Monday: 9:00 AM - 5:00 PM",
+        "Tuesday: 9:00 AM - 5:00 PM"
+      ]
+    }
+  }
+}

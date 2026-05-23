@@ -1,0 +1,27 @@
+{
+  "operationId": "geocode",
+  "method": "GET",
+  "path": "/geocode/json",
+  "summary": "Geocode an Address or Reverse Geocode Coordinates",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Geocode200Example",
+      "example": {
+        "status": "OK",
+        "results": [
+          {
+            "address_components": {},
+            "formatted_address": "example_value",
+            "place_id": "500123",
+            "types": {},
+            "partial_match": true
+          }
+        ],
+        "error_message": "example_value"
+      }
+    }
+  ]
+}

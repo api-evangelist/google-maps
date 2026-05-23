@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Leg",
+  "title": "Leg",
+  "type": "object",
+  "description": "A leg of a route, representing the journey between two waypoints or the origin/destination.",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "description": "Array of steps representing each instruction along the leg",
+      "items": {
+        "$ref": "#/components/schemas/Step"
+      },
+      "example": []
+    },
+    "distance": {
+      "$ref": "#/components/schemas/TextValuePair"
+    },
+    "duration": {
+      "$ref": "#/components/schemas/TextValuePair"
+    },
+    "duration_in_traffic": {
+      "$ref": "#/components/schemas/TextValuePair"
+    },
+    "start_location": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "end_location": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "start_address": {
+      "type": "string",
+      "description": "The human-readable address of the leg's starting point",
+      "example": "Toronto, ON, Canada"
+    },
+    "end_address": {
+      "type": "string",
+      "description": "The human-readable address of the leg's ending point",
+      "example": "Montreal, QC, Canada"
+    },
+    "arrival_time": {
+      "$ref": "#/components/schemas/TimeZoneTextValue"
+    },
+    "departure_time": {
+      "$ref": "#/components/schemas/TimeZoneTextValue"
+    }
+  },
+  "required": [
+    "steps",
+    "distance",
+    "duration",
+    "start_location",
+    "end_location",
+    "start_address",
+    "end_address"
+  ]
+}

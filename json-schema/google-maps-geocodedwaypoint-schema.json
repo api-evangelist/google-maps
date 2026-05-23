@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GeocodedWaypoint",
+  "title": "GeocodedWaypoint",
+  "type": "object",
+  "description": "Geocoded information for a waypoint",
+  "properties": {
+    "geocoder_status": {
+      "type": "string",
+      "description": "Status of the geocoding operation",
+      "enum": [
+        "OK",
+        "ZERO_RESULTS"
+      ],
+      "example": "OK"
+    },
+    "place_id": {
+      "type": "string",
+      "description": "Place ID of the geocoded waypoint",
+      "example": "500123"
+    },
+    "types": {
+      "type": "array",
+      "description": "Address type(s) of the geocoded waypoint",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "partial_match": {
+      "type": "boolean",
+      "description": "Whether the geocoder did not return an exact match",
+      "example": true
+    }
+  }
+}

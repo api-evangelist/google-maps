@@ -1,0 +1,131 @@
+{
+  "operationId": "getPlaceDetails",
+  "method": "GET",
+  "path": "/places/{placeId}",
+  "summary": "Get Details About a Place",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getplacedetails200Example",
+      "example": {
+        "name": "Example Title",
+        "id": "abc123",
+        "displayName": {
+          "text": "example_value",
+          "languageCode": "example_value"
+        },
+        "types": [
+          "example_value"
+        ],
+        "primaryType": "example_value",
+        "primaryTypeDisplayName": {
+          "text": "example_value",
+          "languageCode": "example_value"
+        },
+        "nationalPhoneNumber": "example_value",
+        "internationalPhoneNumber": "example_value",
+        "formattedAddress": "example_value",
+        "shortFormattedAddress": "example_value",
+        "addressComponents": [
+          {
+            "longText": "example_value",
+            "shortText": "example_value",
+            "types": {},
+            "languageCode": "example_value"
+          }
+        ],
+        "location": {
+          "latitude": 42.5,
+          "longitude": 42.5
+        },
+        "viewport": {},
+        "rating": 42.5,
+        "userRatingCount": 10,
+        "googleMapsUri": "https://www.example.com",
+        "websiteUri": "https://www.example.com",
+        "regularOpeningHours": {
+          "openNow": true,
+          "periods": [
+            {}
+          ],
+          "weekdayDescriptions": [
+            {}
+          ]
+        },
+        "currentOpeningHours": {
+          "openNow": true,
+          "periods": [
+            {}
+          ],
+          "weekdayDescriptions": [
+            {}
+          ]
+        },
+        "priceLevel": "PRICE_LEVEL_UNSPECIFIED",
+        "businessStatus": "BUSINESS_STATUS_UNSPECIFIED",
+        "utcOffsetMinutes": 10,
+        "reviews": [
+          {
+            "name": "Example Title",
+            "relativePublishTimeDescription": "example_value",
+            "rating": 42.5,
+            "publishTime": "2026-01-15T10:30:00Z"
+          }
+        ],
+        "photos": [
+          {
+            "name": "Example Title",
+            "widthPx": 10,
+            "heightPx": 10,
+            "authorAttributions": {}
+          }
+        ],
+        "editorialSummary": {
+          "text": "example_value",
+          "languageCode": "example_value"
+        },
+        "adrFormatAddress": "example_value",
+        "iconMaskBaseUri": "https://www.example.com",
+        "iconBackgroundColor": "example_value",
+        "plusCode": {
+          "globalCode": "example_value",
+          "compoundCode": "example_value"
+        },
+        "accessibilityOptions": {
+          "wheelchairAccessibleParking": true,
+          "wheelchairAccessibleEntrance": true,
+          "wheelchairAccessibleRestroom": true,
+          "wheelchairAccessibleSeating": true
+        },
+        "parkingOptions": {
+          "freeParkingLot": true,
+          "paidParkingLot": true,
+          "freeStreetParking": true,
+          "paidStreetParking": true,
+          "valetParking": true,
+          "freeGarageParking": true,
+          "paidGarageParking": true
+        },
+        "paymentOptions": {
+          "acceptsCreditCards": true,
+          "acceptsDebitCards": true,
+          "acceptsCashOnly": true,
+          "acceptsNfc": true
+        },
+        "dineIn": true,
+        "takeout": true,
+        "delivery": true,
+        "curbsidePickup": true,
+        "reservable": true,
+        "servesBreakfast": true,
+        "servesLunch": true,
+        "servesDinner": true,
+        "servesBeer": true,
+        "servesWine": true,
+        "servesVegetarianFood": true
+      }
+    }
+  ]
+}

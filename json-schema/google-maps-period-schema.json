@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Period",
+  "title": "Period",
+  "type": "object",
+  "description": "A period the place is open during the week",
+  "properties": {
+    "open": {
+      "$ref": "#/components/schemas/Point"
+    },
+    "close": {
+      "$ref": "#/components/schemas/Point"
+    }
+  },
+  "required": [
+    "open"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Circle",
+  "title": "Circle",
+  "type": "object",
+  "description": "A circle defined by center point and radius",
+  "properties": {
+    "center": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "radius": {
+      "type": "number",
+      "format": "double",
+      "description": "The radius of the circle in meters",
+      "example": 500.0
+    }
+  },
+  "required": [
+    "center",
+    "radius"
+  ]
+}

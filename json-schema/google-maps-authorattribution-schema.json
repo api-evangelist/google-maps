@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthorAttribution",
+  "title": "AuthorAttribution",
+  "type": "object",
+  "description": "Information about the author of a review",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "description": "Name of the review author",
+      "example": "example_value"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the author's profile",
+      "example": "https://www.example.com"
+    },
+    "photoUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the author's profile photo",
+      "example": "https://www.example.com"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DirectionsResponse",
+  "title": "DirectionsResponse",
+  "type": "object",
+  "description": "The response from the Directions API",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Status code of the directions request",
+      "enum": [
+        "OK",
+        "NOT_FOUND",
+        "ZERO_RESULTS",
+        "MAX_WAYPOINTS_EXCEEDED",
+        "INVALID_REQUEST",
+        "OVER_DAILY_LIMIT",
+        "OVER_QUERY_LIMIT",
+        "REQUEST_DENIED",
+        "UNKNOWN_ERROR"
+      ],
+      "example": "OK"
+    },
+    "routes": {
+      "type": "array",
+      "description": "Array of routes from the origin to the destination. Each route contains legs, overview polylines, warnings, and waypoint order.",
+      "items": {
+        "$ref": "#/components/schemas/Route"
+      },
+      "example": []
+    },
+    "geocoded_waypoints": {
+      "type": "array",
+      "description": "Contains geocoding information for the origin, destination, and each waypoint.",
+      "items": {
+        "$ref": "#/components/schemas/GeocodedWaypoint"
+      },
+      "example": []
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Human-readable error message when status is not OK",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "status",
+    "routes"
+  ]
+}

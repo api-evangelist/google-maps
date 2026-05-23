@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormattableText",
+  "title": "FormattableText",
+  "type": "object",
+  "description": "Text with structured formatting information",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The full text string",
+      "example": "example_value"
+    },
+    "matches": {
+      "type": "array",
+      "description": "List of string ranges identifying where the input request matched in the text",
+      "items": {
+        "type": "object",
+        "properties": {
+          "startOffset": {
+            "type": "integer"
+          },
+          "endOffset": {
+            "type": "integer"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

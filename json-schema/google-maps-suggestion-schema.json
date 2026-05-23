@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Suggestion",
+  "title": "Suggestion",
+  "type": "object",
+  "description": "A single autocomplete suggestion",
+  "properties": {
+    "placePrediction": {
+      "$ref": "#/components/schemas/PlacePrediction"
+    },
+    "queryPrediction": {
+      "$ref": "#/components/schemas/QueryPrediction"
+    }
+  }
+}

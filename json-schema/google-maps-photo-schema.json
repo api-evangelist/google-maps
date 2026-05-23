@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Photo",
+  "title": "Photo",
+  "type": "object",
+  "description": "A photo associated with a place",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The resource name of the photo in the format places/{placeId}/photos/{photoReference}",
+      "example": "Example Title"
+    },
+    "widthPx": {
+      "type": "integer",
+      "description": "Maximum available width in pixels",
+      "example": 10
+    },
+    "heightPx": {
+      "type": "integer",
+      "description": "Maximum available height in pixels",
+      "example": 10
+    },
+    "authorAttributions": {
+      "type": "array",
+      "description": "The authors of this photo",
+      "items": {
+        "$ref": "#/components/schemas/AuthorAttribution"
+      },
+      "example": []
+    }
+  }
+}

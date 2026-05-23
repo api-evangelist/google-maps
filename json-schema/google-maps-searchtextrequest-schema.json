@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchTextRequest",
+  "title": "SearchTextRequest",
+  "type": "object",
+  "description": "Request body for text search",
+  "properties": {
+    "textQuery": {
+      "type": "string",
+      "description": "The text query for the search",
+      "example": "pizza in New York"
+    },
+    "includedType": {
+      "type": "string",
+      "description": "Restrict results to a specific place type",
+      "example": "restaurant"
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for results",
+      "example": "en"
+    },
+    "regionCode": {
+      "type": "string",
+      "description": "The region code for biasing results",
+      "example": "US"
+    },
+    "rankPreference": {
+      "type": "string",
+      "description": "How results should be ranked",
+      "enum": [
+        "RELEVANCE",
+        "DISTANCE"
+      ],
+      "example": "RELEVANCE"
+    },
+    "maxResultCount": {
+      "type": "integer",
+      "description": "Maximum number of results to return (1-20)",
+      "minimum": 1,
+      "maximum": 20,
+      "example": 10
+    },
+    "locationBias": {
+      "$ref": "#/components/schemas/LocationBias"
+    },
+    "locationRestriction": {
+      "$ref": "#/components/schemas/LocationRestriction"
+    },
+    "priceLevels": {
+      "type": "array",
+      "description": "Filter results by price level",
+      "items": {
+        "type": "string",
+        "enum": [
+          "PRICE_LEVEL_INEXPENSIVE",
+          "PRICE_LEVEL_MODERATE",
+          "PRICE_LEVEL_EXPENSIVE",
+          "PRICE_LEVEL_VERY_EXPENSIVE"
+        ]
+      },
+      "example": []
+    },
+    "openNow": {
+      "type": "boolean",
+      "description": "Return only places that are currently open",
+      "example": true
+    },
+    "minRating": {
+      "type": "number",
+      "format": "double",
+      "description": "Filter results to those with at least this rating",
+      "minimum": 0.0,
+      "maximum": 5.0,
+      "example": 42.5
+    },
+    "strictTypeFiltering": {
+      "type": "boolean",
+      "description": "If true, only return results that match the includedType exactly",
+      "example": true
+    }
+  },
+  "required": [
+    "textQuery"
+  ]
+}

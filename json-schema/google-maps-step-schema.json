@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Step",
+  "title": "Step",
+  "type": "object",
+  "description": "A single step of a route leg",
+  "properties": {
+    "html_instructions": {
+      "type": "string",
+      "description": "Formatted instructions for this step, presented as an HTML text string.",
+      "example": "Head <b>north</b> on <b>Yonge St</b> toward <b>Queen St W</b>"
+    },
+    "distance": {
+      "$ref": "#/components/schemas/TextValuePair"
+    },
+    "duration": {
+      "$ref": "#/components/schemas/TextValuePair"
+    },
+    "start_location": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "end_location": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "polyline": {
+      "$ref": "#/components/schemas/Polyline"
+    },
+    "travel_mode": {
+      "type": "string",
+      "description": "The travel mode for this step",
+      "enum": [
+        "DRIVING",
+        "WALKING",
+        "BICYCLING",
+        "TRANSIT"
+      ],
+      "example": "DRIVING"
+    },
+    "maneuver": {
+      "type": "string",
+      "description": "The maneuver action for this step (e.g., turn-left, roundabout-right, merge, straight, etc.).",
+      "example": "turn-left"
+    },
+    "transit_details": {
+      "$ref": "#/components/schemas/TransitDetails"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Sub-steps for walking or transit legs in multi-modal routes",
+      "items": {
+        "$ref": "#/components/schemas/Step"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "html_instructions",
+    "distance",
+    "duration",
+    "start_location",
+    "end_location",
+    "polyline",
+    "travel_mode"
+  ]
+}

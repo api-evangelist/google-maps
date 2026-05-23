@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryPrediction",
+  "title": "QueryPrediction",
+  "type": "object",
+  "description": "A query prediction",
+  "properties": {
+    "text": {
+      "$ref": "#/components/schemas/FormattableText"
+    },
+    "structuredFormat": {
+      "$ref": "#/components/schemas/StructuredFormat"
+    }
+  }
+}

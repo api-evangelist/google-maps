@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StructuredFormat",
+  "title": "StructuredFormat",
+  "type": "object",
+  "description": "Contains the main text and secondary text of a prediction",
+  "properties": {
+    "mainText": {
+      "$ref": "#/components/schemas/FormattableText"
+    },
+    "secondaryText": {
+      "$ref": "#/components/schemas/FormattableText"
+    }
+  }
+}

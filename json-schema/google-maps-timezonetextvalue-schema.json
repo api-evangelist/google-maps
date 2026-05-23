@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeZoneTextValue",
+  "title": "TimeZoneTextValue",
+  "type": "object",
+  "description": "A time value with text representation and time zone",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Human-readable time string",
+      "example": "example_value"
+    },
+    "value": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time expressed in seconds since epoch",
+      "example": 10
+    },
+    "time_zone": {
+      "type": "string",
+      "description": "The time zone of this time value",
+      "example": "America/New_York"
+    }
+  }
+}

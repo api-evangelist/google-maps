@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchNearbyRequest",
+  "title": "SearchNearbyRequest",
+  "type": "object",
+  "description": "Request body for nearby search",
+  "properties": {
+    "includedTypes": {
+      "type": "array",
+      "description": "Place types to include in results",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "restaurant"
+      ]
+    },
+    "excludedTypes": {
+      "type": "array",
+      "description": "Place types to exclude from results",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "includedPrimaryTypes": {
+      "type": "array",
+      "description": "Primary place types to include",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "excludedPrimaryTypes": {
+      "type": "array",
+      "description": "Primary place types to exclude",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for results",
+      "example": "example_value"
+    },
+    "regionCode": {
+      "type": "string",
+      "description": "The region code for biasing results",
+      "example": "example_value"
+    },
+    "rankPreference": {
+      "type": "string",
+      "description": "How results should be ranked",
+      "enum": [
+        "POPULARITY",
+        "DISTANCE"
+      ],
+      "example": "POPULARITY"
+    },
+    "maxResultCount": {
+      "type": "integer",
+      "description": "Maximum number of results (1-20)",
+      "minimum": 1,
+      "maximum": 20,
+      "example": 10
+    },
+    "locationRestriction": {
+      "$ref": "#/components/schemas/LocationRestriction"
+    }
+  },
+  "required": [
+    "locationRestriction"
+  ]
+}

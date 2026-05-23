@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PlacePrediction",
+  "title": "PlacePrediction",
+  "type": "object",
+  "description": "A place prediction",
+  "properties": {
+    "place": {
+      "type": "string",
+      "description": "The resource name of the suggested place in the format places/{placeId}",
+      "example": "example_value"
+    },
+    "placeId": {
+      "type": "string",
+      "description": "The place ID of the suggested place",
+      "example": "500123"
+    },
+    "text": {
+      "$ref": "#/components/schemas/FormattableText"
+    },
+    "structuredFormat": {
+      "$ref": "#/components/schemas/StructuredFormat"
+    },
+    "types": {
+      "type": "array",
+      "description": "List of types that apply to this place",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "distanceMeters": {
+      "type": "integer",
+      "description": "The distance in meters from the origin",
+      "example": 10
+    }
+  }
+}

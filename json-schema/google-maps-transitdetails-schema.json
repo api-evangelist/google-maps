@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransitDetails",
+  "title": "TransitDetails",
+  "type": "object",
+  "description": "Transit-specific information for transit steps",
+  "properties": {
+    "arrival_stop": {
+      "$ref": "#/components/schemas/TransitStop"
+    },
+    "departure_stop": {
+      "$ref": "#/components/schemas/TransitStop"
+    },
+    "arrival_time": {
+      "$ref": "#/components/schemas/TimeZoneTextValue"
+    },
+    "departure_time": {
+      "$ref": "#/components/schemas/TimeZoneTextValue"
+    },
+    "headsign": {
+      "type": "string",
+      "description": "The direction in which to travel on this transit line",
+      "example": "example_value"
+    },
+    "headway": {
+      "type": "integer",
+      "description": "The expected number of seconds between departures from the same stop at the current time",
+      "example": 10
+    },
+    "num_stops": {
+      "type": "integer",
+      "description": "The number of stops from departure to arrival",
+      "example": 10
+    },
+    "line": {
+      "$ref": "#/components/schemas/TransitLine"
+    }
+  }
+}

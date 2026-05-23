@@ -1,0 +1,77 @@
+{
+  "operationId": "searchPlacesNearby",
+  "method": "POST",
+  "path": "/places:searchNearby",
+  "summary": "Search for Places Near a Location",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SearchplacesnearbyRequestExample",
+      "example": {
+        "includedTypes": [
+          "example_value"
+        ],
+        "excludedTypes": [
+          "example_value"
+        ],
+        "includedPrimaryTypes": [
+          "example_value"
+        ],
+        "excludedPrimaryTypes": [
+          "example_value"
+        ],
+        "languageCode": "example_value",
+        "regionCode": "example_value",
+        "rankPreference": "POPULARITY",
+        "maxResultCount": 10,
+        "locationRestriction": {}
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Searchplacesnearby200Example",
+      "example": {
+        "places": [
+          {
+            "name": "Example Title",
+            "id": "abc123",
+            "types": {},
+            "primaryType": "example_value",
+            "nationalPhoneNumber": "example_value",
+            "internationalPhoneNumber": "example_value",
+            "formattedAddress": "example_value",
+            "shortFormattedAddress": "example_value",
+            "addressComponents": {},
+            "rating": 42.5,
+            "userRatingCount": 10,
+            "googleMapsUri": "https://www.example.com",
+            "websiteUri": "https://www.example.com",
+            "priceLevel": "PRICE_LEVEL_UNSPECIFIED",
+            "businessStatus": "BUSINESS_STATUS_UNSPECIFIED",
+            "utcOffsetMinutes": 10,
+            "reviews": {},
+            "photos": {},
+            "adrFormatAddress": "example_value",
+            "iconMaskBaseUri": "https://www.example.com",
+            "iconBackgroundColor": "example_value",
+            "dineIn": true,
+            "takeout": true,
+            "delivery": true,
+            "curbsidePickup": true,
+            "reservable": true,
+            "servesBreakfast": true,
+            "servesLunch": true,
+            "servesDinner": true,
+            "servesBeer": true,
+            "servesWine": true,
+            "servesVegetarianFood": true
+          }
+        ],
+        "nextPageToken": "example_value"
+      }
+    }
+  ]
+}

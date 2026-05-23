@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Point",
+  "title": "Point",
+  "type": "object",
+  "description": "A point in time on a weekly schedule",
+  "properties": {
+    "day": {
+      "type": "integer",
+      "description": "Day of the week (0=Sunday, 6=Saturday)",
+      "minimum": 0,
+      "maximum": 6,
+      "example": 10
+    },
+    "hour": {
+      "type": "integer",
+      "description": "Hour in 24-hour format (0-23)",
+      "minimum": 0,
+      "maximum": 23,
+      "example": 10
+    },
+    "minute": {
+      "type": "integer",
+      "description": "Minute (0-59)",
+      "minimum": 0,
+      "maximum": 59,
+      "example": 10
+    },
+    "date": {
+      "type": "object",
+      "description": "A specific date for current opening hours",
+      "properties": {
+        "year": {
+          "type": "integer"
+        },
+        "month": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "integer"
+        }
+      },
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "day",
+    "hour",
+    "minute"
+  ]
+}

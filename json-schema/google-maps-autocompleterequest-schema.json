@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutocompleteRequest",
+  "title": "AutocompleteRequest",
+  "type": "object",
+  "description": "Request body for place autocomplete predictions",
+  "properties": {
+    "input": {
+      "type": "string",
+      "description": "The text input specifying which place to search for",
+      "example": "pizza near"
+    },
+    "locationBias": {
+      "$ref": "#/components/schemas/LocationBias"
+    },
+    "locationRestriction": {
+      "$ref": "#/components/schemas/LocationRestriction"
+    },
+    "includedPrimaryTypes": {
+      "type": "array",
+      "description": "Restrict results to primary types",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "includedRegionCodes": {
+      "type": "array",
+      "description": "Restrict results to these region codes",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "languageCode": {
+      "type": "string",
+      "description": "The language code for predictions",
+      "example": "example_value"
+    },
+    "regionCode": {
+      "type": "string",
+      "description": "Region code for biasing",
+      "example": "example_value"
+    },
+    "origin": {
+      "$ref": "#/components/schemas/LatLng"
+    },
+    "inputOffset": {
+      "type": "integer",
+      "description": "Zero-based Unicode character offset of input indicating the cursor position. Use to return more relevant predictions.",
+      "example": 10
+    },
+    "includeQueryPredictions": {
+      "type": "boolean",
+      "description": "Whether to include query predictions in results",
+      "example": true
+    },
+    "sessionToken": {
+      "type": "string",
+      "description": "A random string that groups this request with subsequent Place Details requests for billing.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "input"
+  ]
+}

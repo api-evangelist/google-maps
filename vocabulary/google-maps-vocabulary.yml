@@ -1,0 +1,15 @@
+name: Google Maps Platform Domain Vocabulary
+provider: Google Maps Platform
+providerId: google-maps
+description: Tag-derived vocabulary for the Google Maps Platform API surface; sourced from openapi/ tags.
+terms:
+- term: Place Details
+  description: Get detailed information about a specific place
+- term: Text Search
+  description: Search for places using a text query
+- term: Nearby Search
+  description: Search for places near a specific location
+- term: Autocomplete
+  description: Get place predictions based on text input
+- term: Photos
+  description: Access photos associated with places
