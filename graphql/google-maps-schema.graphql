@@ -1,0 +1,993 @@
+# Google Maps Platform - Conceptual GraphQL Schema
+# Covers: Maps, Routes, Places, Geocoding, Elevation, Geolocation,
+#         Address Validation, Roads, Time Zone, Street View, Aerial View
+# Source APIs: https://developers.google.com/maps/documentation
+
+# ---------------------------------------------------------------------------
+# Core Geography Types
+# ---------------------------------------------------------------------------
+
+"""A geographic coordinate pair."""
+type LatLng {
+  latitude: Float!
+  longitude: Float!
+}
+
+"""A named location with coordinates and optional metadata."""
+type Location {
+  latLng: LatLng!
+  name: String
+  address: String
+}
+
+"""A rectangular geographic bounding box."""
+type Bounds {
+  northeast: LatLng!
+  southwest: LatLng!
+}
+
+"""The recommended viewport for displaying a result."""
+type Viewport {
+  low: LatLng!
+  high: LatLng!
+}
+
+# ---------------------------------------------------------------------------
+# Geocoding Types
+# ---------------------------------------------------------------------------
+
+"""A geocode response wrapping one or more results."""
+type Geocode {
+  results: [GeocodeResult!]!
+  status: String!
+}
+
+"""A single geocoding result including coordinates, address, and metadata."""
+type GeocodeResult {
+  placeId: String!
+  formattedAddress: String!
+  addressComponents: [AddressComponent!]!
+  geometry: GeocodeGeometry!
+  types: [String!]!
+  plusCode: PlusCode
+  partialMatch: Boolean
+}
+
+"""The geometry associated with a geocode result."""
+type GeocodeGeometry {
+  location: LatLng!
+  locationType: String!
+  viewport: Viewport!
+  bounds: Bounds
+}
+
+"""A component of a structured address (e.g., city, country, postal code)."""
+type AddressComponent {
+  longName: String!
+  shortName: String!
+  types: [String!]!
+}
+
+"""An Open Location Code (Plus Code) for a place."""
+type PlusCode {
+  globalCode: String!
+  compoundCode: String
+}
+
+# ---------------------------------------------------------------------------
+# Place Types
+# ---------------------------------------------------------------------------
+
+"""A place returned by the Places API with full detail."""
+type Place {
+  id: String!
+  name: String
+  formattedAddress: String
+  location: LatLng
+  rating: Float
+  userRatingCount: Int
+  priceLevel: Int
+  types: [String!]
+  businessStatus: String
+  phoneNumber: String
+  websiteUri: String
+  openingHours: PlaceOpeningHours
+  photos: [PlacePhoto!]
+  reviews: [PlaceReview!]
+  plusCode: PlacePlusCode
+  viewport: Viewport
+  accessibilityOptions: PlaceAccessibility
+  amenityFeatures: [PlaceAmenity!]
+  editorialSummary: String
+  utcOffsetMinutes: Int
+  iconMaskBaseUri: String
+  iconBackgroundColor: String
+}
+
+"""A photo associated with a place."""
+type PlacePhoto {
+  name: String!
+  widthPx: Int!
+  heightPx: Int!
+  authorAttributions: [AuthorAttribution!]!
+  googleMapsUri: String
+}
+
+"""Attribution information for a place photo or review author."""
+type AuthorAttribution {
+  displayName: String!
+  uri: String
+  photoUri: String
+}
+
+"""A user review for a place."""
+type PlaceReview {
+  name: String!
+  relativePublishTimeDescription: String
+  rating: Float!
+  text: LocalizedText
+  originalText: LocalizedText
+  authorAttribution: AuthorAttribution!
+  publishTime: String
+}
+
+"""Localized text with language code."""
+type LocalizedText {
+  text: String!
+  languageCode: String!
+}
+
+"""Opening hours information for a place."""
+type PlaceOpeningHours {
+  openNow: Boolean
+  periods: [PlacePeriod!]
+  weekdayDescriptions: [String!]
+  secondaryHoursType: String
+  specialDays: [PlaceSpecialDay!]
+}
+
+"""An opening or closing period for a place."""
+type PlacePeriod {
+  open: PlacePoint
+  close: PlacePoint
+}
+
+"""A specific point in time within a period."""
+type PlacePoint {
+  day: Int!
+  hour: Int!
+  minute: Int!
+  date: PlaceDate
+}
+
+"""A calendar date."""
+type PlaceDate {
+  year: Int!
+  month: Int!
+  day: Int!
+}
+
+"""A special day affecting place hours (e.g., holiday)."""
+type PlaceSpecialDay {
+  date: PlaceDate
+  exceptionalHours: Boolean
+}
+
+"""Plus Code attached directly to a place."""
+type PlacePlusCode {
+  globalCode: String!
+  compoundCode: String
+}
+
+"""Accessibility options available at a place."""
+type PlaceAccessibility {
+  wheelchairAccessibleParking: Boolean
+  wheelchairAccessibleEntrance: Boolean
+  wheelchairAccessibleRestroom: Boolean
+  wheelchairAccessibleSeating: Boolean
+}
+
+"""An amenity or service offered at a place."""
+type PlaceAmenity {
+  name: String!
+  available: Boolean
+}
+
+# ---------------------------------------------------------------------------
+# Place Search Types
+# ---------------------------------------------------------------------------
+
+"""Results from a nearby places search."""
+type PlacesNearby {
+  places: [Place!]!
+  nextPageToken: String
+}
+
+"""Results from a general place search."""
+type PlaceSearch {
+  results: [Place!]!
+  status: String!
+  htmlAttributions: [String!]
+  nextPageToken: String
+}
+
+"""Results from a text-based place search."""
+type PlaceTextSearch {
+  places: [Place!]!
+  nextPageToken: String
+}
+
+"""Pagination metadata for paginated place search results."""
+type PlaceSearchPagination {
+  hasNextPage: Boolean!
+  nextPageToken: String
+}
+
+# ---------------------------------------------------------------------------
+# Place Autocomplete Types
+# ---------------------------------------------------------------------------
+
+"""A set of autocomplete predictions for a partial user input."""
+type PlaceAutocompletion {
+  predictions: [Prediction!]!
+  status: String!
+}
+
+"""A single autocomplete prediction."""
+type Prediction {
+  placeId: String!
+  description: String!
+  structuredFormatting: StructuredFormatting!
+  types: [String!]!
+  terms: [Term!]
+  matchedSubstrings: [MatchedSubstring!]
+  distanceMeters: Int
+}
+
+"""Structured formatting for a prediction, splitting main text and secondary text."""
+type StructuredFormatting {
+  mainText: String!
+  mainTextMatchedSubstrings: [MatchedSubstring!]
+  secondaryText: String
+}
+
+"""A token term within a prediction description."""
+type Term {
+  offset: Int!
+  value: String!
+}
+
+"""A matched substring range within prediction text."""
+type MatchedSubstring {
+  offset: Int!
+  length: Int!
+}
+
+"""Detailed information about a place, used in autocomplete detail fetches."""
+type PlaceDetails {
+  place: Place!
+  htmlAttributions: [String!]
+}
+
+# ---------------------------------------------------------------------------
+# Directions and Routing Types
+# ---------------------------------------------------------------------------
+
+"""Directions response containing one or more routes."""
+type Directions {
+  routes: [Route!]!
+  status: String!
+  geocodedWaypoints: [GeocodedWaypoint!]
+  availableTravelModes: [String!]
+}
+
+"""A single route from origin to destination."""
+type Route {
+  summary: String
+  legs: [Leg!]!
+  overviewPolyline: EncodedPolyline!
+  bounds: Bounds!
+  copyrights: String
+  warnings: [String!]
+  waypointOrder: [Int!]
+  fare: Fare
+  distanceMeters: Int
+  duration: Duration
+  staticDuration: Duration
+  description: String
+  viewport: Viewport
+}
+
+"""An encoded polyline string."""
+type EncodedPolyline {
+  encodedPolyline: String!
+}
+
+"""A monetary fare for transit directions."""
+type Fare {
+  currency: String!
+  value: Float!
+  text: String!
+}
+
+"""A single leg of a route between two waypoints."""
+type Leg {
+  distance: Distance
+  duration: Duration
+  startAddress: String
+  endAddress: String
+  startLocation: LatLng!
+  endLocation: LatLng!
+  steps: [Step!]!
+  trafficSpeedEntry: [TrafficSpeedEntry!]
+  viaWaypoint: [ViaWaypoint!]
+  arrivalTime: TimeValue
+  departureTime: TimeValue
+}
+
+"""A traffic speed entry along a route leg."""
+type TrafficSpeedEntry {
+  offsetMeters: Int!
+  speedCategory: String!
+}
+
+"""A via-waypoint within a leg."""
+type ViaWaypoint {
+  location: LatLng!
+  stepIndex: Int!
+  stepInterpolation: Float!
+}
+
+"""A time value with text and timezone."""
+type TimeValue {
+  value: Int!
+  text: String!
+  timeZone: String!
+}
+
+"""A single navigation step within a route leg."""
+type Step {
+  distance: Distance!
+  duration: Duration!
+  startLocation: LatLng!
+  endLocation: LatLng!
+  htmlInstructions: String!
+  polyline: EncodedPolyline!
+  travelMode: String!
+  maneuver: String
+  transitDetails: TransitDetails
+  steps: [Step!]
+}
+
+"""Details for a transit step."""
+type TransitDetails {
+  arrivalStop: TransitStop!
+  departureStop: TransitStop!
+  arrivalTime: TimeValue!
+  departureTime: TimeValue!
+  headsign: String
+  headway: Int
+  numStops: Int
+  tripShortName: String
+  line: TransitLine
+}
+
+"""A transit stop."""
+type TransitStop {
+  name: String!
+  location: LatLng!
+}
+
+"""A transit line (bus, subway, etc.)."""
+type TransitLine {
+  name: String
+  shortName: String
+  color: String
+  textColor: String
+  agencies: [TransitAgency!]
+  url: String
+  icon: String
+  vehicle: TransitVehicle
+}
+
+"""A transit agency operating a line."""
+type TransitAgency {
+  name: String!
+  url: String
+  phone: String
+}
+
+"""A type of transit vehicle."""
+type TransitVehicle {
+  name: String!
+  type: String!
+  icon: String
+  localIcon: String
+}
+
+"""A geocoded waypoint in a directions response."""
+type GeocodedWaypoint {
+  geocoderStatus: String!
+  placeId: String!
+  types: [String!]!
+  partialMatch: Boolean
+}
+
+"""A waypoint specification for routing."""
+type Waypoint {
+  location: LatLng
+  placeId: String
+  address: String
+  stopover: Boolean
+}
+
+"""A duration expressed as seconds and a human-readable string."""
+type Duration {
+  value: Int!
+  text: String!
+}
+
+"""A distance expressed as meters and a human-readable string."""
+type Distance {
+  value: Int!
+  text: String!
+}
+
+# ---------------------------------------------------------------------------
+# Distance Matrix Types
+# ---------------------------------------------------------------------------
+
+"""A distance matrix response covering multiple origins and destinations."""
+type DistanceMatrix {
+  originAddresses: [String!]!
+  destinationAddresses: [String!]!
+  rows: [DistanceMatrixRow!]!
+  status: String!
+}
+
+"""A row in the distance matrix corresponding to one origin."""
+type DistanceMatrixRow {
+  elements: [DistanceMatrixElement!]!
+}
+
+"""An element in the distance matrix for one origin-destination pair."""
+type DistanceMatrixElement {
+  status: String!
+  duration: Duration
+  durationInTraffic: Duration
+  distance: Distance
+  fare: Fare
+}
+
+# ---------------------------------------------------------------------------
+# Elevation Types
+# ---------------------------------------------------------------------------
+
+"""An elevation response for a set of locations."""
+type Elevation {
+  results: [ElevationResult!]!
+  status: String!
+}
+
+"""Elevation data for a single location."""
+type ElevationResult {
+  elevation: Float!
+  location: LatLng!
+  resolution: Float
+}
+
+# ---------------------------------------------------------------------------
+# Static Map Types
+# ---------------------------------------------------------------------------
+
+"""Parameters for a Maps Static API request."""
+type StaticMapRequest {
+  center: LatLng
+  zoom: Int
+  size: String!
+  scale: Int
+  format: String
+  mapType: String
+  language: String
+  region: String
+  markers: [StaticMapMarker!]
+  paths: [StaticMapPath!]
+  visible: [LatLng!]
+  style: [String!]
+}
+
+"""A marker to render on a static map."""
+type StaticMapMarker {
+  location: LatLng!
+  color: String
+  label: String
+  size: String
+  icon: String
+}
+
+"""A path to draw on a static map."""
+type StaticMapPath {
+  points: [LatLng!]!
+  color: String
+  weight: Int
+  fillColor: String
+  geodesic: Boolean
+}
+
+# ---------------------------------------------------------------------------
+# Street View Types
+# ---------------------------------------------------------------------------
+
+"""Metadata for a Street View panorama."""
+type StreetViewMetadata {
+  status: String!
+  copyright: String
+  date: String
+  location: LatLng
+  panoId: String
+}
+
+"""A Street View panorama with location and heading data."""
+type StreetViewPanorama {
+  panoId: String!
+  location: LatLng!
+  heading: Float
+  pitch: Float
+  fov: Float
+  imageUrl: String
+}
+
+# ---------------------------------------------------------------------------
+# Geolocation Types
+# ---------------------------------------------------------------------------
+
+"""A geolocation request using cell tower and Wi-Fi data."""
+type GeolocationRequest {
+  homeMobileCountryCode: Int
+  homeMobileNetworkCode: Int
+  radioType: String
+  carrier: String
+  considerIp: Boolean
+  cellTowers: [CellTower!]
+  wifiAccessPoints: [WifiAccessPoint!]
+}
+
+"""A cell tower signal source for geolocation."""
+type CellTower {
+  cellId: Int!
+  locationAreaCode: Int!
+  mobileCountryCode: Int!
+  mobileNetworkCode: Int!
+  age: Int
+  signalStrength: Int
+  timingAdvance: Int
+}
+
+"""A Wi-Fi access point signal source for geolocation."""
+type WifiAccessPoint {
+  macAddress: String!
+  signalStrength: Int
+  age: Int
+  channel: Int
+  signalToNoiseRatio: Int
+}
+
+"""The result of a geolocation request."""
+type GeolocationResult {
+  location: LatLng!
+  accuracy: Float!
+}
+
+# ---------------------------------------------------------------------------
+# Roads Types
+# ---------------------------------------------------------------------------
+
+"""A snap-to-road response with snapped GPS points."""
+type RoadsSnapToRoad {
+  snappedPoints: [SnapPoint!]!
+  warningMessage: String
+}
+
+"""A single GPS point snapped to a road."""
+type SnapPoint {
+  location: LatLng!
+  originalIndex: Int
+  placeId: String!
+}
+
+# ---------------------------------------------------------------------------
+# Time Zone Types
+# ---------------------------------------------------------------------------
+
+"""Time zone information for a geographic location."""
+type TimeZone {
+  dstOffset: Int!
+  rawOffset: Int!
+  status: String!
+  timeZoneId: String!
+  timeZoneName: String!
+}
+
+# ---------------------------------------------------------------------------
+# Address Validation Types
+# ---------------------------------------------------------------------------
+
+"""An address validation response."""
+type AddressValidation {
+  result: AddressValidationResult!
+  responseId: String!
+}
+
+"""Detailed result of an address validation request."""
+type AddressValidationResult {
+  verdict: AddressVerdict!
+  address: ValidatedAddress!
+  geocode: ValidationGeocode
+  metadata: AddressMetadata
+  uspsData: UspsData
+}
+
+"""The overall verdict of an address validation."""
+type AddressVerdict {
+  inputGranularity: ValidationGranularity!
+  validationGranularity: ValidationGranularity!
+  geocodeGranularity: ValidationGranularity!
+  addressComplete: Boolean
+  hasUnconfirmedComponents: Boolean
+  hasInferredComponents: Boolean
+  hasReplacedComponents: Boolean
+}
+
+"""The granularity at which an address was validated or geocoded."""
+enum ValidationGranularity {
+  GRANULARITY_UNSPECIFIED
+  SUB_PREMISE
+  PREMISE
+  PREMISE_PROXIMITY
+  BLOCK
+  ROUTE
+  OTHER
+}
+
+"""The standardized address returned by address validation."""
+type ValidatedAddress {
+  formattedAddress: String!
+  addressComponents: [AddressValidationComponent!]!
+  missingComponentTypes: [String!]
+  unconfirmedComponentTypes: [String!]
+  unresolvedTokens: [String!]
+}
+
+"""An individual component of a validated address with confirmation status."""
+type AddressValidationComponent {
+  componentName: ComponentName!
+  componentType: String!
+  confirmationLevel: String!
+  inferred: Boolean
+  spellCorrected: Boolean
+  replaced: Boolean
+  unexpected: Boolean
+}
+
+"""A named component within an address."""
+type ComponentName {
+  text: String!
+  languageCode: String
+}
+
+"""Geocode data returned within an address validation result."""
+type ValidationGeocode {
+  location: LatLng!
+  plusCode: PlusCode
+  bounds: Bounds
+  featureSizeMeters: Float
+  placeId: String
+  placeTypes: [String!]
+}
+
+"""Metadata about a validated address."""
+type AddressMetadata {
+  business: Boolean
+  poBox: Boolean
+  residential: Boolean
+}
+
+"""USPS-specific address validation data."""
+type UspsData {
+  standardizedAddress: UspsAddress
+  deliveryPointCode: String
+  deliveryPointCheckDigit: String
+  dpvConfirmation: String
+  dpvFootnote: String
+  dpvCmra: String
+  dpvVacant: String
+  dpvNoStat: String
+  carrierRoute: String
+  carrierRouteIndicator: String
+  ewsNoMatch: Boolean
+  postOfficeCity: String
+  postOfficeState: String
+  abbreviatedCity: String
+  fipsCountyCode: String
+  county: String
+  elotNumber: String
+  elotFlag: String
+  lacsLinkReturnCode: String
+  lacsLinkIndicator: String
+  poBoxOnlyPostalCode: Boolean
+  suitelinkFootnote: String
+  pmbDesignator: String
+  pmbNumber: String
+  addressRecordType: String
+  defaultAddress: Boolean
+  errorMessage: String
+  cassProcessed: Boolean
+}
+
+"""A USPS-standardized address."""
+type UspsAddress {
+  firstAddressLine: String
+  firm: String
+  secondAddressLine: String
+  urbanization: String
+  cityStateZipAddressLine: String
+  city: String
+  state: String
+  zipCode: String
+  zipCodeExtension: String
+}
+
+# ---------------------------------------------------------------------------
+# Aerial View Types
+# ---------------------------------------------------------------------------
+
+"""Aerial view video metadata for a location."""
+type AerialView {
+  videoMetadata: VideoMetadata
+  state: String!
+  uriExpireTime: String
+  uris: VideoUris
+}
+
+"""Metadata about an aerial view video."""
+type VideoMetadata {
+  address: String
+  viewportLatLngBounds: Bounds
+  date: PlaceDate
+}
+
+"""URIs for different aerial view video formats."""
+type VideoUris {
+  landscapeUri: String
+  portraitUri: String
+}
+
+# ---------------------------------------------------------------------------
+# Map Object Types
+# ---------------------------------------------------------------------------
+
+"""A Google Map instance configuration."""
+type Map {
+  mapId: MapId
+  center: LatLng!
+  zoom: Int!
+  mapType: String
+  heading: Float
+  tilt: Float
+}
+
+"""An identifier for a cloud-based map style."""
+type MapId {
+  mapId: String!
+}
+
+"""A map marker."""
+type Marker {
+  position: LatLng!
+  title: String
+  label: String
+  draggable: Boolean
+  visible: Boolean
+  icon: String
+  zIndex: Int
+}
+
+"""An advanced marker with custom content support."""
+type AdvancedMarker {
+  position: LatLng!
+  title: String
+  content: String
+  zIndex: Int
+  gmpDraggable: Boolean
+  gmpClickDisabled: Boolean
+}
+
+"""A map polyline (line drawn on the map)."""
+type Polyline {
+  path: [LatLng!]!
+  strokeColor: String
+  strokeOpacity: Float
+  strokeWeight: Int
+  visible: Boolean
+  zIndex: Int
+  geodesic: Boolean
+}
+
+"""A map polygon (closed shape drawn on the map)."""
+type Polygon {
+  paths: [[LatLng!]!]!
+  strokeColor: String
+  strokeOpacity: Float
+  strokeWeight: Int
+  fillColor: String
+  fillOpacity: Float
+  visible: Boolean
+  zIndex: Int
+  geodesic: Boolean
+}
+
+"""An info window displayed on a map."""
+type InfoWindow {
+  content: String!
+  position: LatLng
+  maxWidth: Int
+  zIndex: Int
+  ariaLabel: String
+}
+
+# ---------------------------------------------------------------------------
+# Root Query Type
+# ---------------------------------------------------------------------------
+
+type Query {
+  """Forward geocode an address to geographic coordinates."""
+  geocode(
+    address: String
+    bounds: String
+    language: String
+    region: String
+    components: String
+  ): Geocode
+
+  """Reverse geocode coordinates to a human-readable address."""
+  reverseGeocode(
+    latlng: String!
+    language: String
+    resultType: String
+    locationType: String
+  ): Geocode
+
+  """Retrieve full details for a specific place by its place ID."""
+  place(
+    placeId: String!
+    fields: [String!]
+    language: String
+    region: String
+  ): PlaceDetails
+
+  """Search for places near a given location."""
+  searchPlacesNearby(
+    location: String!
+    radius: Int
+    keyword: String
+    type: String
+    language: String
+    pageToken: String
+  ): PlacesNearby
+
+  """Perform a text-based place search."""
+  searchPlacesByText(
+    query: String!
+    location: String
+    radius: Int
+    language: String
+    region: String
+    pageToken: String
+  ): PlaceTextSearch
+
+  """Get autocomplete predictions for a partial user input."""
+  autocomplete(
+    input: String!
+    location: String
+    radius: Int
+    language: String
+    components: String
+    types: String
+    sessionToken: String
+  ): PlaceAutocompletion
+
+  """Get directions between an origin and destination."""
+  directions(
+    origin: String!
+    destination: String!
+    mode: String
+    waypoints: [String!]
+    alternatives: Boolean
+    avoid: String
+    language: String
+    units: String
+    region: String
+    departureTime: String
+    arrivalTime: String
+    trafficModel: String
+    transitMode: String
+    transitRoutingPreference: String
+  ): Directions
+
+  """Compute distance and estimated travel time for origin-destination pairs."""
+  distanceMatrix(
+    origins: [String!]!
+    destinations: [String!]!
+    mode: String
+    language: String
+    avoid: String
+    units: String
+    departureTime: String
+    arrivalTime: String
+    trafficModel: String
+    transitMode: String
+    transitRoutingPreference: String
+  ): DistanceMatrix
+
+  """Get elevation data for one or more locations."""
+  elevation(
+    locations: [String!]!
+  ): Elevation
+
+  """Sample elevation data along a path."""
+  elevationAlongPath(
+    path: [String!]!
+    samples: Int!
+  ): Elevation
+
+  """Determine device location from cell tower and Wi-Fi signals."""
+  geolocate(
+    homeMobileCountryCode: Int
+    homeMobileNetworkCode: Int
+    radioType: String
+    carrier: String
+    considerIp: Boolean
+    cellTowers: [String!]
+    wifiAccessPoints: [String!]
+  ): GeolocationResult
+
+  """Snap a sequence of GPS coordinates to roads."""
+  snapToRoads(
+    path: [String!]!
+    interpolate: Boolean
+  ): RoadsSnapToRoad
+
+  """Find the nearest road segments to given GPS points."""
+  nearestRoads(
+    points: [String!]!
+  ): RoadsSnapToRoad
+
+  """Get time zone information for a location at a given timestamp."""
+  timeZone(
+    location: String!
+    timestamp: Int!
+    language: String
+  ): TimeZone
+
+  """Validate and standardize a postal address."""
+  validateAddress(
+    address: String!
+    previousResponseId: String
+    enableUspsCass: Boolean
+  ): AddressValidation
+
+  """Get Street View panorama metadata for a location."""
+  streetViewMetadata(
+    location: String
+    pano: String
+    size: String
+    heading: Float
+    fov: Float
+    pitch: Float
+  ): StreetViewMetadata
+
+  """Get aerial view video metadata for a postal address."""
+  aerialView(
+    address: String!
+  ): AerialView
+}
