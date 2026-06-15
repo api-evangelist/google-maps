@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "f9b4433f-5263-4229-bd46-a96f64437dbb",
+      "name": "Directions",
+      "description": {
+        "content": "Route computation between origin and destination",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6f9ae10-b07f-4bfc-b264-cc47e0e96a54",
+          "name": "Get Directions Between Two or More Locations",
+          "request": {
+            "name": "Get Directions Between Two or More Locations",
+            "description": {
+              "content": "Calculates directions between an origin and a destination, optionally via waypoints. Supports driving, walking, bicycling, and transit modes. Returns one or more routes composed of legs and steps, including distance, duration, polylines, and turn-by-turn instructions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directions",
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "origin",
+                  "value": "<string>",
+                  "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<string>",
+                  "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "driving",
+                  "description": "The travel mode for calculating directions. Defaults to driving."
+                },
+                {
+                  "disabled": false,
+                  "key": "waypoints",
+                  "value": "<string>",
+                  "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair."
+                },
+                {
+                  "disabled": false,
+                  "key": "alternatives",
+                  "value": "false",
+                  "description": "If set to true, instructs the Directions service to return more than one route alternative when available."
+                },
+                {
+                  "disabled": false,
+                  "key": "avoid",
+                  "value": "<string>",
+                  "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "The language code in which to return results, where available."
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "<string>",
+                  "description": "Specifies the unit system to use when displaying results."
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region."
+                },
+                {
+                  "disabled": false,
+                  "key": "arrival_time",
+                  "value": "<long>",
+                  "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time."
+                },
+                {
+                  "disabled": false,
+                  "key": "departure_time",
+                  "value": "<long>",
+                  "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "traffic_model",
+                  "value": "best_guess",
+                  "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "transit_mode",
+                  "value": "<string>",
+                  "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit."
+                },
+                {
+                  "disabled": false,
+                  "key": "transit_routing_preference",
+                  "value": "<string>",
+                  "description": "Specifies preferences for transit routes. Only valid when mode is transit."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your application's API key."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9511c530-2b11-44a3-bf85-4ce1bfc78985",
+              "name": "Directions response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "Toronto, ON"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "Montreal, QC"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "key": "waypoints",
+                      "value": "optimize:true|Barrie, ON|Kingston, ON"
+                    },
+                    {
+                      "key": "alternatives",
+                      "value": "true"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "tolls|highways|ferries"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "arrival_time",
+                      "value": "10"
+                    },
+                    {
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "key": "transit_mode",
+                      "value": "bus|subway"
+                    },
+                    {
+                      "key": "transit_routing_preference",
+                      "value": "less_walking"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"routes\": [\n    {\n      \"summary\": \"example_value\",\n      \"legs\": {},\n      \"waypoint_order\": {},\n      \"copyrights\": \"example_value\",\n      \"warnings\": {}\n    }\n  ],\n  \"geocoded_waypoints\": [\n    {\n      \"geocoder_status\": \"OK\",\n      \"place_id\": \"500123\",\n      \"types\": {},\n      \"partial_match\": true\n    }\n  ],\n  \"error_message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64de3dde-69bb-4723-aa88-2e20c0467dfa",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "Toronto, ON"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "Montreal, QC"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "key": "waypoints",
+                      "value": "optimize:true|Barrie, ON|Kingston, ON"
+                    },
+                    {
+                      "key": "alternatives",
+                      "value": "true"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "tolls|highways|ferries"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "arrival_time",
+                      "value": "10"
+                    },
+                    {
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "key": "transit_mode",
+                      "value": "bus|subway"
+                    },
+                    {
+                      "key": "transit_routing_preference",
+                      "value": "less_walking"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "235c2316-3cfd-4a64-84e4-d6266c890f34",
+              "name": "Forbidden - API key is invalid or not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "Toronto, ON"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "Montreal, QC"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "key": "waypoints",
+                      "value": "optimize:true|Barrie, ON|Kingston, ON"
+                    },
+                    {
+                      "key": "alternatives",
+                      "value": "true"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "tolls|highways|ferries"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "arrival_time",
+                      "value": "10"
+                    },
+                    {
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "key": "transit_mode",
+                      "value": "bus|subway"
+                    },
+                    {
+                      "key": "transit_routing_preference",
+                      "value": "less_walking"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31f529ca-8eeb-4e94-9083-f2a01f7406f0",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "Toronto, ON"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "Montreal, QC"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "key": "waypoints",
+                      "value": "optimize:true|Barrie, ON|Kingston, ON"
+                    },
+                    {
+                      "key": "alternatives",
+                      "value": "true"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "tolls|highways|ferries"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "arrival_time",
+                      "value": "10"
+                    },
+                    {
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "key": "transit_mode",
+                      "value": "bus|subway"
+                    },
+                    {
+                      "key": "transit_routing_preference",
+                      "value": "less_walking"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8e29c76-9ce1-4e4a-a4ba-3040bf10e1a9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "Toronto, ON"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "Montreal, QC"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "key": "waypoints",
+                      "value": "optimize:true|Barrie, ON|Kingston, ON"
+                    },
+                    {
+                      "key": "alternatives",
+                      "value": "true"
+                    },
+                    {
+                      "key": "avoid",
+                      "value": "tolls|highways|ferries"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "arrival_time",
+                      "value": "10"
+                    },
+                    {
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "key": "transit_mode",
+                      "value": "bus|subway"
+                    },
+                    {
+                      "key": "transit_routing_preference",
+                      "value": "less_walking"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "245091ca-7fbe-4fa8-9377-86d7936ab727",
+    "name": "Google Maps Directions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}

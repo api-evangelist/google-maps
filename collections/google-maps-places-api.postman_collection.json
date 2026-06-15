@@ -1,0 +1,1642 @@
+{
+  "item": [
+    {
+      "id": "7b548b6d-eec8-47e1-86d3-f64bd4f0ac0a",
+      "name": "Place Details",
+      "description": {
+        "content": "Get detailed information about a specific place",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8a24db4-6e33-4a95-a7d3-1bbb0c6bff06",
+          "name": "Get Details About a Place",
+          "request": {
+            "name": "Get Details About a Place",
+            "description": {
+              "content": "Returns detailed information about a place identified by its resource name. Use the fieldMask parameter to specify which fields to return. Only fields specified in the field mask are returned; requesting fewer fields reduces cost and improves performance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                ":placeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "languageCode",
+                  "value": "<string>",
+                  "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages."
+                },
+                {
+                  "disabled": false,
+                  "key": "regionCode",
+                  "value": "<string>",
+                  "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing."
+                },
+                {
+                  "disabled": false,
+                  "key": "sessionToken",
+                  "value": "<string>",
+                  "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "placeId",
+                  "description": "(Required) The resource name of a place in the format places/{placeId}."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df4816a6-2111-449c-ae1d-c4e6abbbdfc0",
+              "name": "Place details response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "languageCode",
+                      "value": "en"
+                    },
+                    {
+                      "key": "regionCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"id\": \"abc123\",\n  \"displayName\": {\n    \"text\": \"example_value\",\n    \"languageCode\": \"example_value\"\n  },\n  \"types\": [\n    \"example_value\"\n  ],\n  \"primaryType\": \"example_value\",\n  \"primaryTypeDisplayName\": {\n    \"text\": \"example_value\",\n    \"languageCode\": \"example_value\"\n  },\n  \"nationalPhoneNumber\": \"example_value\",\n  \"internationalPhoneNumber\": \"example_value\",\n  \"formattedAddress\": \"example_value\",\n  \"shortFormattedAddress\": \"example_value\",\n  \"addressComponents\": [\n    {\n      \"longText\": \"example_value\",\n      \"shortText\": \"example_value\",\n      \"types\": {},\n      \"languageCode\": \"example_value\"\n    }\n  ],\n  \"location\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"viewport\": {},\n  \"rating\": 42.5,\n  \"userRatingCount\": 10,\n  \"googleMapsUri\": \"https://www.example.com\",\n  \"websiteUri\": \"https://www.example.com\",\n  \"regularOpeningHours\": {\n    \"openNow\": true,\n    \"periods\": [\n      {}\n    ],\n    \"weekdayDescriptions\": [\n      {}\n    ]\n  },\n  \"currentOpeningHours\": {\n    \"openNow\": true,\n    \"periods\": [\n      {}\n    ],\n    \"weekdayDescriptions\": [\n      {}\n    ]\n  },\n  \"priceLevel\": \"PRICE_LEVEL_UNSPECIFIED\",\n  \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n  \"utcOffsetMinutes\": 10,\n  \"reviews\": [\n    {\n      \"name\": \"Example Title\",\n      \"relativePublishTimeDescription\": \"example_value\",\n      \"rating\": 42.5,\n      \"publishTime\": \"2026-01-15T10:30:00Z\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"name\": \"Example Title\",\n      \"widthPx\": 10,\n      \"heightPx\": 10,\n      \"authorAttributions\": {}\n    }\n  ],\n  \"editorialSummary\": {\n    \"text\": \"example_value\",\n    \"languageCode\": \"example_value\"\n  },\n  \"adrFormatAddress\": \"example_value\",\n  \"iconMaskBaseUri\": \"https://www.example.com\",\n  \"iconBackgroundColor\": \"example_value\",\n  \"plusCode\": {\n    \"globalCode\": \"example_value\",\n    \"compoundCode\": \"example_value\"\n  },\n  \"accessibilityOptions\": {\n    \"wheelchairAccessibleParking\": true,\n    \"wheelchairAccessibleEntrance\": true,\n    \"wheelchairAccessibleRestroom\": true,\n    \"wheelchairAccessibleSeating\": true\n  },\n  \"parkingOptions\": {\n    \"freeParkingLot\": true,\n    \"paidParkingLot\": true,\n    \"freeStreetParking\": true,\n    \"paidStreetParking\": true,\n    \"valetParking\": true,\n    \"freeGarageParking\": true,\n    \"paidGarageParking\": true\n  },\n  \"paymentOptions\": {\n    \"acceptsCreditCards\": true,\n    \"acceptsDebitCards\": true,\n    \"acceptsCashOnly\": true,\n    \"acceptsNfc\": true\n  },\n  \"dineIn\": true,\n  \"takeout\": true,\n  \"delivery\": true,\n  \"curbsidePickup\": true,\n  \"reservable\": true,\n  \"servesBreakfast\": true,\n  \"servesLunch\": true,\n  \"servesDinner\": true,\n  \"servesBeer\": true,\n  \"servesWine\": true,\n  \"servesVegetarianFood\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a18d1192-9ac4-421b-87fb-1534308a6bb3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "languageCode",
+                      "value": "en"
+                    },
+                    {
+                      "key": "regionCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24d0ac4f-4435-4343-a6dd-3c9534522710",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "languageCode",
+                      "value": "en"
+                    },
+                    {
+                      "key": "regionCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbc1985e-2437-4624-bf6c-627a427c275e",
+              "name": "Place not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "languageCode",
+                      "value": "en"
+                    },
+                    {
+                      "key": "regionCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea146c6b-eb6d-41aa-b8bd-43d5a306bd63",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "languageCode",
+                      "value": "en"
+                    },
+                    {
+                      "key": "regionCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d0933f4c-420d-47a9-a84c-5e42700ee31f",
+      "name": "Text Search",
+      "description": {
+        "content": "Search for places using a text query",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "add95a04-19d0-4782-bad9-7af8587fa408",
+          "name": "Search for Places Using a Text Query",
+          "request": {
+            "name": "Search for Places Using a Text Query",
+            "description": {
+              "content": "Returns a list of places matching a text query. You can use natural language queries such as \"pizza in New York\" or \"shoe stores near Burlington\". The service responds with a list of places matching the text string and any location bias or restriction that has been set. The service is especially useful for making ambiguous address queries in an automated system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:searchText"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"textQuery\": \"<string>\",\n  \"includedType\": \"<string>\",\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"<string>\",\n  \"maxResultCount\": \"<integer>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"priceLevels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"openNow\": \"<boolean>\",\n  \"minRating\": \"<double>\",\n  \"strictTypeFiltering\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "208de5a9-1ce6-4d89-98e0-6db3f63dcd43",
+              "name": "Text search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"places\": [\n    {\n      \"name\": \"Example Title\",\n      \"id\": \"abc123\",\n      \"types\": {},\n      \"primaryType\": \"example_value\",\n      \"nationalPhoneNumber\": \"example_value\",\n      \"internationalPhoneNumber\": \"example_value\",\n      \"formattedAddress\": \"example_value\",\n      \"shortFormattedAddress\": \"example_value\",\n      \"addressComponents\": {},\n      \"rating\": 42.5,\n      \"userRatingCount\": 10,\n      \"googleMapsUri\": \"https://www.example.com\",\n      \"websiteUri\": \"https://www.example.com\",\n      \"priceLevel\": \"PRICE_LEVEL_UNSPECIFIED\",\n      \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n      \"utcOffsetMinutes\": 10,\n      \"reviews\": {},\n      \"photos\": {},\n      \"adrFormatAddress\": \"example_value\",\n      \"iconMaskBaseUri\": \"https://www.example.com\",\n      \"iconBackgroundColor\": \"example_value\",\n      \"dineIn\": true,\n      \"takeout\": true,\n      \"delivery\": true,\n      \"curbsidePickup\": true,\n      \"reservable\": true,\n      \"servesBreakfast\": true,\n      \"servesLunch\": true,\n      \"servesDinner\": true,\n      \"servesBeer\": true,\n      \"servesWine\": true,\n      \"servesVegetarianFood\": true\n    }\n  ],\n  \"nextPageToken\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6266fc81-11c9-47ca-b1dc-0455cc30743e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a654c097-f909-4510-b228-c69ba76d585e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16026978-d872-4ee6-aaef-7c81d66db954",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c9971599-1e74-4df6-a6c5-376cba132938",
+      "name": "Nearby Search",
+      "description": {
+        "content": "Search for places near a specific location",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abf283c9-c0ef-447b-9a91-6a1b2b7c8305",
+          "name": "Search for Places Near a Location",
+          "request": {
+            "name": "Search for Places Near a Location",
+            "description": {
+              "content": "Returns a list of places near a specified location. You can refine results by specifying included types, excluded types, primary types, and ranking preferences. A location restriction (circle) is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:searchNearby"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"<string>\",\n  \"maxResultCount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f71cc106-f4fd-4b9d-bcfa-1f1a07eeec44",
+              "name": "Nearby search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"places\": [\n    {\n      \"name\": \"Example Title\",\n      \"id\": \"abc123\",\n      \"types\": {},\n      \"primaryType\": \"example_value\",\n      \"nationalPhoneNumber\": \"example_value\",\n      \"internationalPhoneNumber\": \"example_value\",\n      \"formattedAddress\": \"example_value\",\n      \"shortFormattedAddress\": \"example_value\",\n      \"addressComponents\": {},\n      \"rating\": 42.5,\n      \"userRatingCount\": 10,\n      \"googleMapsUri\": \"https://www.example.com\",\n      \"websiteUri\": \"https://www.example.com\",\n      \"priceLevel\": \"PRICE_LEVEL_UNSPECIFIED\",\n      \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n      \"utcOffsetMinutes\": 10,\n      \"reviews\": {},\n      \"photos\": {},\n      \"adrFormatAddress\": \"example_value\",\n      \"iconMaskBaseUri\": \"https://www.example.com\",\n      \"iconBackgroundColor\": \"example_value\",\n      \"dineIn\": true,\n      \"takeout\": true,\n      \"delivery\": true,\n      \"curbsidePickup\": true,\n      \"reservable\": true,\n      \"servesBreakfast\": true,\n      \"servesLunch\": true,\n      \"servesDinner\": true,\n      \"servesBeer\": true,\n      \"servesWine\": true,\n      \"servesVegetarianFood\": true\n    }\n  ],\n  \"nextPageToken\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1947280c-d9dd-4c45-a3e1-5ed980c59446",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f6ad2af-bed6-4486-b1a4-63d1be0c4646",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ced4ceab-3963-4415-aec3-1ef8f9b643ea",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9dab780f-7ac0-40d3-b21a-3751a9d88503",
+      "name": "Autocomplete",
+      "description": {
+        "content": "Get place predictions based on text input",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bc6554e-da39-4df5-9d7e-fe00038abf56",
+          "name": "Get Place Autocomplete Predictions",
+          "request": {
+            "name": "Get Place Autocomplete Predictions",
+            "description": {
+              "content": "Returns predictions for the given input text. Predictions include place predictions and query predictions. Use session tokens to group autocomplete requests for billing purposes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d192f932-0e64-42a7-bdce-2d6dae418597",
+              "name": "Autocomplete response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suggestions\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "939ecd10-3c8f-44d6-b88a-e7167f6b262c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac8638d9-ffe3-49d5-ae67-3815811b1457",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3e62d17-ea51-4f36-b59b-70464c769c13",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "de7fc5c2-a902-4443-8e27-d77fa908fd8c",
+      "name": "Photos",
+      "description": {
+        "content": "Access photos associated with places",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55326102-31ee-402c-8614-5d26e16f9690",
+          "name": "Get a Place Photo",
+          "request": {
+            "name": "Get a Place Photo",
+            "description": {
+              "content": "Returns a photo for a place. After you get the photo resource name from a Place Details or Search response, use this endpoint to get the photo bytes. Specify maxHeightPx or maxWidthPx (or both) to control the image dimensions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                ":placeId",
+                "photos",
+                ":photoReference",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxHeightPx",
+                  "value": "<integer>",
+                  "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxWidthPx",
+                  "value": "<integer>",
+                  "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio."
+                },
+                {
+                  "disabled": false,
+                  "key": "skipHttpRedirect",
+                  "value": "false",
+                  "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "placeId",
+                  "description": "(Required) The place ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "photoReference",
+                  "description": "(Required) The photo resource reference"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bb8b536-7887-4e65-bea7-d2708c19747f",
+              "name": "Photo media",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"photoUri\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "270a62ac-f8ba-4a15-ae53-aea341d1d113",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "726c5e4a-d8d0-41dd-ba82-8ea653aa5af0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1396466a-8db7-4bd1-b01c-4fc564d1efc9",
+              "name": "Photo not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Goog-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://places.googleapis.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Goog-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5907f1bd-baca-49aa-86ed-5bedf2924af7",
+    "name": "Google Maps Places API (New)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Places API (New) lets you search for place information using HTTP requests. It provides endpoints for text search, nearby search, place details, autocomplete, and place photos. The API returns comprehensive place data including names, addresses, types, ratings, reviews, opening hours, and photos. This is the next-generation Places API built on Google's latest infrastructure.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}

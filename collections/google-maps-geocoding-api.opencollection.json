@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Maps Geocoding API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geocode an Address or Reverse Geocode Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://maps.googleapis.com/maps/api/geocode/json",
+            "params": [
+              {
+                "name": "address",
+                "value": "1600 Amphitheatre Parkway, Mountain View, CA",
+                "type": "query",
+                "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included."
+              },
+              {
+                "name": "latlng",
+                "value": "40.714224,-73.961452",
+                "type": "query",
+                "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452)."
+              },
+              {
+                "name": "place_id",
+                "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA",
+                "type": "query",
+                "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps."
+              },
+              {
+                "name": "components",
+                "value": "country:US|postal_code:94043",
+                "type": "query",
+                "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route."
+              },
+              {
+                "name": "bounds",
+                "value": "34.172684,-118.604794|34.236144,-118.500938",
+                "type": "query",
+                "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng)."
+              },
+              {
+                "name": "region",
+                "value": "us",
+                "type": "query",
+                "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region."
+              },
+              {
+                "name": "language",
+                "value": "en",
+                "type": "query",
+                "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent."
+              },
+              {
+                "name": "result_type",
+                "value": "street_address|route",
+                "type": "query",
+                "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.)."
+              },
+              {
+                "name": "location_type",
+                "value": "ROOFTOP",
+                "type": "query",
+                "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE."
+              },
+              {
+                "name": "key",
+                "value": "example_value",
+                "type": "query",
+                "description": "Your application's API key. This key identifies your application for purposes of quota management."
+              }
+            ]
+          },
+          "docs": "Converts a human-readable address into geographic coordinates (latitude/longitude), or converts coordinates into a human-readable address (reverse geocoding). At least one of the `address`, `components`, or `latlng` parameters is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

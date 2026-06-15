@@ -1,0 +1,527 @@
+{
+  "item": [
+    {
+      "id": "58756463-05f4-4434-9f71-6af27e195c90",
+      "name": "Geocoding",
+      "description": {
+        "content": "Forward and reverse geocoding operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee2460fb-df7a-4304-b486-a93077ba07e5",
+          "name": "Geocode an Address or Reverse Geocode Coordinates",
+          "request": {
+            "name": "Geocode an Address or Reverse Geocode Coordinates",
+            "description": {
+              "content": "Converts a human-readable address into geographic coordinates (latitude/longitude), or converts coordinates into a human-readable address (reverse geocoding). At least one of the `address`, `components`, or `latlng` parameters is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "latlng",
+                  "value": "<string>",
+                  "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452)."
+                },
+                {
+                  "disabled": false,
+                  "key": "place_id",
+                  "value": "<string>",
+                  "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps."
+                },
+                {
+                  "disabled": false,
+                  "key": "components",
+                  "value": "<string>",
+                  "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route."
+                },
+                {
+                  "disabled": false,
+                  "key": "bounds",
+                  "value": "<string>",
+                  "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng)."
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent."
+                },
+                {
+                  "disabled": false,
+                  "key": "result_type",
+                  "value": "<string>",
+                  "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_type",
+                  "value": "<string>",
+                  "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd95fa4b-3a81-491b-9292-893d5bb4cefb",
+              "name": "Geocoding response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "1600 Amphitheatre Parkway, Mountain View, CA"
+                    },
+                    {
+                      "key": "latlng",
+                      "value": "40.714224,-73.961452"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA"
+                    },
+                    {
+                      "key": "components",
+                      "value": "country:US|postal_code:94043"
+                    },
+                    {
+                      "key": "bounds",
+                      "value": "34.172684,-118.604794|34.236144,-118.500938"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "result_type",
+                      "value": "street_address|route"
+                    },
+                    {
+                      "key": "location_type",
+                      "value": "ROOFTOP"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"results\": [\n    {\n      \"address_components\": {},\n      \"formatted_address\": \"example_value\",\n      \"place_id\": \"500123\",\n      \"types\": {},\n      \"partial_match\": true\n    }\n  ],\n  \"error_message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "713254e6-8298-4142-8143-1a9bcbe325d0",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "1600 Amphitheatre Parkway, Mountain View, CA"
+                    },
+                    {
+                      "key": "latlng",
+                      "value": "40.714224,-73.961452"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA"
+                    },
+                    {
+                      "key": "components",
+                      "value": "country:US|postal_code:94043"
+                    },
+                    {
+                      "key": "bounds",
+                      "value": "34.172684,-118.604794|34.236144,-118.500938"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "result_type",
+                      "value": "street_address|route"
+                    },
+                    {
+                      "key": "location_type",
+                      "value": "ROOFTOP"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06e8290d-1fd2-454c-a673-14d778e6c773",
+              "name": "Forbidden - API key is invalid or not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "1600 Amphitheatre Parkway, Mountain View, CA"
+                    },
+                    {
+                      "key": "latlng",
+                      "value": "40.714224,-73.961452"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA"
+                    },
+                    {
+                      "key": "components",
+                      "value": "country:US|postal_code:94043"
+                    },
+                    {
+                      "key": "bounds",
+                      "value": "34.172684,-118.604794|34.236144,-118.500938"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "result_type",
+                      "value": "street_address|route"
+                    },
+                    {
+                      "key": "location_type",
+                      "value": "ROOFTOP"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "201a6ad9-3bfd-4f1c-9ce6-2c419a55ea90",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "1600 Amphitheatre Parkway, Mountain View, CA"
+                    },
+                    {
+                      "key": "latlng",
+                      "value": "40.714224,-73.961452"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA"
+                    },
+                    {
+                      "key": "components",
+                      "value": "country:US|postal_code:94043"
+                    },
+                    {
+                      "key": "bounds",
+                      "value": "34.172684,-118.604794|34.236144,-118.500938"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "result_type",
+                      "value": "street_address|route"
+                    },
+                    {
+                      "key": "location_type",
+                      "value": "ROOFTOP"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afdee9e6-84f6-4c3b-adc9-005beafc3583",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "1600 Amphitheatre Parkway, Mountain View, CA"
+                    },
+                    {
+                      "key": "latlng",
+                      "value": "40.714224,-73.961452"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "ChIJd8BlQ2BZwokRAFUEcm_qrcA"
+                    },
+                    {
+                      "key": "components",
+                      "value": "country:US|postal_code:94043"
+                    },
+                    {
+                      "key": "bounds",
+                      "value": "34.172684,-118.604794|34.236144,-118.500938"
+                    },
+                    {
+                      "key": "region",
+                      "value": "us"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "result_type",
+                      "value": "street_address|route"
+                    },
+                    {
+                      "key": "location_type",
+                      "value": "ROOFTOP"
+                    },
+                    {
+                      "key": "key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "baa48a25-3e4f-4a7e-8a3b-3e30d64bc7f6",
+    "name": "Google Maps Geocoding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Geocoding API converts between addresses and geographic coordinates. It supports forward geocoding (address to coordinates) and reverse geocoding (coordinates to address). Results include formatted addresses, address components, geometry with location coordinates, place IDs, and location type classifications.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}
