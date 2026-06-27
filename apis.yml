@@ -705,7 +705,7 @@ common:
   url: https://github.com/googlemaps
 - type: Documentation
   url: https://developers.google.com/maps/apis-by-platform
-- type: SDK
+- type: SDKs
   url: https://developers.google.com/maps/documentation/routes/client-libraries
 - type: Features
   data:
