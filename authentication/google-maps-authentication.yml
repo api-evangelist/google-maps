@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/google-maps-directions-api.yml, openapi/google-maps-geocoding-api.yml, openapi/google-maps-places-api.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: apiKey
+  type: apiKey
+  in: query
+  parameter: key
+  description: Google Maps Platform API key
+  sources:
+  - openapi/google-maps-directions-api.yml
+  - openapi/google-maps-geocoding-api.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-Goog-Api-Key
+  description: Google Maps Platform API key
+  sources:
+  - openapi/google-maps-places-api.yml

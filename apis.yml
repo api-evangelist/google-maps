@@ -675,6 +675,10 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: DomainSecurity
+  url: security/google-maps-domain-security.yml
+- type: Authentication
+  url: authentication/google-maps-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/googlemapsplatform
 - type: Authentication
