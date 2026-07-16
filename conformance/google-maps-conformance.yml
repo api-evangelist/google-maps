@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/google-maps-directions-api.yml, openapi/google-maps-geocoding-api.yml, openapi/google-maps-places-api.yml
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Web-service APIs authenticate with an API key (apiKey security scheme); some Cloud-based APIs
+    additionally support OAuth 2.0 bearer tokens via Google Cloud, but the captured specs declare apiKey
+    only.
+- id: oidc
+  conforms: false
+- id: api-key
+  conforms: true
+  evidence: apiKey security scheme (key query param / X-Goog-Api-Key header) across all captured specs.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use Google status strings and google.rpc.Status, not application/problem+json.
+- id: grpc-status
+  conforms: true
+  evidence: Places (New) and other googleapis.com endpoints return google.rpc.Status error objects.
+- id: rest-json
+  conforms: true
+  evidence: All captured endpoints are JSON over HTTPS.
+- id: protobuf-grpc
+  conforms: true
+  evidence: Many services (Routes, Places New, Address Validation) publish protobuf definitions in googleapis/googleapis
+    and offer gRPC transport.
+- id: pagination
+  conforms: true
+  evidence: Places (New) uses pageToken/pageSize cursor pagination on search endpoints.
+- id: fhir-r4
+  conforms: false
+- id: scim
+  conforms: false
+- id: odata
+  conforms: false
+- id: soc2
+  conforms: true
+  evidence: SOC 2 / SOC 3 attestations published on the Google Maps Platform Trust Center.
+- id: iso27001
+  conforms: true
+  evidence: ISO/IEC 27001:2022 certification published on the Google Maps Platform Trust Center.
+- id: gdpr
+  conforms: true
+  evidence: GDPR + EU SCC listed on the Google Maps Platform Trust Center.

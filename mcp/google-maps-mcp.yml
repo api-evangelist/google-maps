@@ -1,0 +1,32 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/google-maps-directions-api.yml, openapi/google-maps-geocoding-api.yml, openapi/google-maps-places-api.yml
+note: No official hosted Google Maps Platform MCP server found; candidate tools derived one-per-operation
+  from captured OpenAPI. Google publishes AI/agent guidance (Grounding with Google Maps in Vertex AI)
+  but no first-party MCP endpoint at time of capture.
+server:
+  name: google-maps
+  transport: stdio
+tools:
+- name: getDirections
+  description: Get Directions Between Two or More Locations
+  source_operation: openapi/google-maps-directions-api.yml#getDirections
+- name: geocode
+  description: Geocode an Address or Reverse Geocode Coordinates
+  source_operation: openapi/google-maps-geocoding-api.yml#geocode
+- name: getPlaceDetails
+  description: Get Details About a Place
+  source_operation: openapi/google-maps-places-api.yml#getPlaceDetails
+- name: searchPlacesText
+  description: Search for Places Using a Text Query
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesText
+- name: searchPlacesNearby
+  description: Search for Places Near a Location
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesNearby
+- name: autocompletePlaces
+  description: Get Place Autocomplete Predictions
+  source_operation: openapi/google-maps-places-api.yml#autocompletePlaces
+- name: getPlacePhoto
+  description: Get a Place Photo
+  source_operation: openapi/google-maps-places-api.yml#getPlacePhoto

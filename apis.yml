@@ -5,7 +5,7 @@ description: Google Maps Platform offers APIs and SDKs for maps, routes, and pla
 image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
 url: https://developers.google.com/maps
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 type: Index
 tags:
@@ -681,6 +681,38 @@ common:
   url: security/google-maps-domain-security.yml
 - type: Authentication
   url: authentication/google-maps-authentication.yml
+- type: Packages
+  url: packages/google-maps-packages.yml
+- type: WellKnown
+  url: well-known/google-maps-well-known.yml
+- type: SecurityTxt
+  url: well-known/google-maps-security.txt
+- type: MCPServer
+  url: mcp/google-maps-mcp.yml
+- type: LLMsTxt
+  url: llms/google-maps-llms.txt
+- type: Overlay
+  url: overlays/google-maps-directions-overlay.yaml
+- type: Overlay
+  url: overlays/google-maps-geocoding-overlay.yaml
+- type: Overlay
+  url: overlays/google-maps-places-overlay.yaml
+- type: Conformance
+  url: conformance/google-maps-conformance.yml
+- type: ErrorCatalog
+  url: errors/google-maps-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/google-maps-lifecycle.yml
+- type: Conventions
+  url: conventions/google-maps-conventions.yml
+- type: Components
+  url: components/google-maps-components.yml
+- type: DataModel
+  url: data-model/google-maps-data-model.yml
+- type: VulnerabilityDisclosure
+  url: security/google-maps-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/google-maps-trust-center.yml
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/googlemapsplatform
 - type: Authentication

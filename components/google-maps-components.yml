@@ -1,0 +1,42 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.google.com/maps/documentation/javascript/web-components +
+  https://github.com/googlemaps/extended-component-library + Places UI Kit docs
+note: >-
+  Google Maps Platform ships client-side, embeddable Web Components (custom HTML elements)
+  for adding maps and Places surfaces with minimal JavaScript. Built-in gmp-* elements are
+  part of the Maps JavaScript API; the Extended Component Library (gmpx-*) adds higher-level
+  prebuilt widgets; Places UI Kit provides prebuilt place detail/search surfaces.
+families:
+- family: Maps JavaScript API Web Components
+  loader: "@googlemaps/js-api-loader"
+  prefix: gmp-
+  components:
+  - gmp-map
+  - gmp-advanced-marker
+  - gmp-place-picker
+  - gmp-place-autocomplete
+  docs: https://developers.google.com/maps/documentation/javascript/web-components/overview
+- family: Extended Component Library
+  loader: "@googlemaps/extended-component-library"
+  npm: https://www.npmjs.com/package/@googlemaps/extended-component-library
+  repo: https://github.com/googlemaps/extended-component-library
+  prefix: gmpx-
+  components:
+  - gmpx-api-loader
+  - gmpx-store-locator
+  - gmpx-place-overview
+  - gmpx-place-picker
+  - gmpx-place-directions-button
+  - gmpx-split-layout
+  - gmpx-overlay-layout
+  - gmpx-icon-button
+  docs: https://github.com/googlemaps/extended-component-library
+- family: Places UI Kit
+  prefix: gmp-place-
+  components:
+  - gmp-place-details
+  - gmp-place-search
+  note: Low-code, prebuilt Places surfaces; generally available (2026).
+  docs: https://developers.google.com/maps/documentation/javascript/places-ui-kit

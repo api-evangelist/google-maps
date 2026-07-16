@@ -1,0 +1,123 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/google-maps-directions-api.yml, openapi/google-maps-geocoding-api.yml, openapi/google-maps-places-api.yml
+format: google-http-status
+note: Legacy web-service APIs (Directions, Geocoding) return HTTP 200 with a top-level `status` string
+  enum and optional `error_message`; the newer Places/googleapis endpoints return google.rpc.Status via
+  `error.code`/`error.status`/`error.message`. HTTP problem types below are derived from the captured
+  OpenAPI 4xx/5xx responses.
+envelope:
+  legacy:
+    fields:
+    - status
+    - error_message
+    applies_to:
+    - openapi/google-maps-directions-api.yml
+    - openapi/google-maps-geocoding-api.yml
+  grpc_status:
+    fields:
+    - error.code
+    - error.status
+    - error.message
+    - error.details
+    applies_to:
+    - openapi/google-maps-places-api.yml
+http_problems:
+- status: 400
+  title: Bad request - invalid parameters
+  source_operation: openapi/google-maps-directions-api.yml#getDirections
+- status: 403
+  title: Forbidden - API key is invalid or not authorized
+  source_operation: openapi/google-maps-directions-api.yml#getDirections
+- status: 429
+  title: Too many requests - rate limit exceeded
+  source_operation: openapi/google-maps-directions-api.yml#getDirections
+- status: 500
+  title: Internal server error
+  source_operation: openapi/google-maps-directions-api.yml#getDirections
+- status: 400
+  title: Bad request - invalid parameters
+  source_operation: openapi/google-maps-geocoding-api.yml#geocode
+- status: 403
+  title: Forbidden - API key is invalid or not authorized
+  source_operation: openapi/google-maps-geocoding-api.yml#geocode
+- status: 429
+  title: Too many requests - rate limit exceeded
+  source_operation: openapi/google-maps-geocoding-api.yml#geocode
+- status: 500
+  title: Internal server error
+  source_operation: openapi/google-maps-geocoding-api.yml#geocode
+- status: 400
+  title: Bad request
+  source_operation: openapi/google-maps-places-api.yml#getPlaceDetails
+- status: 403
+  title: Forbidden
+  source_operation: openapi/google-maps-places-api.yml#getPlaceDetails
+- status: 404
+  title: Place not found
+  source_operation: openapi/google-maps-places-api.yml#getPlaceDetails
+- status: 429
+  title: Too many requests
+  source_operation: openapi/google-maps-places-api.yml#getPlaceDetails
+- status: 400
+  title: Bad request
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesText
+- status: 403
+  title: Forbidden
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesText
+- status: 429
+  title: Too many requests
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesText
+- status: 400
+  title: Bad request
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesNearby
+- status: 403
+  title: Forbidden
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesNearby
+- status: 429
+  title: Too many requests
+  source_operation: openapi/google-maps-places-api.yml#searchPlacesNearby
+- status: 400
+  title: Bad request
+  source_operation: openapi/google-maps-places-api.yml#autocompletePlaces
+- status: 403
+  title: Forbidden
+  source_operation: openapi/google-maps-places-api.yml#autocompletePlaces
+- status: 429
+  title: Too many requests
+  source_operation: openapi/google-maps-places-api.yml#autocompletePlaces
+- status: 400
+  title: Bad request
+  source_operation: openapi/google-maps-places-api.yml#getPlacePhoto
+- status: 403
+  title: Forbidden
+  source_operation: openapi/google-maps-places-api.yml#getPlacePhoto
+- status: 404
+  title: Photo not found
+  source_operation: openapi/google-maps-places-api.yml#getPlacePhoto
+status_codes:
+- code: OK
+  meaning: Request succeeded and at least one result returned.
+- code: ZERO_RESULTS
+  meaning: Request succeeded but returned no results (e.g. unknown address, no route).
+- code: INVALID_REQUEST
+  meaning: Request was malformed or missing a required parameter.
+- code: OVER_QUERY_LIMIT
+  meaning: Caller exceeded the per-second or per-day request quota.
+  action: Back off / raise quota in Cloud console.
+- code: OVER_DAILY_LIMIT
+  meaning: API key missing/invalid, billing not enabled, or daily quota/cap exceeded.
+- code: REQUEST_DENIED
+  meaning: Service denied the request (API not enabled for the key, key restriction, or missing key).
+- code: NOT_FOUND
+  meaning: A referenced location (origin, destination, waypoint, or place) could not be geocoded/found.
+- code: MAX_WAYPOINTS_EXCEEDED
+  meaning: Too many waypoints provided in a Directions request.
+  source_api: Directions
+- code: MAX_ROUTE_LENGTH_EXCEEDED
+  meaning: Requested route is too long to process.
+  source_api: Directions
+- code: UNKNOWN_ERROR
+  meaning: Server-side error; the request may succeed if retried.
+  action: Retry with backoff.
+status_codes_docs: https://developers.google.com/maps/documentation/directions/get-directions

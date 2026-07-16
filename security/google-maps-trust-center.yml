@@ -1,0 +1,33 @@
+generated: '2026-06-20'
+method: searched
+probe: true
+url: https://mapsplatform.google.com/resources/trust-center/
+note: >-
+  Google Maps Platform operates a dedicated Trust Center listing security, privacy,
+  and compliance attestations. ISO 27001 + SOC certifications cover 25 Google Maps
+  Platform products. Compliance reports are available to customers via the Google
+  Cloud Compliance Reports Manager.
+compliance_docs: https://developers.google.com/maps/security/compliance/security-compliance
+certifications:
+- SOC 2
+- SOC 3
+- ISO/IEC 27001:2022
+- ISO/IEC 27017:2015
+- ISO 22301:2019
+- ISO 9001:2015
+- ISO 50001:2018
+- NIST 800-53
+- FIPS 140-2
+- Cloud Security Alliance (CSA)
+- TISAX
+- GDPR
+- EU Standard Contractual Clauses
+- LGPD
+- Swiss FDPA
+- U.S. State Data Protection Laws
+- SIG Questionnaire
+evidence:
+- source: https://mapsplatform.google.com/resources/trust-center/
+  keywords: [soc 2, soc 3, iso/iec 27001, gdpr, trust center]
+- source: https://mapsplatform.google.com/resources/blog/new-iso-27001-and-soc-security-certifications-google-maps-platform/
+  keywords: [iso 27001, soc, certification]

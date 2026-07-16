@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: searched
+note: >-
+  API hosts (maps.googleapis.com, places.googleapis.com) and the developer docs host
+  return 404 for all /.well-known/ discovery paths. Google publishes an org-wide RFC 9116
+  security.txt at www.google.com/.well-known/security.txt, which governs Google Maps
+  Platform (a Google product); it is saved verbatim and indexed below.
+hosts:
+- host: https://www.google.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: google-maps-security.txt
+- host: https://maps.googleapis.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://places.googleapis.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://developers.google.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

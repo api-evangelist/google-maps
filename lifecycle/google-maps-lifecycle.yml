@@ -1,0 +1,48 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.google.com/maps + per-API release-notes pages + status.cloud.google.com
+note: >-
+  Google Maps Platform versions each service independently. Legacy web-service APIs use
+  URI-path style (maps/api/<service>); the newer generation exposes explicit version
+  segments (v1 for Places New, Address Validation, Solar, Air Quality, Pollen, Weather,
+  Tiles, Datasets). Google publishes a formal deprecation policy with a minimum notice
+  window before a service is turned down.
+versioning:
+  scheme: mixed
+  legacy:
+    style: uri-path
+    example: https://maps.googleapis.com/maps/api/geocode/json
+    apis: [Geocoding, Directions, Distance Matrix, Elevation, Time Zone, Maps Static, Street View Static]
+  current:
+    style: uri-version
+    example: https://places.googleapis.com/v1/places:searchText
+    apis: [Places API (New), Address Validation, Routes, Route Optimization, Solar, Air Quality, Pollen, Weather, Map Tiles, Maps Datasets, Aerial View]
+deprecation:
+  policy_url: https://cloud.google.com/maps-platform/terms
+  policy_summary: >-
+    Deprecated Google Maps Platform services are supported for a defined notice period
+    (historically 12 months for major web-service deprecations) before turndown; migration
+    guides are published per service (e.g. Places API -> Places API (New), Directions/Distance
+    Matrix -> Routes API).
+  notable_migrations:
+  - from: Places API
+    to: Places API (New)
+  - from: Directions API + Distance Matrix API
+    to: Routes API
+release_notes:
+  per_api: true
+  examples:
+  - api: Places API (New)
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - api: Routes API
+    url: https://developers.google.com/maps/documentation/routes/release-notes
+  - api: Maps JavaScript API
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - api: Address Validation API
+    url: https://developers.google.com/maps/documentation/address-validation/release-notes
+status_page: https://status.cloud.google.com
+sla:
+  url: https://cloud.google.com/maps-platform/terms/sla
+  note: Google Maps Platform Service Level Agreement published under Google Cloud terms.
+deprecated_operations: []

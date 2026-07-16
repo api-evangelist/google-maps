@@ -1,0 +1,84 @@
+generated: '2026-06-20'
+method: searched
+source: https://github.com/googlemaps + npm/PyPI/Maven Central/pkg.go.dev registries
+note: >-
+  First-party Google Maps Platform client libraries published under the googlemaps
+  GitHub org. Web-service libraries (services-js/python/java/go) wrap the HTTP APIs;
+  the JS loader + utility packages support the Maps JavaScript API. Native mobile SDKs
+  (Maps/Places/Navigation SDK for Android & iOS) are distributed via Maven/Google
+  Maven and CocoaPods/Swift Package Manager rather than these package registries.
+packages:
+- language: javascript
+  registry: npm
+  name: "@googlemaps/google-maps-services-js"
+  url: https://www.npmjs.com/package/@googlemaps/google-maps-services-js
+  install: npm install @googlemaps/google-maps-services-js
+  repo: https://github.com/googlemaps/google-maps-services-js
+  official: true
+  covers: [Directions, Distance Matrix, Geocoding, Elevation, Time Zone, Roads, Places, Geolocation]
+- language: javascript
+  registry: npm
+  name: "@googlemaps/js-api-loader"
+  url: https://www.npmjs.com/package/@googlemaps/js-api-loader
+  install: npm install @googlemaps/js-api-loader
+  repo: https://github.com/googlemaps/js-api-loader
+  official: true
+  covers: [Maps JavaScript API]
+- language: javascript
+  registry: npm
+  name: "@googlemaps/react-wrapper"
+  url: https://www.npmjs.com/package/@googlemaps/react-wrapper
+  install: npm install @googlemaps/react-wrapper
+  official: true
+  covers: [Maps JavaScript API]
+- language: javascript
+  registry: npm
+  name: "@googlemaps/markerclusterer"
+  url: https://www.npmjs.com/package/@googlemaps/markerclusterer
+  install: npm install @googlemaps/markerclusterer
+  official: true
+  covers: [Maps JavaScript API]
+- language: javascript
+  registry: npm
+  name: "@googlemaps/extended-component-library"
+  url: https://www.npmjs.com/package/@googlemaps/extended-component-library
+  install: npm install @googlemaps/extended-component-library
+  official: true
+  covers: [Maps JavaScript API, Places API]
+- language: python
+  registry: pypi
+  name: googlemaps
+  url: https://pypi.org/project/googlemaps/
+  install: pip install googlemaps
+  repo: https://github.com/googlemaps/google-maps-services-python
+  official: true
+  covers: [Directions, Distance Matrix, Geocoding, Elevation, Time Zone, Roads, Places, Geolocation]
+- language: java
+  registry: maven-central
+  name: com.google.maps:google-maps-services
+  url: https://central.sonatype.com/artifact/com.google.maps/google-maps-services
+  install: "implementation 'com.google.maps:google-maps-services'"
+  repo: https://github.com/googlemaps/google-maps-services-java
+  official: true
+  covers: [Directions, Distance Matrix, Geocoding, Elevation, Time Zone, Roads, Places, Geolocation]
+- language: go
+  registry: pkg.go.dev
+  name: googlemaps.github.io/maps
+  url: https://pkg.go.dev/googlemaps.github.io/maps
+  install: go get googlemaps.github.io/maps
+  repo: https://github.com/googlemaps/google-maps-services-go
+  official: true
+  archived: true
+  covers: [Directions, Distance Matrix, Geocoding, Elevation, Time Zone, Roads, Places, Geolocation]
+- language: kotlin
+  registry: github
+  name: android-maps-utils
+  url: https://github.com/googlemaps/android-maps-utils
+  official: true
+  covers: [Maps SDK for Android]
+- language: swift
+  registry: github
+  name: google-maps-ios-utils
+  url: https://github.com/googlemaps/google-maps-ios-utils
+  official: true
+  covers: [Maps SDK for iOS]

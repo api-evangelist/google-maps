@@ -1,0 +1,55 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.google.com/maps/documentation + captured OpenAPI (Directions, Geocoding,
+  Places New)
+note: >-
+  Cross-cutting request/response semantics for Google Maps Platform. Two generations coexist:
+  legacy web-service APIs return HTTP 200 with a top-level status string, while newer
+  googleapis.com endpoints follow Google API design (field masks, google.rpc.Status errors,
+  cursor pagination).
+authentication:
+  style: api-key
+  key_delivery:
+    legacy: query parameter `key`
+    new: header `X-Goog-Api-Key` (or query `key`)
+  oauth2: >-
+    A subset of Cloud-based APIs (e.g. Address Validation, Route Optimization, Maps Datasets)
+    additionally accept OAuth 2.0 access tokens / service-account credentials via Google Cloud.
+  cross_ref: authentication/google-maps-authentication.yml
+field_masks:
+  supported: true
+  header: X-Goog-FieldMask
+  applies_to: [Places API (New), Routes API, Address Validation, and other googleapis.com services]
+  note: Response field masks are REQUIRED on Places (New) and Routes requests and drive SKU/pricing.
+pagination:
+  legacy:
+    style: token
+    param: pagetoken
+    note: Places (legacy) returns next_page_token; a short delay is required before the token is valid.
+  new:
+    style: cursor
+    request_params: [pageSize, pageToken]
+    response_fields: [nextPageToken]
+error_envelope:
+  legacy:
+    fields: [status, error_message]
+    note: HTTP 200 with a status enum (OK, ZERO_RESULTS, INVALID_REQUEST, OVER_QUERY_LIMIT, REQUEST_DENIED, NOT_FOUND, UNKNOWN_ERROR).
+  new:
+    fields: [error.code, error.status, error.message, error.details]
+    note: google.rpc.Status with canonical gRPC status codes.
+  cross_ref: errors/google-maps-problem-types.yml
+rate_limit_signaling:
+  mechanism: quota
+  note: >-
+    Per-project QPS and daily quotas enforced in Google Cloud; exceeding them yields
+    OVER_QUERY_LIMIT (legacy) or HTTP 429 RESOURCE_EXHAUSTED (new). Quotas are configured
+    in the Cloud console rather than signaled via response headers.
+  cross_ref: rate-limits/google-maps-rate-limits.yml
+versioning:
+  cross_ref: lifecycle/google-maps-lifecycle.yml
+data_conventions:
+  coordinates: latitude,longitude decimal degrees (WGS84)
+  polylines: encoded polyline algorithm format for route/path geometry
+  place_identifier: place_id (opaque, stable); resource name form places/{place_id} in Places (New)
+  localization: languageCode + regionCode parameters on newer services

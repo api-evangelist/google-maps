@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Google Maps Directions API
+  version: 1.0.0
+extends: openapi/google-maps-directions-api.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: google-maps
+    x-apievangelist-enriched: '2026-06-20'
+- target: $.info
+  update:
+    x-artifacts:
+      authentication: authentication/google-maps-authentication.yml
+      errors: errors/google-maps-problem-types.yml
+      conventions: conventions/google-maps-conventions.yml
+      lifecycle: lifecycle/google-maps-lifecycle.yml
+      data-model: data-model/google-maps-data-model.yml
