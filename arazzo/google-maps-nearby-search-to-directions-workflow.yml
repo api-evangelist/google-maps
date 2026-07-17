@@ -1,0 +1,207 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Find the Nearest Open Place and Route to It
+  summary: Search for places near a coordinate ranked by distance, verify the nearest is operational, then route the user there.
+  description: >-
+    The "find something near me and take me to it" flow that sits underneath most
+    location-aware apps. A nearby search restricted to a circle and ranked by
+    distance produces a candidate, Place Details confirms it is actually
+    operational and open rather than permanently closed, and the Directions API
+    routes from the user's coordinates to the place ID. Checking business status
+    before routing is the step most integrations skip and then ship users to
+    shuttered storefronts. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: placesApi
+  url: ../openapi/google-maps-places-api.yml
+  type: openapi
+- name: directionsApi
+  url: ../openapi/google-maps-directions-api.yml
+  type: openapi
+workflows:
+- workflowId: nearby-search-to-directions
+  summary: Go from a user coordinate to turn-by-turn directions to the nearest matching place.
+  description: >-
+    Runs a distance-ranked nearby search inside a circle, enriches the closest
+    result with Place Details to check business status and opening hours, and
+    then computes a route from the origin coordinate to that place.
+  inputs:
+    type: object
+    required:
+    - latitude
+    - longitude
+    - apiKey
+    properties:
+      latitude:
+        type: number
+        description: Latitude of the search centre, normally the user's current position.
+      longitude:
+        type: number
+        description: Longitude of the search centre, normally the user's current position.
+      apiKey:
+        type: string
+        description: >-
+          Google Maps Platform API key. The Directions API takes the key as the
+          required `key` query parameter; the Places API takes it as the
+          X-Goog-Api-Key header applied by the configured security scheme.
+      radiusMeters:
+        type: number
+        description: Radius in metres of the circle to restrict the nearby search to.
+        default: 1500
+      includedTypes:
+        type: array
+        description: Place types to include in the nearby search (e.g. ["restaurant"]).
+        items:
+          type: string
+        default:
+        - restaurant
+      searchFieldMask:
+        type: string
+        description: >-
+          Comma-separated fields for the nearby search response, prefixed with
+          "places." because results are nested under that key.
+        default: places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.businessStatus
+      detailsFieldMask:
+        type: string
+        description: Comma-separated fields for the Place Details response.
+        default: id,displayName,formattedAddress,location,rating,userRatingCount,businessStatus,regularOpeningHours,nationalPhoneNumber
+      mode:
+        type: string
+        description: Travel mode used to route to the place.
+        enum:
+        - driving
+        - walking
+        - bicycling
+        - transit
+        default: walking
+      languageCode:
+        type: string
+        description: BCP-47 language code for place results (e.g. "en").
+        default: en
+      regionCode:
+        type: string
+        description: CLDR region code used to bias place results (e.g. "US").
+        default: US
+      units:
+        type: string
+        description: Unit system used for the human-readable distance text.
+        enum:
+        - metric
+        - imperial
+        default: imperial
+  steps:
+  - stepId: searchNearby
+    description: >-
+      Find places of the requested types inside the circle, ranked by distance so
+      the first result is the closest one rather than the most popular one.
+    operationId: searchPlacesNearby
+    parameters:
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.searchFieldMask
+    requestBody:
+      contentType: application/json
+      payload:
+        includedTypes: $inputs.includedTypes
+        languageCode: $inputs.languageCode
+        regionCode: $inputs.regionCode
+        rankPreference: DISTANCE
+        maxResultCount: 10
+        locationRestriction:
+          circle:
+            center:
+              latitude: $inputs.latitude
+              longitude: $inputs.longitude
+            radius: $inputs.radiusMeters
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.places.length > 0
+      type: jsonpath
+    outputs:
+      nearestPlaceId: $response.body#/places/0/id
+      nearestDisplayName: $response.body#/places/0/displayName/text
+      nearestFormattedAddress: $response.body#/places/0/formattedAddress
+      nearestBusinessStatus: $response.body#/places/0/businessStatus
+      allPlaces: $response.body#/places
+  - stepId: verifyNearestPlace
+    description: >-
+      Read the nearest candidate in full to confirm it is operational and to pick
+      up opening hours and a phone number before sending anyone to it.
+    operationId: getPlaceDetails
+    parameters:
+    - name: placeId
+      in: path
+      value: $steps.searchNearby.outputs.nearestPlaceId
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.detailsFieldMask
+    - name: languageCode
+      in: query
+      value: $inputs.languageCode
+    - name: regionCode
+      in: query
+      value: $inputs.regionCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.businessStatus == "OPERATIONAL"
+      type: jsonpath
+    outputs:
+      placeId: $response.body#/id
+      displayName: $response.body#/displayName/text
+      formattedAddress: $response.body#/formattedAddress
+      latitude: $response.body#/location/latitude
+      longitude: $response.body#/location/longitude
+      rating: $response.body#/rating
+      userRatingCount: $response.body#/userRatingCount
+      businessStatus: $response.body#/businessStatus
+      openNow: $response.body#/regularOpeningHours/openNow
+      phoneNumber: $response.body#/nationalPhoneNumber
+      weekdayDescriptions: $response.body#/regularOpeningHours/weekdayDescriptions
+  - stepId: routeToPlace
+    description: >-
+      Route from the origin coordinate to the verified place. The destination is
+      given as a place_id-prefixed value so the route lands on the exact place the
+      search returned rather than a re-geocoded name.
+    operationId: getDirections
+    parameters:
+    - name: origin
+      in: query
+      value: "{$inputs.latitude},{$inputs.longitude}"
+    - name: destination
+      in: query
+      value: "place_id:{$steps.verifyNearestPlace.outputs.placeId}"
+    - name: mode
+      in: query
+      value: $inputs.mode
+    - name: units
+      in: query
+      value: $inputs.units
+    - name: departure_time
+      in: query
+      value: now
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    outputs:
+      routeSummary: $response.body#/routes/0/summary
+      distanceText: $response.body#/routes/0/legs/0/distance/text
+      distanceMeters: $response.body#/routes/0/legs/0/distance/value
+      durationText: $response.body#/routes/0/legs/0/duration/text
+      durationSeconds: $response.body#/routes/0/legs/0/duration/value
+      endAddress: $response.body#/routes/0/legs/0/end_address
+      overviewPolyline: $response.body#/routes/0/overview_polyline/points
+  outputs:
+    placeId: $steps.verifyNearestPlace.outputs.placeId
+    displayName: $steps.verifyNearestPlace.outputs.displayName
+    openNow: $steps.verifyNearestPlace.outputs.openNow
+    distanceText: $steps.routeToPlace.outputs.distanceText
+    durationText: $steps.routeToPlace.outputs.durationText
+    overviewPolyline: $steps.routeToPlace.outputs.overviewPolyline

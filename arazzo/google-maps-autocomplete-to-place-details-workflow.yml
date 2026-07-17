@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Autocomplete a Place and Close the Session with Details
+  summary: Run a session-tokened autocomplete request, then fetch details for the chosen prediction using the same session token.
+  description: >-
+    The canonical Places API (New) typeahead pattern, and the one that decides
+    what you get billed. Autocomplete requests carry a session token; the
+    session is only concluded when a Place Details call reuses that same token,
+    which is what collapses a burst of keystroke requests into a single billable
+    session. This workflow does exactly that: it autocompletes an input string,
+    takes the first prediction, and resolves it through Place Details with the
+    token carried across. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: placesApi
+  url: ../openapi/google-maps-places-api.yml
+  type: openapi
+workflows:
+- workflowId: autocomplete-to-place-details
+  summary: Resolve a partial text input into a fully detailed place within one billing session.
+  description: >-
+    Requests autocomplete predictions for a partial input, confirms at least one
+    suggestion came back, and then reads the full record for the predicted place
+    while passing the same session token to terminate the session.
+  inputs:
+    type: object
+    required:
+    - input
+    - sessionToken
+    properties:
+      input:
+        type: string
+        description: The partial text the user has typed so far (e.g. "1600 Amphitheatre Pk").
+      sessionToken:
+        type: string
+        description: >-
+          A random string that groups this autocomplete session for billing. Mint
+          one per user session and reuse it until a Place Details call concludes it.
+      fieldMask:
+        type: string
+        description: >-
+          Comma-separated Place Details fields to return. Field masking is the
+          primary cost lever on the Places API - request only what you render.
+        default: id,displayName,formattedAddress,location,rating,userRatingCount,websiteUri,regularOpeningHours
+      languageCode:
+        type: string
+        description: BCP-47 language code for predictions and details (e.g. "en").
+        default: en
+      regionCode:
+        type: string
+        description: CLDR region code used to bias results (e.g. "US").
+        default: US
+      biasLatitude:
+        type: number
+        description: Latitude of the circle centre used to bias predictions toward the user.
+      biasLongitude:
+        type: number
+        description: Longitude of the circle centre used to bias predictions toward the user.
+      biasRadiusMeters:
+        type: number
+        description: Radius in metres of the bias circle.
+        default: 5000
+  steps:
+  - stepId: autocompleteInput
+    description: >-
+      Ask for predictions matching the partial input, biased toward the supplied
+      circle. The session token issued here is what the details step must reuse.
+    operationId: autocompletePlaces
+    requestBody:
+      contentType: application/json
+      payload:
+        input: $inputs.input
+        sessionToken: $inputs.sessionToken
+        languageCode: $inputs.languageCode
+        regionCode: $inputs.regionCode
+        includeQueryPredictions: false
+        locationBias:
+          circle:
+            center:
+              latitude: $inputs.biasLatitude
+              longitude: $inputs.biasLongitude
+            radius: $inputs.biasRadiusMeters
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.suggestions.length > 0
+      type: jsonpath
+    outputs:
+      predictedPlaceId: $response.body#/suggestions/0/placePrediction/placeId
+      predictedPlaceResourceName: $response.body#/suggestions/0/placePrediction/place
+      predictedText: $response.body#/suggestions/0/placePrediction/text/text
+      predictedMainText: $response.body#/suggestions/0/placePrediction/structuredFormat/mainText/text
+      predictedSecondaryText: $response.body#/suggestions/0/placePrediction/structuredFormat/secondaryText/text
+      suggestions: $response.body#/suggestions
+  - stepId: resolvePredictionDetails
+    description: >-
+      Read the full record for the predicted place. Passing the same
+      sessionToken concludes the autocomplete session so the preceding keystroke
+      requests bill as one session rather than individually.
+    operationId: getPlaceDetails
+    parameters:
+    - name: placeId
+      in: path
+      value: $steps.autocompleteInput.outputs.predictedPlaceId
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.fieldMask
+    - name: sessionToken
+      in: query
+      value: $inputs.sessionToken
+    - name: languageCode
+      in: query
+      value: $inputs.languageCode
+    - name: regionCode
+      in: query
+      value: $inputs.regionCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      placeId: $response.body#/id
+      placeResourceName: $response.body#/name
+      displayName: $response.body#/displayName/text
+      formattedAddress: $response.body#/formattedAddress
+      latitude: $response.body#/location/latitude
+      longitude: $response.body#/location/longitude
+      rating: $response.body#/rating
+      userRatingCount: $response.body#/userRatingCount
+      websiteUri: $response.body#/websiteUri
+      openNow: $response.body#/regularOpeningHours/openNow
+  outputs:
+    placeId: $steps.resolvePredictionDetails.outputs.placeId
+    displayName: $steps.resolvePredictionDetails.outputs.displayName
+    formattedAddress: $steps.resolvePredictionDetails.outputs.formattedAddress
+    latitude: $steps.resolvePredictionDetails.outputs.latitude
+    longitude: $steps.resolvePredictionDetails.outputs.longitude

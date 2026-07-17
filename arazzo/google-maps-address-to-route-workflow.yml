@@ -1,0 +1,172 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Resolve Two Addresses and Route Between Them
+  summary: Geocode a start and end address, then compute directions between the resolved place IDs.
+  description: >-
+    The most common Google Maps Platform integration pattern. Human-typed
+    addresses are ambiguous, so this workflow geocodes the origin and the
+    destination first, checks that each resolved to a real result, and then
+    routes between them using the returned place IDs rather than the raw
+    strings. Routing on place IDs removes the geocoding ambiguity that causes
+    silently wrong routes. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: geocodingApi
+  url: ../openapi/google-maps-geocoding-api.yml
+  type: openapi
+- name: directionsApi
+  url: ../openapi/google-maps-directions-api.yml
+  type: openapi
+workflows:
+- workflowId: address-to-route
+  summary: Turn two human-readable addresses into a routed trip with distance and duration.
+  description: >-
+    Forward geocodes both endpoints, confirms each returned an OK status with at
+    least one result, and then calls the Directions API with place_id-prefixed
+    origin and destination values.
+  inputs:
+    type: object
+    required:
+    - originAddress
+    - destinationAddress
+    - apiKey
+    properties:
+      originAddress:
+        type: string
+        description: The starting address to geocode (e.g. "1600 Amphitheatre Parkway, Mountain View, CA").
+      destinationAddress:
+        type: string
+        description: The ending address to geocode (e.g. "1 Ferry Building, San Francisco, CA").
+      apiKey:
+        type: string
+        description: >-
+          Google Maps Platform API key. The Geocoding and Directions APIs take
+          the key as the required `key` query parameter.
+      mode:
+        type: string
+        description: Travel mode for the route.
+        enum:
+        - driving
+        - walking
+        - bicycling
+        - transit
+        default: driving
+      region:
+        type: string
+        description: ccTLD two-character region code used to bias geocoding results (e.g. "us").
+        default: us
+      units:
+        type: string
+        description: Unit system used for the human-readable distance text.
+        enum:
+        - metric
+        - imperial
+        default: imperial
+      departureTime:
+        type: string
+        description: >-
+          Departure time for traffic-aware driving or transit routing. Use "now"
+          or seconds since the Unix epoch.
+        default: now
+  steps:
+  - stepId: geocodeOrigin
+    description: >-
+      Forward geocode the origin address into coordinates and a stable place ID.
+      A non-OK status means the address never resolved and routing must not run.
+    operationId: geocode
+    parameters:
+    - name: address
+      in: query
+      value: $inputs.originAddress
+    - name: region
+      in: query
+      value: $inputs.region
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    outputs:
+      originPlaceId: $response.body#/results/0/place_id
+      originFormattedAddress: $response.body#/results/0/formatted_address
+      originLocationType: $response.body#/results/0/geometry/location_type
+      originPartialMatch: $response.body#/results/0/partial_match
+  - stepId: geocodeDestination
+    description: >-
+      Forward geocode the destination address the same way. Inspect the returned
+      location_type and partial_match outputs to decide whether the match is
+      precise enough to route on.
+    operationId: geocode
+    parameters:
+    - name: address
+      in: query
+      value: $inputs.destinationAddress
+    - name: region
+      in: query
+      value: $inputs.region
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    outputs:
+      destinationPlaceId: $response.body#/results/0/place_id
+      destinationFormattedAddress: $response.body#/results/0/formatted_address
+      destinationLocationType: $response.body#/results/0/geometry/location_type
+      destinationPartialMatch: $response.body#/results/0/partial_match
+  - stepId: routeBetweenPlaces
+    description: >-
+      Compute directions between the two resolved places. The Directions API
+      accepts a place ID when it is prefixed with "place_id:", which is what
+      makes this route reproducible rather than dependent on string matching.
+    operationId: getDirections
+    parameters:
+    - name: origin
+      in: query
+      value: "place_id:{$steps.geocodeOrigin.outputs.originPlaceId}"
+    - name: destination
+      in: query
+      value: "place_id:{$steps.geocodeDestination.outputs.destinationPlaceId}"
+    - name: mode
+      in: query
+      value: $inputs.mode
+    - name: units
+      in: query
+      value: $inputs.units
+    - name: departure_time
+      in: query
+      value: $inputs.departureTime
+    - name: alternatives
+      in: query
+      value: true
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    outputs:
+      routeSummary: $response.body#/routes/0/summary
+      distanceText: $response.body#/routes/0/legs/0/distance/text
+      distanceMeters: $response.body#/routes/0/legs/0/distance/value
+      durationText: $response.body#/routes/0/legs/0/duration/text
+      durationSeconds: $response.body#/routes/0/legs/0/duration/value
+      durationInTrafficText: $response.body#/routes/0/legs/0/duration_in_traffic/text
+      overviewPolyline: $response.body#/routes/0/overview_polyline/points
+      warnings: $response.body#/routes/0/warnings
+      copyrights: $response.body#/routes/0/copyrights
+  outputs:
+    originPlaceId: $steps.geocodeOrigin.outputs.originPlaceId
+    destinationPlaceId: $steps.geocodeDestination.outputs.destinationPlaceId
+    distanceText: $steps.routeBetweenPlaces.outputs.distanceText
+    durationText: $steps.routeBetweenPlaces.outputs.durationText
+    overviewPolyline: $steps.routeBetweenPlaces.outputs.overviewPolyline

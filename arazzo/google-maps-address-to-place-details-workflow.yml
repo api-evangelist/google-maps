@@ -1,0 +1,156 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Enrich a Postal Address into a Full Place Record
+  summary: Geocode an address to a place ID, then use that place ID to pull the full Places record.
+  description: >-
+    Demonstrates that the place ID is the join key across Google Maps Platform.
+    A postal address from a CRM or checkout form is geocoded to obtain its place
+    ID and a precision signal, and that same identifier is then handed to the
+    Places API to retrieve the business record behind the address - name, hours,
+    rating, phone, website. The location_type and partial_match outputs of the
+    geocoding step are the gate: an APPROXIMATE or partial match means the
+    address never truly resolved and the enrichment that follows describes some
+    other place. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: geocodingApi
+  url: ../openapi/google-maps-geocoding-api.yml
+  type: openapi
+- name: placesApi
+  url: ../openapi/google-maps-places-api.yml
+  type: openapi
+workflows:
+- workflowId: address-to-place-details
+  summary: Turn a stored postal address into a canonical, enriched Google place record.
+  description: >-
+    Forward geocodes an address under optional component filtering, confirms the
+    geocoder returned an OK status, and reads the full Places record for the
+    resolved place ID.
+  inputs:
+    type: object
+    required:
+    - address
+    - apiKey
+    properties:
+      address:
+        type: string
+        description: The postal address to resolve (e.g. "1600 Amphitheatre Parkway, Mountain View, CA").
+      apiKey:
+        type: string
+        description: >-
+          Google Maps Platform API key. The Geocoding API takes the key as the
+          required `key` query parameter; the Places API takes it as the
+          X-Goog-Api-Key header applied by the configured security scheme.
+      components:
+        type: string
+        description: >-
+          Pipe-separated component filter constraining the geocode to a country,
+          postal code, or locality (e.g. "country:US|postal_code:94043"). Setting
+          this is the cheapest way to stop an address resolving to the right
+          street name in the wrong country.
+      region:
+        type: string
+        description: ccTLD two-character region code used to bias geocoding (e.g. "us").
+        default: us
+      language:
+        type: string
+        description: Language in which to return the geocoding results (e.g. "en").
+        default: en
+      detailsFieldMask:
+        type: string
+        description: >-
+          Comma-separated Place Details fields to return. Field masking is the
+          primary cost lever on the Places API - request only what you store.
+        default: id,displayName,formattedAddress,location,types,primaryType,rating,userRatingCount,businessStatus,websiteUri,nationalPhoneNumber,regularOpeningHours
+      languageCode:
+        type: string
+        description: BCP-47 language code for the Places response (e.g. "en").
+        default: en
+      regionCode:
+        type: string
+        description: CLDR region code used to bias the Places response (e.g. "US").
+        default: US
+  steps:
+  - stepId: geocodeAddress
+    description: >-
+      Forward geocode the address to obtain its place ID plus the precision
+      signals. Read location_type and partial_match from the outputs before
+      trusting anything downstream of this step.
+    operationId: geocode
+    parameters:
+    - name: address
+      in: query
+      value: $inputs.address
+    - name: components
+      in: query
+      value: $inputs.components
+    - name: region
+      in: query
+      value: $inputs.region
+    - name: language
+      in: query
+      value: $inputs.language
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    - context: $response.body
+      condition: $.results.length > 0
+      type: jsonpath
+    outputs:
+      placeId: $response.body#/results/0/place_id
+      formattedAddress: $response.body#/results/0/formatted_address
+      locationType: $response.body#/results/0/geometry/location_type
+      partialMatch: $response.body#/results/0/partial_match
+      addressTypes: $response.body#/results/0/types
+      addressComponents: $response.body#/results/0/address_components
+      latitude: $response.body#/results/0/geometry/location/lat
+      longitude: $response.body#/results/0/geometry/location/lng
+  - stepId: enrichFromPlaces
+    description: >-
+      Read the Places record behind the geocoded place ID. Place IDs are shared
+      across Google Maps Platform, so the identifier the Geocoding API minted is
+      directly addressable here without any re-searching by name.
+    operationId: getPlaceDetails
+    parameters:
+    - name: placeId
+      in: path
+      value: $steps.geocodeAddress.outputs.placeId
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.detailsFieldMask
+    - name: languageCode
+      in: query
+      value: $inputs.languageCode
+    - name: regionCode
+      in: query
+      value: $inputs.regionCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      placeId: $response.body#/id
+      placeResourceName: $response.body#/name
+      displayName: $response.body#/displayName/text
+      canonicalAddress: $response.body#/formattedAddress
+      latitude: $response.body#/location/latitude
+      longitude: $response.body#/location/longitude
+      primaryType: $response.body#/primaryType
+      types: $response.body#/types
+      rating: $response.body#/rating
+      userRatingCount: $response.body#/userRatingCount
+      businessStatus: $response.body#/businessStatus
+      websiteUri: $response.body#/websiteUri
+      phoneNumber: $response.body#/nationalPhoneNumber
+      openNow: $response.body#/regularOpeningHours/openNow
+  outputs:
+    placeId: $steps.geocodeAddress.outputs.placeId
+    geocodeLocationType: $steps.geocodeAddress.outputs.locationType
+    geocodePartialMatch: $steps.geocodeAddress.outputs.partialMatch
+    canonicalAddress: $steps.enrichFromPlaces.outputs.canonicalAddress
+    displayName: $steps.enrichFromPlaces.outputs.displayName
+    businessStatus: $steps.enrichFromPlaces.outputs.businessStatus

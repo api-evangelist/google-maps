@@ -1,0 +1,171 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Search for a Place and Assemble a Place Card
+  summary: Text search for a place, read its full details, then fetch a photo URI for rendering.
+  description: >-
+    Everything needed to render a rich place card from a natural-language query.
+    A text search narrows to a candidate, Place Details fills in the fields the
+    search field mask deliberately left out, and the photo endpoint turns a photo
+    resource into a displayable URI. The photo step requests skipHttpRedirect so
+    a JSON body with photoUri comes back instead of an opaque image redirect,
+    which is what you want when caching or proxying images. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: placesApi
+  url: ../openapi/google-maps-places-api.yml
+  type: openapi
+workflows:
+- workflowId: place-search-to-photo
+  summary: Go from a natural-language query to a detailed place plus a renderable photo URI.
+  description: >-
+    Searches places by text, confirms a candidate came back, enriches it through
+    Place Details, and resolves one of its photos into a short-lived URI.
+  inputs:
+    type: object
+    required:
+    - textQuery
+    - photoReference
+    properties:
+      textQuery:
+        type: string
+        description: The natural-language query to search for (e.g. "pizza in New York").
+      photoReference:
+        type: string
+        description: >-
+          The trailing photoReference segment of a photo resource name. Place
+          Details returns photo resource names in the form
+          places/{placeId}/photos/{photoReference}; this workflow surfaces the
+          first one as the photoResourceName output of the readPlaceDetails step,
+          and the photo endpoint takes placeId and photoReference as separate
+          path parameters. Supply the trailing segment here.
+      searchFieldMask:
+        type: string
+        description: >-
+          Comma-separated fields for the text search response. Search field masks
+          are prefixed with "places." because results are nested under that key.
+        default: places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.photos
+      detailsFieldMask:
+        type: string
+        description: >-
+          Comma-separated fields for the Place Details response. Details masks are
+          unprefixed because the response is a single Place object.
+        default: id,displayName,formattedAddress,location,rating,userRatingCount,photos,websiteUri,regularOpeningHours,editorialSummary
+      languageCode:
+        type: string
+        description: BCP-47 language code for results (e.g. "en").
+        default: en
+      regionCode:
+        type: string
+        description: CLDR region code used to bias results (e.g. "US").
+        default: US
+      maxResultCount:
+        type: integer
+        description: Maximum number of search results to return (1-20).
+        default: 5
+      minRating:
+        type: number
+        description: Only return places rated at least this highly (0.0-5.0).
+        default: 0
+      maxWidthPx:
+        type: integer
+        description: Maximum width of the returned photo in pixels (1-4800).
+        default: 800
+  steps:
+  - stepId: searchByText
+    description: >-
+      Search for places matching the natural-language query, ranked by relevance
+      and filtered to places currently open at or above the minimum rating.
+    operationId: searchPlacesText
+    parameters:
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.searchFieldMask
+    requestBody:
+      contentType: application/json
+      payload:
+        textQuery: $inputs.textQuery
+        languageCode: $inputs.languageCode
+        regionCode: $inputs.regionCode
+        rankPreference: RELEVANCE
+        maxResultCount: $inputs.maxResultCount
+        minRating: $inputs.minRating
+        openNow: true
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.places.length > 0
+      type: jsonpath
+    outputs:
+      candidatePlaceId: $response.body#/places/0/id
+      candidateDisplayName: $response.body#/places/0/displayName/text
+      candidateFormattedAddress: $response.body#/places/0/formattedAddress
+      candidateRating: $response.body#/places/0/rating
+      allPlaces: $response.body#/places
+      nextPageToken: $response.body#/nextPageToken
+  - stepId: readPlaceDetails
+    description: >-
+      Read the full record for the top candidate. This is where the fields a
+      cost-conscious search mask omitted - opening hours, website, editorial
+      summary, full photo list - are actually paid for and returned.
+    operationId: getPlaceDetails
+    parameters:
+    - name: placeId
+      in: path
+      value: $steps.searchByText.outputs.candidatePlaceId
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.detailsFieldMask
+    - name: languageCode
+      in: query
+      value: $inputs.languageCode
+    - name: regionCode
+      in: query
+      value: $inputs.regionCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      placeId: $response.body#/id
+      displayName: $response.body#/displayName/text
+      formattedAddress: $response.body#/formattedAddress
+      latitude: $response.body#/location/latitude
+      longitude: $response.body#/location/longitude
+      rating: $response.body#/rating
+      userRatingCount: $response.body#/userRatingCount
+      websiteUri: $response.body#/websiteUri
+      editorialSummary: $response.body#/editorialSummary/text
+      openNow: $response.body#/regularOpeningHours/openNow
+      photoResourceName: $response.body#/photos/0/name
+      photoWidthPx: $response.body#/photos/0/widthPx
+      photoHeightPx: $response.body#/photos/0/heightPx
+  - stepId: fetchPlacePhoto
+    description: >-
+      Resolve a photo into a short-lived URI. skipHttpRedirect is set so the
+      response is a JSON body carrying photoUri rather than a redirect to image
+      bytes, which lets a caller cache or proxy the image itself.
+    operationId: getPlacePhoto
+    parameters:
+    - name: placeId
+      in: path
+      value: $steps.readPlaceDetails.outputs.placeId
+    - name: photoReference
+      in: path
+      value: $inputs.photoReference
+    - name: maxWidthPx
+      in: query
+      value: $inputs.maxWidthPx
+    - name: skipHttpRedirect
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      photoMediaName: $response.body#/name
+      photoUri: $response.body#/photoUri
+  outputs:
+    placeId: $steps.readPlaceDetails.outputs.placeId
+    displayName: $steps.readPlaceDetails.outputs.displayName
+    formattedAddress: $steps.readPlaceDetails.outputs.formattedAddress
+    photoResourceName: $steps.readPlaceDetails.outputs.photoResourceName
+    photoUri: $steps.fetchPlacePhoto.outputs.photoUri

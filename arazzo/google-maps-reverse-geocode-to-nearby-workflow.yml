@@ -1,0 +1,155 @@
+arazzo: 1.0.1
+info:
+  title: Google Maps Reverse Geocode a Coordinate and Discover What Is Around It
+  summary: Turn raw coordinates into a street address, then list the points of interest surrounding that point.
+  description: >-
+    The "where am I and what is here" flow. A device reports a latitude and
+    longitude and nothing else; reverse geocoding turns that into a human-readable
+    address, a place ID, and a location_type that tells you how precise the fix
+    actually was, and a nearby search then describes the surroundings. Note the
+    deliberate coordinate remapping between the two steps: the Geocoding API
+    returns lat/lng while the Places API expects latitude/longitude, and this
+    workflow spells that translation out rather than assuming it. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: geocodingApi
+  url: ../openapi/google-maps-geocoding-api.yml
+  type: openapi
+- name: placesApi
+  url: ../openapi/google-maps-places-api.yml
+  type: openapi
+workflows:
+- workflowId: reverse-geocode-to-nearby
+  summary: Resolve a coordinate to an address and enumerate the places surrounding it.
+  description: >-
+    Reverse geocodes a latitude/longitude pair into an address and place ID,
+    confirms the geocoder returned an OK status, and then runs a distance-ranked
+    nearby search anchored on the geocoder's own snapped coordinates.
+  inputs:
+    type: object
+    required:
+    - latitude
+    - longitude
+    - apiKey
+    properties:
+      latitude:
+        type: number
+        description: Latitude of the coordinate to reverse geocode.
+      longitude:
+        type: number
+        description: Longitude of the coordinate to reverse geocode.
+      apiKey:
+        type: string
+        description: >-
+          Google Maps Platform API key. The Geocoding API takes the key as the
+          required `key` query parameter; the Places API takes it as the
+          X-Goog-Api-Key header applied by the configured security scheme.
+      resultType:
+        type: string
+        description: >-
+          Pipe-separated address types to filter reverse geocoding results by
+          (e.g. "street_address|route").
+        default: street_address
+      language:
+        type: string
+        description: Language in which to return the geocoding results (e.g. "en").
+        default: en
+      radiusMeters:
+        type: number
+        description: Radius in metres of the circle to search for surrounding places.
+        default: 500
+      includedTypes:
+        type: array
+        description: Place types to include in the surroundings scan.
+        items:
+          type: string
+        default:
+        - restaurant
+        - cafe
+        - store
+      searchFieldMask:
+        type: string
+        description: Comma-separated fields for the nearby search response.
+        default: places.id,places.displayName,places.formattedAddress,places.location,places.primaryType,places.rating
+      languageCode:
+        type: string
+        description: BCP-47 language code for place results (e.g. "en").
+        default: en
+      regionCode:
+        type: string
+        description: CLDR region code used to bias place results (e.g. "US").
+        default: US
+  steps:
+  - stepId: reverseGeocode
+    description: >-
+      Convert the raw coordinate into an address. The location_type output is the
+      honest quality signal here - ROOFTOP is an exact fix while APPROXIMATE means
+      the address is a neighbourhood-level guess and should be labelled as such.
+    operationId: geocode
+    parameters:
+    - name: latlng
+      in: query
+      value: "{$inputs.latitude},{$inputs.longitude}"
+    - name: result_type
+      in: query
+      value: $inputs.resultType
+    - name: language
+      in: query
+      value: $inputs.language
+    - name: key
+      in: query
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "OK"
+      type: jsonpath
+    outputs:
+      formattedAddress: $response.body#/results/0/formatted_address
+      placeId: $response.body#/results/0/place_id
+      locationType: $response.body#/results/0/geometry/location_type
+      addressTypes: $response.body#/results/0/types
+      addressComponents: $response.body#/results/0/address_components
+      snappedLat: $response.body#/results/0/geometry/location/lat
+      snappedLng: $response.body#/results/0/geometry/location/lng
+  - stepId: discoverSurroundings
+    description: >-
+      List the places around the geocoder's snapped coordinate, ranked by
+      distance. The Geocoding API's lat/lng are remapped onto the Places API's
+      latitude/longitude circle centre - the two services name these fields
+      differently and passing them through unchanged silently yields no results.
+    operationId: searchPlacesNearby
+    parameters:
+    - name: X-Goog-FieldMask
+      in: header
+      value: $inputs.searchFieldMask
+    requestBody:
+      contentType: application/json
+      payload:
+        includedTypes: $inputs.includedTypes
+        languageCode: $inputs.languageCode
+        regionCode: $inputs.regionCode
+        rankPreference: DISTANCE
+        maxResultCount: 20
+        locationRestriction:
+          circle:
+            center:
+              latitude: $steps.reverseGeocode.outputs.snappedLat
+              longitude: $steps.reverseGeocode.outputs.snappedLng
+            radius: $inputs.radiusMeters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      surroundingPlaces: $response.body#/places
+      nearestPlaceId: $response.body#/places/0/id
+      nearestDisplayName: $response.body#/places/0/displayName/text
+      nearestPrimaryType: $response.body#/places/0/primaryType
+      nearestFormattedAddress: $response.body#/places/0/formattedAddress
+  outputs:
+    formattedAddress: $steps.reverseGeocode.outputs.formattedAddress
+    placeId: $steps.reverseGeocode.outputs.placeId
+    locationType: $steps.reverseGeocode.outputs.locationType
+    surroundingPlaces: $steps.discoverSurroundings.outputs.surroundingPlaces
+    nearestDisplayName: $steps.discoverSurroundings.outputs.nearestDisplayName

@@ -784,6 +784,24 @@ common:
   - Cross-platform frameworks including Flutter and React Native
 - type: Rules
   url: rules/google-maps-spectral-rules.yml
+- type: Arazzo
+  url: arazzo/google-maps-address-to-route-workflow.yml
+  name: Google Maps Platform Resolve Two Addresses and Route Between Them
+- type: Arazzo
+  url: arazzo/google-maps-autocomplete-to-place-details-workflow.yml
+  name: Google Maps Platform Autocomplete a Place and Close the Session with Details
+- type: Arazzo
+  url: arazzo/google-maps-place-search-to-photo-workflow.yml
+  name: Google Maps Platform Search for a Place and Assemble a Place Card
+- type: Arazzo
+  url: arazzo/google-maps-nearby-search-to-directions-workflow.yml
+  name: Google Maps Platform Find the Nearest Open Place and Route to It
+- type: Arazzo
+  url: arazzo/google-maps-reverse-geocode-to-nearby-workflow.yml
+  name: Google Maps Platform Reverse Geocode a Coordinate and Discover What Is Around It
+- type: Arazzo
+  url: arazzo/google-maps-address-to-place-details-workflow.yml
+  name: Google Maps Platform Enrich a Postal Address into a Full Place Record
 - type: Capabilities
   url: capabilities/shared/directions.yaml
 - type: Capabilities
