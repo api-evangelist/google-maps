@@ -1,0 +1,701 @@
+openapi: 3.1.0
+info:
+  title: Google Maps Directions Autocomplete Text Search API
+  description: The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.
+  version: '1.0'
+  termsOfService: https://cloud.google.com/maps-platform/terms
+  contact:
+    name: Google Maps Platform Team
+    url: https://developers.google.com/maps/support
+  license:
+    name: Google Maps Platform Terms of Service
+    url: https://cloud.google.com/maps-platform/terms
+  x-logo:
+    url: https://developers.google.com/maps/images/maps-icon.svg
+servers:
+- url: https://maps.googleapis.com/maps/api
+  description: Google Maps Directions API production server
+security:
+- apiKey: []
+tags:
+- name: Text Search
+  description: Search for places using a text query
+paths:
+  /places:searchText:
+    post:
+      operationId: searchPlacesText
+      summary: Search for Places Using a Text Query
+      description: Returns a list of places matching a text query. You can use natural language queries such as "pizza in New York" or "shoe stores near Burlington". The service responds with a list of places matching the text string and any location bias or restriction that has been set. The service is especially useful for making ambiguous address queries in an automated system.
+      tags:
+      - Text Search
+      parameters:
+      - $ref: '#/components/parameters/fieldMask'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTextRequest'
+            examples:
+              SearchplacestextRequestExample:
+                summary: Default searchPlacesText request
+                x-microcks-default: true
+                value:
+                  textQuery: example_value
+                  includedType: example_value
+                  languageCode: example_value
+                  regionCode: example_value
+                  rankPreference: RELEVANCE
+                  maxResultCount: 10
+                  locationBias: {}
+                  locationRestriction: {}
+                  priceLevels:
+                  - PRICE_LEVEL_INEXPENSIVE
+                  openNow: true
+                  minRating: 42.5
+                  strictTypeFiltering: true
+      responses:
+        '200':
+          description: Text search response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPlacesResponse'
+              examples:
+                Searchplacestext200Example:
+                  summary: Default searchPlacesText 200 response
+                  x-microcks-default: true
+                  value:
+                    places:
+                    - name: Example Title
+                      id: abc123
+                      types: {}
+                      primaryType: example_value
+                      nationalPhoneNumber: example_value
+                      internationalPhoneNumber: example_value
+                      formattedAddress: example_value
+                      shortFormattedAddress: example_value
+                      addressComponents: {}
+                      rating: 42.5
+                      userRatingCount: 10
+                      googleMapsUri: https://www.example.com
+                      websiteUri: https://www.example.com
+                      priceLevel: PRICE_LEVEL_UNSPECIFIED
+                      businessStatus: BUSINESS_STATUS_UNSPECIFIED
+                      utcOffsetMinutes: 10
+                      reviews: {}
+                      photos: {}
+                      adrFormatAddress: example_value
+                      iconMaskBaseUri: https://www.example.com
+                      iconBackgroundColor: example_value
+                      dineIn: true
+                      takeout: true
+                      delivery: true
+                      curbsidePickup: true
+                      reservable: true
+                      servesBreakfast: true
+                      servesLunch: true
+                      servesDinner: true
+                      servesBeer: true
+                      servesWine: true
+                      servesVegetarianFood: true
+                    nextPageToken: example_value
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '429':
+          description: Too many requests
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Point:
+      type: object
+      description: A point in time on a weekly schedule
+      properties:
+        day:
+          type: integer
+          description: Day of the week (0=Sunday, 6=Saturday)
+          minimum: 0
+          maximum: 6
+          example: 10
+        hour:
+          type: integer
+          description: Hour in 24-hour format (0-23)
+          minimum: 0
+          maximum: 23
+          example: 10
+        minute:
+          type: integer
+          description: Minute (0-59)
+          minimum: 0
+          maximum: 59
+          example: 10
+        date:
+          type: object
+          description: A specific date for current opening hours
+          properties:
+            year:
+              type: integer
+            month:
+              type: integer
+            day:
+              type: integer
+          example: example_value
+      required:
+      - day
+      - hour
+      - minute
+    AuthorAttribution:
+      type: object
+      description: Information about the author of a review
+      properties:
+        displayName:
+          type: string
+          description: Name of the review author
+          example: example_value
+        uri:
+          type: string
+          format: uri
+          description: URI of the author's profile
+          example: https://www.example.com
+        photoUri:
+          type: string
+          format: uri
+          description: URI of the author's profile photo
+          example: https://www.example.com
+    SearchTextRequest:
+      type: object
+      description: Request body for text search
+      properties:
+        textQuery:
+          type: string
+          description: The text query for the search
+          example: pizza in New York
+        includedType:
+          type: string
+          description: Restrict results to a specific place type
+          example: restaurant
+        languageCode:
+          type: string
+          description: The language code for results
+          example: en
+        regionCode:
+          type: string
+          description: The region code for biasing results
+          example: US
+        rankPreference:
+          type: string
+          description: How results should be ranked
+          enum:
+          - RELEVANCE
+          - DISTANCE
+          example: RELEVANCE
+        maxResultCount:
+          type: integer
+          description: Maximum number of results to return (1-20)
+          minimum: 1
+          maximum: 20
+          example: 10
+        locationBias:
+          $ref: '#/components/schemas/LocationBias'
+        locationRestriction:
+          $ref: '#/components/schemas/LocationRestriction'
+        priceLevels:
+          type: array
+          description: Filter results by price level
+          items:
+            type: string
+            enum:
+            - PRICE_LEVEL_INEXPENSIVE
+            - PRICE_LEVEL_MODERATE
+            - PRICE_LEVEL_EXPENSIVE
+            - PRICE_LEVEL_VERY_EXPENSIVE
+          example: []
+        openNow:
+          type: boolean
+          description: Return only places that are currently open
+          example: true
+        minRating:
+          type: number
+          format: double
+          description: Filter results to those with at least this rating
+          minimum: 0.0
+          maximum: 5.0
+          example: 42.5
+        strictTypeFiltering:
+          type: boolean
+          description: If true, only return results that match the includedType exactly
+          example: true
+      required:
+      - textQuery
+    PlaceAddressComponent:
+      type: object
+      description: An address component of a place
+      properties:
+        longText:
+          type: string
+          description: The full text of the address component
+          example: example_value
+        shortText:
+          type: string
+          description: An abbreviated text for the address component
+          example: example_value
+        types:
+          type: array
+          description: The types of this address component
+          items:
+            type: string
+          example: []
+        languageCode:
+          type: string
+          description: The language code for this component
+          example: example_value
+    AccessibilityOptions:
+      type: object
+      description: Accessibility features of a place
+      properties:
+        wheelchairAccessibleParking:
+          type: boolean
+          example: true
+        wheelchairAccessibleEntrance:
+          type: boolean
+          example: true
+        wheelchairAccessibleRestroom:
+          type: boolean
+          example: true
+        wheelchairAccessibleSeating:
+          type: boolean
+          example: true
+    PlusCode:
+      type: object
+      description: A plus code (Open Location Code)
+      properties:
+        globalCode:
+          type: string
+          description: The full plus code (global code)
+          example: 4RRH57G3+6R
+        compoundCode:
+          type: string
+          description: The compound plus code with locality reference
+          example: 57G3+6R Pyrmont, New South Wales, Australia
+    LatLng:
+      type: object
+      description: A latitude/longitude coordinate pair
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: 151.2093
+      required:
+      - latitude
+      - longitude
+    Viewport:
+      type: object
+      description: A rectangular viewport defined by two diagonally opposite points
+      properties:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    OpeningHours:
+      type: object
+      description: Information about the opening hours of a place
+      properties:
+        openNow:
+          type: boolean
+          description: Whether the place is currently open
+          example: true
+        periods:
+          type: array
+          description: The periods that this place is open during the week. Periods covering a full day have an open event with day 0 and time 0000, and no close event.
+          items:
+            $ref: '#/components/schemas/Period'
+          example: []
+        weekdayDescriptions:
+          type: array
+          description: Localized strings describing the opening hours for each day of the week
+          items:
+            type: string
+          example:
+          - 'Monday: 9:00 AM - 5:00 PM'
+          - 'Tuesday: 9:00 AM - 5:00 PM'
+    Review:
+      type: object
+      description: A review of a place submitted by a user
+      properties:
+        name:
+          type: string
+          description: The resource name of the review
+          example: Example Title
+        relativePublishTimeDescription:
+          type: string
+          description: A human-readable relative time description
+          example: a month ago
+        rating:
+          type: number
+          format: double
+          description: The star rating of this review (1.0-5.0)
+          minimum: 1.0
+          maximum: 5.0
+          example: 42.5
+        text:
+          $ref: '#/components/schemas/LocalizedText'
+        originalText:
+          $ref: '#/components/schemas/LocalizedText'
+        authorAttribution:
+          $ref: '#/components/schemas/AuthorAttribution'
+        publishTime:
+          type: string
+          format: date-time
+          description: Timestamp of when the review was published
+          example: '2026-01-15T10:30:00Z'
+    Place:
+      type: object
+      description: A complete place representation from the Places API (New)
+      properties:
+        name:
+          type: string
+          description: The resource name of this place in the format places/{placeId}.
+          example: places/ChIJN1t_tDeuEmsRUsoyG83frY4
+        id:
+          type: string
+          description: The unique place ID
+          example: ChIJN1t_tDeuEmsRUsoyG83frY4
+        displayName:
+          $ref: '#/components/schemas/LocalizedText'
+        types:
+          type: array
+          description: A set of type tags for this place. Full list at https://developers.google.com/maps/documentation/places/web-service/place-types
+          items:
+            type: string
+          example:
+          - restaurant
+          - food
+          - point_of_interest
+          - establishment
+        primaryType:
+          type: string
+          description: The primary type of this place
+          example: restaurant
+        primaryTypeDisplayName:
+          $ref: '#/components/schemas/LocalizedText'
+        nationalPhoneNumber:
+          type: string
+          description: The place's phone number in national format
+          example: (02) 9374 4000
+        internationalPhoneNumber:
+          type: string
+          description: The place's phone number in international format
+          example: +61 2 9374 4000
+        formattedAddress:
+          type: string
+          description: The full human-readable address for this place
+          example: 48 Pirrama Rd, Pyrmont NSW 2009, Australia
+        shortFormattedAddress:
+          type: string
+          description: A short human-readable address for this place
+          example: 48 Pirrama Rd, Pyrmont
+        addressComponents:
+          type: array
+          description: The individual address components of the place
+          items:
+            $ref: '#/components/schemas/PlaceAddressComponent'
+          example: []
+        location:
+          $ref: '#/components/schemas/LatLng'
+        viewport:
+          $ref: '#/components/schemas/Viewport'
+        rating:
+          type: number
+          format: double
+          description: The place's rating on a scale of 1.0 to 5.0
+          minimum: 1.0
+          maximum: 5.0
+          example: 4.2
+        userRatingCount:
+          type: integer
+          description: The total number of user ratings
+          example: 1234
+        googleMapsUri:
+          type: string
+          format: uri
+          description: A URL to the place's page on Google Maps
+          example: https://www.example.com
+        websiteUri:
+          type: string
+          format: uri
+          description: The place's website URL
+          example: https://www.example.com
+        regularOpeningHours:
+          $ref: '#/components/schemas/OpeningHours'
+        currentOpeningHours:
+          $ref: '#/components/schemas/OpeningHours'
+        priceLevel:
+          type: string
+          description: The price level of the place
+          enum:
+          - PRICE_LEVEL_UNSPECIFIED
+          - PRICE_LEVEL_FREE
+          - PRICE_LEVEL_INEXPENSIVE
+          - PRICE_LEVEL_MODERATE
+          - PRICE_LEVEL_EXPENSIVE
+          - PRICE_LEVEL_VERY_EXPENSIVE
+          example: PRICE_LEVEL_UNSPECIFIED
+        businessStatus:
+          type: string
+          description: The business status of the place
+          enum:
+          - BUSINESS_STATUS_UNSPECIFIED
+          - OPERATIONAL
+          - CLOSED_TEMPORARILY
+          - CLOSED_PERMANENTLY
+          example: BUSINESS_STATUS_UNSPECIFIED
+        utcOffsetMinutes:
+          type: integer
+          description: Number of minutes this place's current timezone is offset from UTC
+          example: 10
+        reviews:
+          type: array
+          description: Up to 5 reviews for this place
+          items:
+            $ref: '#/components/schemas/Review'
+          example: []
+        photos:
+          type: array
+          description: Photos associated with this place
+          items:
+            $ref: '#/components/schemas/Photo'
+          example: []
+        editorialSummary:
+          $ref: '#/components/schemas/LocalizedText'
+        adrFormatAddress:
+          type: string
+          description: The place's address in adr microformat
+          example: example_value
+        iconMaskBaseUri:
+          type: string
+          format: uri
+          description: A URL for an SVG icon mask
+          example: https://www.example.com
+        iconBackgroundColor:
+          type: string
+          description: Background color for the icon in hex format
+          example: '#FF9E67'
+        plusCode:
+          $ref: '#/components/schemas/PlusCode'
+        accessibilityOptions:
+          $ref: '#/components/schemas/AccessibilityOptions'
+        parkingOptions:
+          $ref: '#/components/schemas/ParkingOptions'
+        paymentOptions:
+          $ref: '#/components/schemas/PaymentOptions'
+        dineIn:
+          type: boolean
+          description: Whether the place supports dine-in
+          example: true
+        takeout:
+          type: boolean
+          description: Whether the place supports takeout
+          example: true
+        delivery:
+          type: boolean
+          description: Whether the place supports delivery
+          example: true
+        curbsidePickup:
+          type: boolean
+          description: Whether the place supports curbside pickup
+          example: true
+        reservable:
+          type: boolean
+          description: Whether the place supports reservations
+          example: true
+        servesBreakfast:
+          type: boolean
+          example: true
+        servesLunch:
+          type: boolean
+          example: true
+        servesDinner:
+          type: boolean
+          example: true
+        servesBeer:
+          type: boolean
+          example: true
+        servesWine:
+          type: boolean
+          example: true
+        servesVegetarianFood:
+          type: boolean
+          example: true
+    Rectangle:
+      type: object
+      description: A rectangular area defined by two corners
+      properties:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    PaymentOptions:
+      type: object
+      description: Payment options accepted by a place
+      properties:
+        acceptsCreditCards:
+          type: boolean
+          example: true
+        acceptsDebitCards:
+          type: boolean
+          example: true
+        acceptsCashOnly:
+          type: boolean
+          example: true
+        acceptsNfc:
+          type: boolean
+          example: true
+    LocationBias:
+      type: object
+      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    LocationRestriction:
+      type: object
+      description: The region to restrict results to. Only results inside the restriction are returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    ParkingOptions:
+      type: object
+      description: Parking options at a place
+      properties:
+        freeParkingLot:
+          type: boolean
+          example: true
+        paidParkingLot:
+          type: boolean
+          example: true
+        freeStreetParking:
+          type: boolean
+          example: true
+        paidStreetParking:
+          type: boolean
+          example: true
+        valetParking:
+          type: boolean
+          example: true
+        freeGarageParking:
+          type: boolean
+          example: true
+        paidGarageParking:
+          type: boolean
+          example: true
+    LocalizedText:
+      type: object
+      description: A localized text string
+      properties:
+        text:
+          type: string
+          description: The localized text value
+          example: example_value
+        languageCode:
+          type: string
+          description: BCP-47 language code of the text
+          example: example_value
+      required:
+      - text
+    Period:
+      type: object
+      description: A period the place is open during the week
+      properties:
+        open:
+          $ref: '#/components/schemas/Point'
+        close:
+          $ref: '#/components/schemas/Point'
+      required:
+      - open
+    Photo:
+      type: object
+      description: A photo associated with a place
+      properties:
+        name:
+          type: string
+          description: The resource name of the photo in the format places/{placeId}/photos/{photoReference}
+          example: Example Title
+        widthPx:
+          type: integer
+          description: Maximum available width in pixels
+          example: 10
+        heightPx:
+          type: integer
+          description: Maximum available height in pixels
+          example: 10
+        authorAttributions:
+          type: array
+          description: The authors of this photo
+          items:
+            $ref: '#/components/schemas/AuthorAttribution'
+          example: []
+    Circle:
+      type: object
+      description: A circle defined by center point and radius
+      properties:
+        center:
+          $ref: '#/components/schemas/LatLng'
+        radius:
+          type: number
+          format: double
+          description: The radius of the circle in meters
+          example: 500.0
+      required:
+      - center
+      - radius
+    SearchPlacesResponse:
+      type: object
+      description: Response from text search and nearby search
+      properties:
+        places:
+          type: array
+          description: List of places matching the search criteria
+          items:
+            $ref: '#/components/schemas/Place'
+          example: []
+        nextPageToken:
+          type: string
+          description: A token that can be sent as pageToken in a subsequent request to retrieve the next page of results.
+          example: example_value
+  parameters:
+    fieldMask:
+      name: X-Goog-FieldMask
+      in: header
+      required: true
+      description: 'A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).'
+      schema:
+        type: string
+      example: places.displayName,places.formattedAddress,places.location
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: key
+      in: query
+      description: Google Maps Platform API key
+externalDocs:
+  description: Google Maps Directions API Documentation
+  url: https://developers.google.com/maps/documentation/directions/overview

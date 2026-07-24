@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: Google Maps Directions Autocomplete Photos API
+  description: The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.
+  version: '1.0'
+  termsOfService: https://cloud.google.com/maps-platform/terms
+  contact:
+    name: Google Maps Platform Team
+    url: https://developers.google.com/maps/support
+  license:
+    name: Google Maps Platform Terms of Service
+    url: https://cloud.google.com/maps-platform/terms
+  x-logo:
+    url: https://developers.google.com/maps/images/maps-icon.svg
+servers:
+- url: https://maps.googleapis.com/maps/api
+  description: Google Maps Directions API production server
+security:
+- apiKey: []
+tags:
+- name: Photos
+  description: Access photos associated with places
+paths:
+  /places/{placeId}/photos/{photoReference}/media:
+    get:
+      operationId: getPlacePhoto
+      summary: Get a Place Photo
+      description: Returns a photo for a place. After you get the photo resource name from a Place Details or Search response, use this endpoint to get the photo bytes. Specify maxHeightPx or maxWidthPx (or both) to control the image dimensions.
+      tags:
+      - Photos
+      parameters:
+      - name: placeId
+        in: path
+        required: true
+        description: The place ID
+        schema:
+          type: string
+        example: '500123'
+      - name: photoReference
+        in: path
+        required: true
+        description: The photo resource reference
+        schema:
+          type: string
+        example: example_value
+      - name: maxHeightPx
+        in: query
+        description: Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4800
+        example: 10
+      - name: maxWidthPx
+        in: query
+        description: Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4800
+        example: 10
+      - name: skipHttpRedirect
+        in: query
+        description: If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.
+        schema:
+          type: boolean
+          default: false
+        example: true
+      responses:
+        '200':
+          description: Photo media
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+              examples:
+                Getplacephoto200Example:
+                  summary: Default getPlacePhoto 200 response
+                  x-microcks-default: true
+                  value: example_value
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhotoMedia'
+              examples:
+                Getplacephoto200Example:
+                  summary: Default getPlacePhoto 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    photoUri: https://www.example.com
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden
+        '404':
+          description: Photo not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PhotoMedia:
+      type: object
+      description: Photo media metadata returned when skipHttpRedirect is true
+      properties:
+        name:
+          type: string
+          description: The resource name of the photo media
+          example: Example Title
+        photoUri:
+          type: string
+          format: uri
+          description: A short-lived URI for the photo
+          example: https://www.example.com
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: key
+      in: query
+      description: Google Maps Platform API key
+externalDocs:
+  description: Google Maps Directions API Documentation
+  url: https://developers.google.com/maps/documentation/directions/overview
