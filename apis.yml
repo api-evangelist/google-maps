@@ -2,6 +2,19 @@ aid: google-maps
 name: Google Maps Platform
 description: Google Maps Platform offers APIs and SDKs for maps, routes, and places
   functionality.
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
 url: https://developers.google.com/maps
 created: '2024-01-01'
@@ -18,34 +31,10 @@ tags:
 - Routing
 - Solar
 apis:
-- name: Maps JavaScript API
-  description: Embed customizable maps in web pages with the JavaScript API.
-  image: https://developers.google.com/maps/images/maps-icon.svg
-  humanUrl: https://developers.google.com/maps/documentation/javascript
-  baseUrl: https://maps.googleapis.com/maps/api/js
-  tags:
-  - Javascript
-  - Maps
-  - Visualization
-  properties:
-  - type: Documentation
-    url: https://developers.google.com/maps/documentation/javascript
-  - type: OpenAPI
-    url: https://api.example.com/openapi/maps-js.yaml
-  - type: GettingStarted
-    url: https://developers.google.com/maps/documentation/javascript/overview
-  - type: ReleaseNotes
-    url: https://developers.google.com/maps/documentation/javascript/releases
-  - type: Support
-    url: https://developers.google.com/maps/documentation/javascript/support
-  - url: graphql/google-maps-graphql.md
-    type: GraphQL
-  contact:
-  - FN: Google Maps Support
-    email: maps-api-support@google.com
 - name: Maps SDK for Android
-  description: Add maps to Android and Wear OS applications with customizable markers,
-    polylines, and user interaction support.
+  description: >-
+    Add maps to Android and Wear OS applications with customizable markers, polylines, and user interaction
+    support.
   humanUrl: https://developers.google.com/maps/documentation/android-sdk
   tags:
   - Android
@@ -60,8 +49,8 @@ apis:
   - type: ReleaseNotes
     url: https://developers.google.com/maps/documentation/android-sdk/release-notes
 - name: Maps SDK for iOS
-  description: Add maps to iOS applications with automatic server access, map display,
-    and gesture handling.
+  description: >-
+    Add maps to iOS applications with automatic server access, map display, and gesture handling.
   humanUrl: https://developers.google.com/maps/documentation/ios-sdk
   tags:
   - Ios
@@ -76,8 +65,7 @@ apis:
   - type: ReleaseNotes
     url: https://developers.google.com/maps/documentation/ios-sdk/release-notes
 - name: Google Maps for Flutter
-  description: Add Google Maps to Flutter applications across Android, iOS, and web
-    platforms.
+  description: Add Google Maps to Flutter applications across Android, iOS, and web platforms.
   humanUrl: https://developers.google.com/maps/flutter-package/overview
   tags:
   - Cross-Platform
@@ -92,8 +80,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/flutter-package/support
 - name: Navigation SDK for Android
-  description: Integrate Google Maps turn-by-turn navigation into Android applications
-    with UI customization and route configuration.
+  description: >-
+    Integrate Google Maps turn-by-turn navigation into Android applications with UI customization and
+    route configuration.
   humanUrl: https://developers.google.com/maps/documentation/navigation/android-sdk
   tags:
   - Android
@@ -108,8 +97,9 @@ apis:
   - type: ReleaseNotes
     url: https://developers.google.com/maps/documentation/navigation/android-sdk/release-notes
 - name: Navigation SDK for iOS
-  description: Integrate Google Maps turn-by-turn navigation into iOS applications
-    with UI customization and route configuration.
+  description: >-
+    Integrate Google Maps turn-by-turn navigation into iOS applications with UI customization and route
+    configuration.
   humanUrl: https://developers.google.com/maps/documentation/navigation/ios-sdk
   tags:
   - Ios
@@ -122,8 +112,8 @@ apis:
   - type: GettingStarted
     url: https://developers.google.com/maps/documentation/navigation/ios-sdk/overview
 - name: Navigation for Flutter and React Native
-  description: Add Google Maps turn-by-turn navigation to cross-platform Flutter and
-    React Native applications.
+  description: >-
+    Add Google Maps turn-by-turn navigation to cross-platform Flutter and React Native applications.
   humanUrl: https://developers.google.com/maps/documentation/cross-platform/navigation
   tags:
   - Cross-Platform
@@ -133,34 +123,9 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/cross-platform/navigation
-- name: Geocoding API
-  description: Convert addresses into geographic coordinates and vice versa.
-  humanUrl: https://developers.google.com/maps/documentation/geocoding
-  baseUrl: https://maps.googleapis.com/maps/api/geocode
-  tags:
-  - Addresses
-  - Coordinates
-  - Geocoding
-  properties:
-  - type: Documentation
-    url: https://developers.google.com/maps/documentation/geocoding/overview
-  - type: GettingStarted
-    url: https://developers.google.com/maps/documentation/geocoding/start
-  - type: APIReference
-    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
-  - type: OpenAPI
-    url: openapi/google-maps-geocoding-api.yml
-  - type: JSONSchema
-    url: json-schema/google-maps-geocode-result-schema.json
-  - type: JSONLD
-    url: json-ld/google-maps-context.jsonld
-  - type: Pricing
-    url: https://developers.google.com/maps/billing-and-pricing/pricing
-  - type: Support
-    url: https://developers.google.com/maps/documentation/geocoding/support
 - name: Places API
-  description: Access information about places using HTTP requests including search,
-    details, and autocomplete.
+  description: >-
+    Access information about places using HTTP requests including search, details, and autocomplete.
   humanUrl: https://developers.google.com/maps/documentation/places
   baseUrl: https://maps.googleapis.com/maps/api/place
   tags:
@@ -176,34 +141,9 @@ apis:
     url: https://developers.google.com/maps/documentation/places/web-service/release-notes
   - type: Support
     url: https://developers.google.com/maps/documentation/places/web-service/support
-- name: Places API (New)
-  description: Next generation Places API with enhanced features, improved quality,
-    and expanded volume discounts.
-  humanUrl: https://developers.google.com/maps/documentation/places/web-service/op-overview
-  baseUrl: https://places.googleapis.com/v1
-  tags:
-  - Autocomplete
-  - Places
-  - Poi
-  - Search
-  properties:
-  - type: Documentation
-    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
-  - type: APIReference
-    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
-  - type: OpenAPI
-    url: openapi/google-maps-places-api.yml
-  - type: JSONSchema
-    url: json-schema/google-maps-place-schema.json
-  - type: JSONLD
-    url: json-ld/google-maps-context.jsonld
-  - type: GettingStarted
-    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
-  - type: ReleaseNotes
-    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
 - name: Places SDK for Android
-  description: Access rich place information including names, addresses, ratings,
-    and photos in Android applications.
+  description: >-
+    Access rich place information including names, addresses, ratings, and photos in Android applications.
   humanUrl: https://developers.google.com/maps/documentation/places/android-sdk
   tags:
   - Android
@@ -214,8 +154,8 @@ apis:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/places/android-sdk
 - name: Places SDK for iOS
-  description: Access rich place information including names, addresses, ratings,
-    and photos in iOS applications.
+  description: >-
+    Access rich place information including names, addresses, ratings, and photos in iOS applications.
   humanUrl: https://developers.google.com/maps/documentation/places/ios-sdk
   tags:
   - Ios
@@ -225,27 +165,6 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/places/ios-sdk
-- name: Directions API
-  description: Get directions for transit, driving, walking, or cycling.
-  humanUrl: https://developers.google.com/maps/documentation/directions
-  baseUrl: https://maps.googleapis.com/maps/api/directions
-  tags:
-  - Directions
-  - Navigation
-  - Routing
-  properties:
-  - type: Documentation
-    url: https://developers.google.com/maps/documentation/directions/overview
-  - type: OpenAPI
-    url: openapi/google-maps-directions-api.yml
-  - type: JSONLD
-    url: json-ld/google-maps-context.jsonld
-  - type: GettingStarted
-    url: https://developers.google.com/maps/documentation/directions/overview
-  - type: ReleaseNotes
-    url: https://developers.google.com/maps/documentation/directions/releases
-  - type: Support
-    url: https://developers.google.com/maps/documentation/directions/support
 - name: Distance Matrix API
   description: Calculate travel distance and time for multiple origins and destinations.
   humanUrl: https://developers.google.com/maps/documentation/distance-matrix
@@ -279,8 +198,9 @@ apis:
   - type: Pricing
     url: https://developers.google.com/maps/documentation/roads/usage-and-billing
 - name: Routes API
-  description: Compute routes and route matrices with real-time traffic, replacing
-    Directions and Distance Matrix APIs.
+  description: >-
+    Compute routes and route matrices with real-time traffic, replacing Directions and Distance Matrix
+    APIs.
   humanUrl: https://developers.google.com/maps/documentation/routes
   baseUrl: https://routes.googleapis.com
   tags:
@@ -300,8 +220,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/routes/support
 - name: Route Optimization API
-  description: Assign tasks and routes to a vehicle fleet, optimizing against objectives
-    and constraints for transportation goals.
+  description: >-
+    Assign tasks and routes to a vehicle fleet, optimizing against objectives and constraints for transportation
+    goals.
   humanUrl: https://developers.google.com/maps/documentation/route-optimization
   baseUrl: https://routeoptimization.googleapis.com
   tags:
@@ -321,8 +242,8 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/route-optimization/support
 - name: Maps Static API
-  description: Embed a Google Maps image on a web page using a simple HTTP request
-    with no JavaScript required.
+  description: >-
+    Embed a Google Maps image on a web page using a simple HTTP request with no JavaScript required.
   humanUrl: https://developers.google.com/maps/documentation/maps-static
   baseUrl: https://maps.googleapis.com/maps/api/staticmap
   tags:
@@ -337,8 +258,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/maps-static/support
 - name: Maps Embed API
-  description: Place an interactive map or Street View panorama on a web page with
-    a simple HTTP request and no JavaScript required.
+  description: >-
+    Place an interactive map or Street View panorama on a web page with a simple HTTP request and no JavaScript
+    required.
   humanUrl: https://developers.google.com/maps/documentation/embed
   baseUrl: https://www.google.com/maps/embed/v1
   tags:
@@ -351,8 +273,8 @@ apis:
   - type: GettingStarted
     url: https://developers.google.com/maps/documentation/embed/quickstart
 - name: Street View Static API
-  description: Embed a non-interactive Street View panorama or thumbnail into a web
-    page using a simple HTTP request.
+  description: >-
+    Embed a non-interactive Street View panorama or thumbnail into a web page using a simple HTTP request.
   humanUrl: https://developers.google.com/maps/documentation/streetview
   baseUrl: https://maps.googleapis.com/maps/api/streetview
   tags:
@@ -365,8 +287,9 @@ apis:
   - type: GettingStarted
     url: https://developers.google.com/maps/documentation/streetview/request-streetview
 - name: Maps URLs
-  description: Launch Google Maps and initiate actions like search, directions, or
-    map display using cross-platform URL schemes.
+  description: >-
+    Launch Google Maps and initiate actions like search, directions, or map display using cross-platform
+    URL schemes.
   humanUrl: https://developers.google.com/maps/documentation/urls
   tags:
   - Cross-Platform
@@ -376,8 +299,7 @@ apis:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/urls/get-started
 - name: Elevation API
-  description: Return elevation data for locations on the earth or sampled elevation
-    data along paths.
+  description: Return elevation data for locations on the earth or sampled elevation data along paths.
   humanUrl: https://developers.google.com/maps/documentation/elevation
   baseUrl: https://maps.googleapis.com/maps/api/elevation
   tags:
@@ -407,8 +329,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/geolocation/support
 - name: Time Zone API
-  description: Retrieve time zone information for coordinates on the earth including
-    UTC offset and daylight savings data.
+  description: >-
+    Retrieve time zone information for coordinates on the earth including UTC offset and daylight savings
+    data.
   humanUrl: https://developers.google.com/maps/documentation/timezone
   baseUrl: https://maps.googleapis.com/maps/api/timezone
   tags:
@@ -423,8 +346,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/timezone/support
 - name: Address Validation API
-  description: Validate and standardize addresses, returning deliverability verdicts,
-    geocodes, and address component details.
+  description: >-
+    Validate and standardize addresses, returning deliverability verdicts, geocodes, and address component
+    details.
   humanUrl: https://developers.google.com/maps/documentation/address-validation
   baseUrl: https://addressvalidation.googleapis.com/v1
   tags:
@@ -443,8 +367,8 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/address-validation/support
 - name: Aerial View API
-  description: Create and display photorealistic 3D aerial view videos rendered using
-    Google geospatial imagery.
+  description: >-
+    Create and display photorealistic 3D aerial view videos rendered using Google geospatial imagery.
   humanUrl: https://developers.google.com/maps/documentation/aerial-view
   baseUrl: https://aerialview.googleapis.com
   tags:
@@ -462,8 +386,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/aerial-view/support
 - name: Map Tiles API
-  description: Provide high-resolution Photorealistic 3D Tiles, 2D Tiles, and Street
-    View Tiles for immersive map visualizations.
+  description: >-
+    Provide high-resolution Photorealistic 3D Tiles, 2D Tiles, and Street View Tiles for immersive map
+    visualizations.
   humanUrl: https://developers.google.com/maps/documentation/tile
   baseUrl: https://tile.googleapis.com/v1
   tags:
@@ -481,8 +406,7 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/tile/support
 - name: Maps Datasets API
-  description: Upload, manage, and serve custom geospatial datasets for use with Google
-    Maps Platform.
+  description: Upload, manage, and serve custom geospatial datasets for use with Google Maps Platform.
   humanUrl: https://developers.google.com/maps/documentation/datasets
   baseUrl: https://mapsplatformdatasets.googleapis.com/v1
   tags:
@@ -501,8 +425,7 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/datasets/support
 - name: Places Aggregate API
-  description: Compute statistical insights and aggregate data about places within
-    a specified area.
+  description: Compute statistical insights and aggregate data about places within a specified area.
   humanUrl: https://developers.google.com/maps/documentation/places-aggregate
   baseUrl: https://areainsights.googleapis.com/v1
   tags:
@@ -518,8 +441,9 @@ apis:
   - type: GettingStarted
     url: https://developers.google.com/maps/documentation/places-aggregate/get-api-key
 - name: Places Insights
-  description: Query places data in BigQuery to derive statistical insights for site
-    selection, market analysis, and business intelligence.
+  description: >-
+    Query places data in BigQuery to derive statistical insights for site selection, market analysis,
+    and business intelligence.
   humanUrl: https://developers.google.com/maps/documentation/placesinsights
   tags:
   - Analytics
@@ -532,8 +456,9 @@ apis:
   - type: ReleaseNotes
     url: https://developers.google.com/maps/documentation/placesinsights/release-notes
 - name: Air Quality API
-  description: Request air quality data for a specific location including air quality
-    indexes, pollutants, and health recommendations.
+  description: >-
+    Request air quality data for a specific location including air quality indexes, pollutants, and health
+    recommendations.
   humanUrl: https://developers.google.com/maps/documentation/air-quality
   baseUrl: https://airquality.googleapis.com/v1
   tags:
@@ -553,8 +478,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/air-quality/support
 - name: Pollen API
-  description: Deliver location-specific pollen data including pollen types, plant
-    species, pollen index, and health recommendations.
+  description: >-
+    Deliver location-specific pollen data including pollen types, plant species, pollen index, and health
+    recommendations.
   humanUrl: https://developers.google.com/maps/documentation/pollen
   baseUrl: https://pollen.googleapis.com/v1
   tags:
@@ -574,8 +500,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/pollen/support
 - name: Solar API
-  description: Access solar potential data for hundreds of millions of buildings worldwide
-    including building insights and data layers.
+  description: >-
+    Access solar potential data for hundreds of millions of buildings worldwide including building insights
+    and data layers.
   humanUrl: https://developers.google.com/maps/documentation/solar
   baseUrl: https://solar.googleapis.com/v1
   tags:
@@ -593,8 +520,9 @@ apis:
   - type: ReleaseNotes
     url: https://developers.google.com/maps/documentation/solar/release-notes
 - name: Weather API
-  description: Provide comprehensive weather information including temperature, precipitation,
-    wind, cloud cover, and forecasts for locations worldwide.
+  description: >-
+    Provide comprehensive weather information including temperature, precipitation, wind, cloud cover,
+    and forecasts for locations worldwide.
   humanUrl: https://developers.google.com/maps/documentation/weather
   baseUrl: https://weather.googleapis.com/v1
   tags:
@@ -614,8 +542,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/weather/support
 - name: Street View Insights
-  description: Analyze Google Street View imagery data to derive insights about the
-    location and condition of public assets.
+  description: >-
+    Analyze Google Street View imagery data to derive insights about the location and condition of public
+    assets.
   humanUrl: https://developers.google.com/maps/documentation/street-view-insights
   tags:
   - Analytics
@@ -632,8 +561,9 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/street-view-insights/support
 - name: Imagery Insights API
-  description: Query and classify street-level imagery to extract actionable intelligence
-    from real-world visual observations.
+  description: >-
+    Query and classify street-level imagery to extract actionable intelligence from real-world visual
+    observations.
   humanUrl: https://developers.google.com/maps/documentation/imagery-insights
   tags:
   - Ai
@@ -644,8 +574,8 @@ apis:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/imagery-insights
 - name: Roads Management Insights
-  description: Analyze route-based trip duration and speed data for managing road
-    networks and transportation infrastructure.
+  description: >-
+    Analyze route-based trip duration and speed data for managing road networks and transportation infrastructure.
   humanUrl: https://developers.google.com/maps/documentation/roads-management-insights
   tags:
   - Analytics
@@ -660,8 +590,7 @@ apis:
   - type: Support
     url: https://developers.google.com/maps/documentation/roads-management-insights/support
 - name: Google Earth
-  description: Access Google Earth geospatial data and imagery analysis capabilities
-    for developers.
+  description: Access Google Earth geospatial data and imagery analysis capabilities for developers.
   humanUrl: https://developers.google.com/maps/documentation/earth
   tags:
   - Analytics
@@ -671,10 +600,362 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.google.com/maps/documentation/earth
+- aid: google-maps:google-maps-autocomplete-api
+  name: Google Maps Platform Autocomplete API
+  description: Get place predictions based on text input
+  tags:
+  - Autocomplete
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-autocomplete-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-directions-api
+  name: Google Maps Platform Directions API
+  description: Route computation between origin and destination
+  tags:
+  - Directions
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-directions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-geocoding-api
+  name: Google Maps Platform Geocoding API
+  description: Forward and reverse geocoding operations
+  tags:
+  - Geocoding
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-geocoding-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-nearby-search-api
+  name: Google Maps Platform Nearby Search API
+  description: Search for places near a specific location
+  tags:
+  - Nearby Search
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-nearby-search-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-photos-api
+  name: Google Maps Platform Photos API
+  description: Access photos associated with places
+  tags:
+  - Photos
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-photos-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-place-details-api
+  name: Google Maps Platform Place Details API
+  description: Get detailed information about a specific place
+  tags:
+  - Place Details
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-place-details-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
+- aid: google-maps:google-maps-text-search-api
+  name: Google Maps Platform Text Search API
+  description: Search for places using a text query
+  tags:
+  - Text Search
+  properties:
+  - type: OpenAPI
+    url: openapi/google-maps-text-search-api-openapi.yml
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/javascript
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/javascript/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/javascript/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/javascript/support
+  - type: GraphQL
+    url: graphql/google-maps-graphql.md
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/geocoding/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/geocoding/start
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/geocoding/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-geocode-result-schema.json
+  - type: JSONLD
+    url: json-ld/google-maps-context.jsonld
+  - type: Pricing
+    url: https://developers.google.com/maps/billing-and-pricing/pricing
+  - type: Support
+    url: https://developers.google.com/maps/documentation/geocoding/support
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/places/web-service/op-overview
+  - type: APIReference
+    url: https://developers.google.com/maps/documentation/places/web-service/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-maps-place-schema.json
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/places/web-service/release-notes
+  - type: Documentation
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: GettingStarted
+    url: https://developers.google.com/maps/documentation/directions/overview
+  - type: ReleaseNotes
+    url: https://developers.google.com/maps/documentation/directions/releases
+  - type: Support
+    url: https://developers.google.com/maps/documentation/directions/support
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/google-maps-platform/overview
 - type: AgenticAccess
   url: agentic-access/google-maps-agentic-access.yml
 - type: DomainSecurity
