@@ -1,0 +1,434 @@
+{
+  "info": {
+    "_postman_id": "9e67c72b-a21b-478b-a8a2-ec3b11784daf",
+    "name": "Google Maps Directions Autocomplete Place Details API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:25.000Z",
+    "updatedAt": "2026-07-28T01:49:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9e67c72b-a21b-478b-a8a2-ec3b11784daf"
+  },
+  "item": [
+    {
+      "name": "places",
+      "item": [
+        {
+          "name": "{placeId}",
+          "item": [
+            {
+              "name": "Get Details About a Place",
+              "id": "c2c97026-2ba9-438a-a742-2486a2dd6f59",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    ":placeId"
+                  ],
+                  "query": [
+                    {
+                      "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                      "key": "languageCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                      "key": "regionCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                      "key": "sessionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "adaef33e-f47e-48ba-80f6-f2c9e2f2dd93",
+                      "key": "placeId",
+                      "value": "<string>",
+                      "description": "(Required) The resource name of a place in the format places/{placeId}."
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a place identified by its resource name. Use the fieldMask parameter to specify which fields to return. Only fields specified in the field mask are returned; requesting fewer fields reduces cost and improves performance."
+              },
+              "response": [
+                {
+                  "id": "83c5bd65-3236-491d-9d42-a890a1a0ac62",
+                  "name": "Place details response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                        "key": "X-Goog-FieldMask",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "places",
+                        ":placeId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                          "key": "languageCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                          "key": "regionCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                          "key": "sessionToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "placeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"displayName\": {\n    \"text\": \"<string>\",\n    \"languageCode\": \"<string>\"\n  },\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primaryType\": \"<string>\",\n  \"primaryTypeDisplayName\": {\n    \"text\": \"<string>\",\n    \"languageCode\": \"<string>\"\n  },\n  \"nationalPhoneNumber\": \"<string>\",\n  \"internationalPhoneNumber\": \"<string>\",\n  \"formattedAddress\": \"<string>\",\n  \"shortFormattedAddress\": \"<string>\",\n  \"addressComponents\": [\n    {\n      \"longText\": \"<string>\",\n      \"shortText\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"languageCode\": \"<string>\"\n    },\n    {\n      \"longText\": \"<string>\",\n      \"shortText\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"languageCode\": \"<string>\"\n    }\n  ],\n  \"location\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"viewport\": {\n    \"low\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"high\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    }\n  },\n  \"rating\": \"<double>\",\n  \"userRatingCount\": \"<integer>\",\n  \"googleMapsUri\": \"<uri>\",\n  \"websiteUri\": \"<uri>\",\n  \"regularOpeningHours\": {\n    \"openNow\": \"<boolean>\",\n    \"periods\": [\n      {\n        \"open\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        },\n        \"close\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        }\n      },\n      {\n        \"open\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        },\n        \"close\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        }\n      }\n    ],\n    \"weekdayDescriptions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"currentOpeningHours\": {\n    \"openNow\": \"<boolean>\",\n    \"periods\": [\n      {\n        \"open\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        },\n        \"close\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        }\n      },\n      {\n        \"open\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        },\n        \"close\": {\n          \"day\": \"<integer>\",\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\",\n          \"date\": {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        }\n      }\n    ],\n    \"weekdayDescriptions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priceLevel\": \"PRICE_LEVEL_EXPENSIVE\",\n  \"businessStatus\": \"CLOSED_TEMPORARILY\",\n  \"utcOffsetMinutes\": \"<integer>\",\n  \"reviews\": [\n    {\n      \"name\": \"<string>\",\n      \"relativePublishTimeDescription\": \"<string>\",\n      \"rating\": \"<double>\",\n      \"text\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"originalText\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"authorAttribution\": {\n        \"displayName\": \"<string>\",\n        \"uri\": \"<uri>\",\n        \"photoUri\": \"<uri>\"\n      },\n      \"publishTime\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"relativePublishTimeDescription\": \"<string>\",\n      \"rating\": \"<double>\",\n      \"text\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"originalText\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"authorAttribution\": {\n        \"displayName\": \"<string>\",\n        \"uri\": \"<uri>\",\n        \"photoUri\": \"<uri>\"\n      },\n      \"publishTime\": \"<dateTime>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"name\": \"<string>\",\n      \"widthPx\": \"<integer>\",\n      \"heightPx\": \"<integer>\",\n      \"authorAttributions\": [\n        {\n          \"displayName\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"photoUri\": \"<uri>\"\n        },\n        {\n          \"displayName\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"photoUri\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"widthPx\": \"<integer>\",\n      \"heightPx\": \"<integer>\",\n      \"authorAttributions\": [\n        {\n          \"displayName\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"photoUri\": \"<uri>\"\n        },\n        {\n          \"displayName\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"photoUri\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"editorialSummary\": {\n    \"text\": \"<string>\",\n    \"languageCode\": \"<string>\"\n  },\n  \"adrFormatAddress\": \"<string>\",\n  \"iconMaskBaseUri\": \"<uri>\",\n  \"iconBackgroundColor\": \"<string>\",\n  \"plusCode\": {\n    \"globalCode\": \"<string>\",\n    \"compoundCode\": \"<string>\"\n  },\n  \"accessibilityOptions\": {\n    \"wheelchairAccessibleParking\": \"<boolean>\",\n    \"wheelchairAccessibleEntrance\": \"<boolean>\",\n    \"wheelchairAccessibleRestroom\": \"<boolean>\",\n    \"wheelchairAccessibleSeating\": \"<boolean>\"\n  },\n  \"parkingOptions\": {\n    \"freeParkingLot\": \"<boolean>\",\n    \"paidParkingLot\": \"<boolean>\",\n    \"freeStreetParking\": \"<boolean>\",\n    \"paidStreetParking\": \"<boolean>\",\n    \"valetParking\": \"<boolean>\",\n    \"freeGarageParking\": \"<boolean>\",\n    \"paidGarageParking\": \"<boolean>\"\n  },\n  \"paymentOptions\": {\n    \"acceptsCreditCards\": \"<boolean>\",\n    \"acceptsDebitCards\": \"<boolean>\",\n    \"acceptsCashOnly\": \"<boolean>\",\n    \"acceptsNfc\": \"<boolean>\"\n  },\n  \"dineIn\": \"<boolean>\",\n  \"takeout\": \"<boolean>\",\n  \"delivery\": \"<boolean>\",\n  \"curbsidePickup\": \"<boolean>\",\n  \"reservable\": \"<boolean>\",\n  \"servesBreakfast\": \"<boolean>\",\n  \"servesLunch\": \"<boolean>\",\n  \"servesDinner\": \"<boolean>\",\n  \"servesBeer\": \"<boolean>\",\n  \"servesWine\": \"<boolean>\",\n  \"servesVegetarianFood\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:49:26.000Z",
+                  "updatedAt": "2026-07-28T01:49:26.000Z",
+                  "uid": "35240-83c5bd65-3236-491d-9d42-a890a1a0ac62"
+                },
+                {
+                  "id": "21926948-5db3-4653-8c0c-54bf1338e43f",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                        "key": "X-Goog-FieldMask",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "places",
+                        ":placeId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                          "key": "languageCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                          "key": "regionCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                          "key": "sessionToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "placeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:26.000Z",
+                  "updatedAt": "2026-07-28T01:49:26.000Z",
+                  "uid": "35240-21926948-5db3-4653-8c0c-54bf1338e43f"
+                },
+                {
+                  "id": "66ad162e-1684-4193-a7fd-a472a39b38d2",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                        "key": "X-Goog-FieldMask",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "places",
+                        ":placeId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                          "key": "languageCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                          "key": "regionCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                          "key": "sessionToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "placeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:26.000Z",
+                  "updatedAt": "2026-07-28T01:49:26.000Z",
+                  "uid": "35240-66ad162e-1684-4193-a7fd-a472a39b38d2"
+                },
+                {
+                  "id": "e62565ac-697f-4992-b4d8-3e91e1bd98ba",
+                  "name": "Place not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                        "key": "X-Goog-FieldMask",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "places",
+                        ":placeId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                          "key": "languageCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                          "key": "regionCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                          "key": "sessionToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "placeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:26.000Z",
+                  "updatedAt": "2026-07-28T01:49:26.000Z",
+                  "uid": "35240-e62565ac-697f-4992-b4d8-3e91e1bd98ba"
+                },
+                {
+                  "id": "a639a599-32a2-4262-bd75-9b358d81a88a",
+                  "name": "Too many requests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                        "key": "X-Goog-FieldMask",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/places/:placeId?languageCode=<string>&regionCode=<string>&sessionToken=<string>&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "places",
+                        ":placeId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.",
+                          "key": "languageCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.",
+                          "key": "regionCode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.",
+                          "key": "sessionToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "placeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:26.000Z",
+                  "updatedAt": "2026-07-28T01:49:26.000Z",
+                  "uid": "35240-a639a599-32a2-4262-bd75-9b358d81a88a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:49:26.000Z",
+              "updatedAt": "2026-07-28T01:49:26.000Z",
+              "uid": "35240-c2c97026-2ba9-438a-a742-2486a2dd6f59"
+            }
+          ],
+          "id": "48abe043-5005-4a6d-8ca7-14541810f443",
+          "createdAt": "2026-07-28T01:49:26.000Z",
+          "updatedAt": "2026-07-28T01:49:26.000Z",
+          "uid": "35240-48abe043-5005-4a6d-8ca7-14541810f443"
+        }
+      ],
+      "id": "c896b862-2e42-4f86-9ae2-8e2d55b3745c",
+      "createdAt": "2026-07-28T01:49:26.000Z",
+      "updatedAt": "2026-07-28T01:49:26.000Z",
+      "uid": "35240-c896b862-2e42-4f86-9ae2-8e2d55b3745c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}

@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "181ac6e7-ae9f-417a-b749-5be77be09815",
+    "name": "Google Maps Directions Autocomplete API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:17.000Z",
+    "updatedAt": "2026-07-28T01:49:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-181ac6e7-ae9f-417a-b749-5be77be09815"
+  },
+  "item": [
+    {
+      "name": "places:autocomplete",
+      "item": [
+        {
+          "name": "Get Place Autocomplete Predictions",
+          "id": "38f66bb7-e901-4bc8-ac86-d42fbefc5711",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places:autocomplete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places:autocomplete"
+              ]
+            },
+            "description": "Returns predictions for the given input text. Predictions include place predictions and query predictions. Use session tokens to group autocomplete requests for billing purposes."
+          },
+          "response": [
+            {
+              "id": "48f8065f-ef1a-46dd-b8d3-069ec3f8c5bb",
+              "name": "Autocomplete response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:autocomplete?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"suggestions\": [\n    {\n      \"placePrediction\": {\n        \"place\": \"<string>\",\n        \"placeId\": \"<string>\",\n        \"text\": {\n          \"text\": \"<string>\",\n          \"matches\": [\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            },\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            }\n          ]\n        },\n        \"structuredFormat\": {\n          \"mainText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          },\n          \"secondaryText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        \"types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"distanceMeters\": \"<integer>\"\n      },\n      \"queryPrediction\": {\n        \"text\": {\n          \"text\": \"<string>\",\n          \"matches\": [\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            },\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            }\n          ]\n        },\n        \"structuredFormat\": {\n          \"mainText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          },\n          \"secondaryText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      }\n    },\n    {\n      \"placePrediction\": {\n        \"place\": \"<string>\",\n        \"placeId\": \"<string>\",\n        \"text\": {\n          \"text\": \"<string>\",\n          \"matches\": [\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            },\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            }\n          ]\n        },\n        \"structuredFormat\": {\n          \"mainText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          },\n          \"secondaryText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        \"types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"distanceMeters\": \"<integer>\"\n      },\n      \"queryPrediction\": {\n        \"text\": {\n          \"text\": \"<string>\",\n          \"matches\": [\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            },\n            {\n              \"startOffset\": \"<integer>\",\n              \"endOffset\": \"<integer>\"\n            }\n          ]\n        },\n        \"structuredFormat\": {\n          \"mainText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          },\n          \"secondaryText\": {\n            \"text\": \"<string>\",\n            \"matches\": [\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              },\n              {\n                \"startOffset\": \"<integer>\",\n                \"endOffset\": \"<integer>\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:49:18.000Z",
+              "updatedAt": "2026-07-28T01:49:18.000Z",
+              "uid": "35240-48f8065f-ef1a-46dd-b8d3-069ec3f8c5bb"
+            },
+            {
+              "id": "a00c88d5-2946-44bf-b975-5db0a66c251a",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:autocomplete?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:18.000Z",
+              "updatedAt": "2026-07-28T01:49:18.000Z",
+              "uid": "35240-a00c88d5-2946-44bf-b975-5db0a66c251a"
+            },
+            {
+              "id": "458d9f09-c432-4604-89fd-5a2b5064afec",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:autocomplete?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:18.000Z",
+              "updatedAt": "2026-07-28T01:49:18.000Z",
+              "uid": "35240-458d9f09-c432-4604-89fd-5a2b5064afec"
+            },
+            {
+              "id": "e83e4c8b-809a-43a7-817d-2190aed01d9d",
+              "name": "Too many requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:autocomplete?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:18.000Z",
+              "updatedAt": "2026-07-28T01:49:18.000Z",
+              "uid": "35240-e83e4c8b-809a-43a7-817d-2190aed01d9d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:49:17.000Z",
+          "updatedAt": "2026-07-28T01:49:17.000Z",
+          "uid": "35240-38f66bb7-e901-4bc8-ac86-d42fbefc5711"
+        }
+      ],
+      "id": "a3066b15-f0f2-4011-bb3c-3d3e0cf11644",
+      "createdAt": "2026-07-28T01:49:17.000Z",
+      "updatedAt": "2026-07-28T01:49:17.000Z",
+      "uid": "35240-a3066b15-f0f2-4011-bb3c-3d3e0cf11644"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}

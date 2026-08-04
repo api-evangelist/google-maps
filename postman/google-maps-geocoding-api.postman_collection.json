@@ -1,0 +1,552 @@
+{
+  "info": {
+    "_postman_id": "9c935c39-eee5-4929-b3c5-46eb9c0f12c4",
+    "name": "Google Maps Directions Autocomplete Geocoding API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:19.000Z",
+    "updatedAt": "2026-07-28T01:49:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c935c39-eee5-4929-b3c5-46eb9c0f12c4"
+  },
+  "item": [
+    {
+      "name": "geocode",
+      "item": [
+        {
+          "name": "json",
+          "item": [
+            {
+              "name": "Geocode an Address or Reverse Geocode Coordinates",
+              "id": "d5479b68-422d-45a2-9347-8cb180a8fe00",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geocode",
+                    "json"
+                  ],
+                  "query": [
+                    {
+                      "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                      "key": "latlng",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                      "key": "place_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                      "key": "components",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                      "key": "bounds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                      "key": "result_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                      "key": "location_type",
+                      "value": "APPROXIMATE"
+                    },
+                    {
+                      "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Converts a human-readable address into geographic coordinates (latitude/longitude), or converts coordinates into a human-readable address (reverse geocoding). At least one of the `address`, `components`, or `latlng` parameters is required."
+              },
+              "response": [
+                {
+                  "id": "eadc6f97-5ded-4385-a497-3568bf4f4bc3",
+                  "name": "Geocoding response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "geocode",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                          "key": "address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                          "key": "latlng",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                          "key": "place_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                          "key": "components",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                          "key": "bounds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                          "key": "result_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                          "key": "location_type",
+                          "value": "APPROXIMATE"
+                        },
+                        {
+                          "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"REQUEST_DENIED\",\n  \"results\": [\n    {\n      \"address_components\": [\n        {\n          \"long_name\": \"<string>\",\n          \"short_name\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"long_name\": \"<string>\",\n          \"short_name\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"formatted_address\": \"<string>\",\n      \"geometry\": {\n        \"location\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        },\n        \"location_type\": \"APPROXIMATE\",\n        \"viewport\": {\n          \"northeast\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"southwest\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          }\n        },\n        \"bounds\": {\n          \"northeast\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"southwest\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          }\n        }\n      },\n      \"place_id\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"plus_code\": {\n        \"global_code\": \"<string>\",\n        \"compound_code\": \"<string>\"\n      },\n      \"partial_match\": \"<boolean>\"\n    },\n    {\n      \"address_components\": [\n        {\n          \"long_name\": \"<string>\",\n          \"short_name\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"long_name\": \"<string>\",\n          \"short_name\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"formatted_address\": \"<string>\",\n      \"geometry\": {\n        \"location\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        },\n        \"location_type\": \"APPROXIMATE\",\n        \"viewport\": {\n          \"northeast\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"southwest\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          }\n        },\n        \"bounds\": {\n          \"northeast\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"southwest\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          }\n        }\n      },\n      \"place_id\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"plus_code\": {\n        \"global_code\": \"<string>\",\n        \"compound_code\": \"<string>\"\n      },\n      \"partial_match\": \"<boolean>\"\n    }\n  ],\n  \"error_message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:49:19.000Z",
+                  "updatedAt": "2026-07-28T01:49:19.000Z",
+                  "uid": "35240-eadc6f97-5ded-4385-a497-3568bf4f4bc3"
+                },
+                {
+                  "id": "80b8fb65-6859-4cda-abce-1f2682134c6e",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "geocode",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                          "key": "address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                          "key": "latlng",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                          "key": "place_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                          "key": "components",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                          "key": "bounds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                          "key": "result_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                          "key": "location_type",
+                          "value": "APPROXIMATE"
+                        },
+                        {
+                          "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:19.000Z",
+                  "updatedAt": "2026-07-28T01:49:19.000Z",
+                  "uid": "35240-80b8fb65-6859-4cda-abce-1f2682134c6e"
+                },
+                {
+                  "id": "e506399b-ef3e-4657-8414-3a3c8589b20b",
+                  "name": "Forbidden - API key is invalid or not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "geocode",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                          "key": "address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                          "key": "latlng",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                          "key": "place_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                          "key": "components",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                          "key": "bounds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                          "key": "result_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                          "key": "location_type",
+                          "value": "APPROXIMATE"
+                        },
+                        {
+                          "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:19.000Z",
+                  "updatedAt": "2026-07-28T01:49:19.000Z",
+                  "uid": "35240-e506399b-ef3e-4657-8414-3a3c8589b20b"
+                },
+                {
+                  "id": "a17ec491-26d1-4fb8-89e8-d9ae4c9930a6",
+                  "name": "Too many requests - rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "geocode",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                          "key": "address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                          "key": "latlng",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                          "key": "place_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                          "key": "components",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                          "key": "bounds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                          "key": "result_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                          "key": "location_type",
+                          "value": "APPROXIMATE"
+                        },
+                        {
+                          "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:19.000Z",
+                  "updatedAt": "2026-07-28T01:49:19.000Z",
+                  "uid": "35240-a17ec491-26d1-4fb8-89e8-d9ae4c9930a6"
+                },
+                {
+                  "id": "96debc5b-4298-4247-97f9-6bb2bfe4c724",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/geocode/json?address=<string>&latlng=<string>&place_id=<string>&components=<string>&bounds=<string>&region=<string>&language=<string>&result_type=<string>&location_type=APPROXIMATE&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "geocode",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "The street address or plus code to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names should not be included.",
+                          "key": "address",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The latitude and longitude values for reverse geocoding, specified as a comma-separated string (e.g., 40.714224,-73.961452).",
+                          "key": "latlng",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The place ID of the place for which to obtain the human-readable address. The place ID uniquely identifies a place in the Google Places database and on Google Maps.",
+                          "key": "place_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A component filter for which to obtain a geocode, specified as a pipe-separated list of component:value pairs. Components can be used to filter results to a particular country, administrative area, locality, postal code, or route.",
+                          "key": "components",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The bounding box of the viewport within which to bias geocode results more prominently. Specified as pipe-separated southwest and northeast coordinates (lat,lng|lat,lng).",
+                          "key": "bounds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. This parameter biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language in which to return results. If not supplied, the geocoder attempts to use the preferred language as specified in the Accept-Language header, or the native language of the domain from which the request is sent.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more address types. Used for reverse geocoding to filter results by address type (e.g., street_address, route, intersection, political, country, etc.).",
+                          "key": "result_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A pipe-separated list of one or more location types. Used for reverse geocoding to filter results by location type. Values include ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, and APPROXIMATE.",
+                          "key": "location_type",
+                          "value": "APPROXIMATE"
+                        },
+                        {
+                          "description": "(Required) Your application's API key. This key identifies your application for purposes of quota management.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:19.000Z",
+                  "updatedAt": "2026-07-28T01:49:19.000Z",
+                  "uid": "35240-96debc5b-4298-4247-97f9-6bb2bfe4c724"
+                }
+              ],
+              "createdAt": "2026-07-28T01:49:19.000Z",
+              "updatedAt": "2026-07-28T01:49:19.000Z",
+              "uid": "35240-d5479b68-422d-45a2-9347-8cb180a8fe00"
+            }
+          ],
+          "id": "6010e74a-b8bc-4b56-aec3-c0ef24f4e744",
+          "createdAt": "2026-07-28T01:49:19.000Z",
+          "updatedAt": "2026-07-28T01:49:19.000Z",
+          "uid": "35240-6010e74a-b8bc-4b56-aec3-c0ef24f4e744"
+        }
+      ],
+      "id": "d1de2106-70a2-4928-8ed0-908d2c05f443",
+      "createdAt": "2026-07-28T01:49:19.000Z",
+      "updatedAt": "2026-07-28T01:49:19.000Z",
+      "uid": "35240-d1de2106-70a2-4928-8ed0-908d2c05f443"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "info": {
+    "_postman_id": "1706723f-8a80-43d3-9f00-5cf0620d1a4d",
+    "name": "Google Maps Directions Autocomplete Photos API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:25.000Z",
+    "updatedAt": "2026-07-28T01:49:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1706723f-8a80-43d3-9f00-5cf0620d1a4d"
+  },
+  "item": [
+    {
+      "name": "places",
+      "item": [
+        {
+          "name": "{placeId}",
+          "item": [
+            {
+              "name": "photos",
+              "item": [
+                {
+                  "name": "{photoReference}",
+                  "item": [
+                    {
+                      "name": "media",
+                      "item": [
+                        {
+                          "name": "Get a Place Photo",
+                          "id": "3ce127b9-41b0-48d4-a6b5-b54c3bcd3b3e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "image/*"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/places/:placeId/photos/:photoReference/media?maxHeightPx=<integer>&maxWidthPx=<integer>&skipHttpRedirect=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "places",
+                                ":placeId",
+                                "photos",
+                                ":photoReference",
+                                "media"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.",
+                                  "key": "maxHeightPx",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.",
+                                  "key": "maxWidthPx",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.",
+                                  "key": "skipHttpRedirect",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "32f2c565-d75f-4f9c-8a34-d671c08c702f",
+                                  "key": "placeId",
+                                  "value": "<string>",
+                                  "description": "(Required) The place ID"
+                                },
+                                {
+                                  "id": "14b9bc04-4d30-4b6b-9687-f7210a6ce04a",
+                                  "key": "photoReference",
+                                  "value": "<string>",
+                                  "description": "(Required) The photo resource reference"
+                                }
+                              ]
+                            },
+                            "description": "Returns a photo for a place. After you get the photo resource name from a Place Details or Search response, use this endpoint to get the photo bytes. Specify maxHeightPx or maxWidthPx (or both) to control the image dimensions."
+                          },
+                          "response": [
+                            {
+                              "id": "5cf792cf-6d9b-4b7a-856e-d4e01b7f15b5",
+                              "name": "Photo media",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "image/*"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/places/:placeId/photos/:photoReference/media?maxHeightPx=<integer>&maxWidthPx=<integer>&skipHttpRedirect=false&key=<API Key>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "places",
+                                    ":placeId",
+                                    "photos",
+                                    ":photoReference",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.",
+                                      "key": "maxHeightPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.",
+                                      "key": "maxWidthPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.",
+                                      "key": "skipHttpRedirect",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Added as a part of security scheme: apikey",
+                                      "key": "key",
+                                      "value": "<API Key>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placeId"
+                                    },
+                                    {
+                                      "key": "photoReference"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"photoUri\": \"<uri>\"\n}",
+                              "createdAt": "2026-07-28T01:49:25.000Z",
+                              "updatedAt": "2026-07-28T01:49:25.000Z",
+                              "uid": "35240-5cf792cf-6d9b-4b7a-856e-d4e01b7f15b5"
+                            },
+                            {
+                              "id": "241ff611-3ed5-4884-9906-ede3d1aa7842",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/places/:placeId/photos/:photoReference/media?maxHeightPx=<integer>&maxWidthPx=<integer>&skipHttpRedirect=false&key=<API Key>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "places",
+                                    ":placeId",
+                                    "photos",
+                                    ":photoReference",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.",
+                                      "key": "maxHeightPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.",
+                                      "key": "maxWidthPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.",
+                                      "key": "skipHttpRedirect",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Added as a part of security scheme: apikey",
+                                      "key": "key",
+                                      "value": "<API Key>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placeId"
+                                    },
+                                    {
+                                      "key": "photoReference"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:49:25.000Z",
+                              "updatedAt": "2026-07-28T01:49:25.000Z",
+                              "uid": "35240-241ff611-3ed5-4884-9906-ede3d1aa7842"
+                            },
+                            {
+                              "id": "7c17c803-261e-45ea-a144-48e760f0a507",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/places/:placeId/photos/:photoReference/media?maxHeightPx=<integer>&maxWidthPx=<integer>&skipHttpRedirect=false&key=<API Key>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "places",
+                                    ":placeId",
+                                    "photos",
+                                    ":photoReference",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.",
+                                      "key": "maxHeightPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.",
+                                      "key": "maxWidthPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.",
+                                      "key": "skipHttpRedirect",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Added as a part of security scheme: apikey",
+                                      "key": "key",
+                                      "value": "<API Key>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placeId"
+                                    },
+                                    {
+                                      "key": "photoReference"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:49:25.000Z",
+                              "updatedAt": "2026-07-28T01:49:25.000Z",
+                              "uid": "35240-7c17c803-261e-45ea-a144-48e760f0a507"
+                            },
+                            {
+                              "id": "2a98a698-d034-4ae4-a6d2-7bf52a64bee1",
+                              "name": "Photo not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/places/:placeId/photos/:photoReference/media?maxHeightPx=<integer>&maxWidthPx=<integer>&skipHttpRedirect=false&key=<API Key>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "places",
+                                    ":placeId",
+                                    "photos",
+                                    ":photoReference",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio.",
+                                      "key": "maxHeightPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio.",
+                                      "key": "maxWidthPx",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI.",
+                                      "key": "skipHttpRedirect",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Added as a part of security scheme: apikey",
+                                      "key": "key",
+                                      "value": "<API Key>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placeId"
+                                    },
+                                    {
+                                      "key": "photoReference"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:49:25.000Z",
+                              "updatedAt": "2026-07-28T01:49:25.000Z",
+                              "uid": "35240-2a98a698-d034-4ae4-a6d2-7bf52a64bee1"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:49:25.000Z",
+                          "updatedAt": "2026-07-28T01:49:25.000Z",
+                          "uid": "35240-3ce127b9-41b0-48d4-a6b5-b54c3bcd3b3e"
+                        }
+                      ],
+                      "id": "f499a4be-bd56-42e0-a82e-56ffa32188d7",
+                      "createdAt": "2026-07-28T01:49:25.000Z",
+                      "updatedAt": "2026-07-28T01:49:25.000Z",
+                      "uid": "35240-f499a4be-bd56-42e0-a82e-56ffa32188d7"
+                    }
+                  ],
+                  "id": "4c643e1f-d247-4e92-ac0c-d3ff78065584",
+                  "createdAt": "2026-07-28T01:49:25.000Z",
+                  "updatedAt": "2026-07-28T01:49:25.000Z",
+                  "uid": "35240-4c643e1f-d247-4e92-ac0c-d3ff78065584"
+                }
+              ],
+              "id": "89cb504f-94d2-46ca-a943-0846befbbcde",
+              "createdAt": "2026-07-28T01:49:25.000Z",
+              "updatedAt": "2026-07-28T01:49:25.000Z",
+              "uid": "35240-89cb504f-94d2-46ca-a943-0846befbbcde"
+            }
+          ],
+          "id": "47956ffa-2e0b-4bc1-b0de-f4960a515e81",
+          "createdAt": "2026-07-28T01:49:25.000Z",
+          "updatedAt": "2026-07-28T01:49:25.000Z",
+          "uid": "35240-47956ffa-2e0b-4bc1-b0de-f4960a515e81"
+        }
+      ],
+      "id": "e163a408-b5b0-4978-91ef-985b23623621",
+      "createdAt": "2026-07-28T01:49:25.000Z",
+      "updatedAt": "2026-07-28T01:49:25.000Z",
+      "uid": "35240-e163a408-b5b0-4978-91ef-985b23623621"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}

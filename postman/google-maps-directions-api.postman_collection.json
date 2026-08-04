@@ -1,0 +1,702 @@
+{
+  "info": {
+    "_postman_id": "a3f1f6de-990e-4bf1-9f60-1d55921cac4b",
+    "name": "Google Maps Autocomplete Directions API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:18.000Z",
+    "updatedAt": "2026-07-28T01:49:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3f1f6de-990e-4bf1-9f60-1d55921cac4b"
+  },
+  "item": [
+    {
+      "name": "directions",
+      "item": [
+        {
+          "name": "json",
+          "item": [
+            {
+              "name": "Get Directions Between Two or More Locations",
+              "id": "09f2e7a7-7f6a-4b2e-a041-0a4f6548aca6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directions",
+                    "json"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                      "key": "origin",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                      "key": "destination",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The travel mode for calculating directions. Defaults to driving.",
+                      "key": "mode",
+                      "value": "driving"
+                    },
+                    {
+                      "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                      "key": "waypoints",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                      "key": "alternatives",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                      "key": "avoid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language code in which to return results, where available.",
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies the unit system to use when displaying results.",
+                      "key": "units",
+                      "value": "imperial"
+                    },
+                    {
+                      "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                      "key": "arrival_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                      "key": "departure_time",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                      "key": "traffic_model",
+                      "value": "best_guess"
+                    },
+                    {
+                      "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                      "key": "transit_mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                      "key": "transit_routing_preference",
+                      "value": "fewer_transfers"
+                    },
+                    {
+                      "description": "(Required) Your application's API key.",
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Calculates directions between an origin and a destination, optionally via waypoints. Supports driving, walking, bicycling, and transit modes. Returns one or more routes composed of legs and steps, including distance, duration, polylines, and turn-by-turn instructions."
+              },
+              "response": [
+                {
+                  "id": "5c0f07c6-a489-4cdb-9a9e-09fcce0b265d",
+                  "name": "Directions response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directions",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                          "key": "origin",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The travel mode for calculating directions. Defaults to driving.",
+                          "key": "mode",
+                          "value": "driving"
+                        },
+                        {
+                          "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                          "key": "waypoints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                          "key": "alternatives",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                          "key": "avoid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language code in which to return results, where available.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the unit system to use when displaying results.",
+                          "key": "units",
+                          "value": "imperial"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                          "key": "arrival_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                          "key": "departure_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                          "key": "traffic_model",
+                          "value": "best_guess"
+                        },
+                        {
+                          "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                          "key": "transit_mode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                          "key": "transit_routing_preference",
+                          "value": "fewer_transfers"
+                        },
+                        {
+                          "description": "(Required) Your application's API key.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"ZERO_RESULTS\",\n  \"routes\": [\n    {\n      \"summary\": \"<string>\",\n      \"legs\": [\n        {\n          \"steps\": [\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"TRANSIT\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            },\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"TRANSIT\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            }\n          ],\n          \"distance\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"duration\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"start_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"end_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"start_address\": \"<string>\",\n          \"end_address\": \"<string>\",\n          \"duration_in_traffic\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"arrival_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          },\n          \"departure_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          }\n        },\n        {\n          \"steps\": [\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"BICYCLING\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            },\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"TRANSIT\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            }\n          ],\n          \"distance\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"duration\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"start_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"end_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"start_address\": \"<string>\",\n          \"end_address\": \"<string>\",\n          \"duration_in_traffic\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"arrival_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          },\n          \"departure_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          }\n        }\n      ],\n      \"overview_polyline\": {\n        \"points\": \"<string>\"\n      },\n      \"bounds\": {\n        \"northeast\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        },\n        \"southwest\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        }\n      },\n      \"copyrights\": \"<string>\",\n      \"waypoint_order\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fare\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<number>\",\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"summary\": \"<string>\",\n      \"legs\": [\n        {\n          \"steps\": [\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"TRANSIT\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            },\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"WALKING\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            }\n          ],\n          \"distance\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"duration\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"start_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"end_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"start_address\": \"<string>\",\n          \"end_address\": \"<string>\",\n          \"duration_in_traffic\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"arrival_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          },\n          \"departure_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          }\n        },\n        {\n          \"steps\": [\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"WALKING\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            },\n            {\n              \"html_instructions\": \"<string>\",\n              \"distance\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"duration\": {\n                \"text\": \"<string>\",\n                \"value\": \"<number>\"\n              },\n              \"start_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"end_location\": {\n                \"lat\": \"<double>\",\n                \"lng\": \"<double>\"\n              },\n              \"polyline\": {\n                \"points\": \"<string>\"\n              },\n              \"travel_mode\": \"TRANSIT\",\n              \"maneuver\": \"<string>\",\n              \"transit_details\": {\n                \"arrival_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"departure_stop\": {\n                  \"name\": \"<string>\",\n                  \"location\": {\n                    \"lat\": \"<double>\",\n                    \"lng\": \"<double>\"\n                  }\n                },\n                \"arrival_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"departure_time\": {\n                  \"text\": \"<string>\",\n                  \"value\": \"<long>\",\n                  \"time_zone\": \"<string>\"\n                },\n                \"headsign\": \"<string>\",\n                \"headway\": \"<integer>\",\n                \"num_stops\": \"<integer>\",\n                \"line\": {\n                  \"name\": \"<string>\",\n                  \"short_name\": \"<string>\",\n                  \"color\": \"<string>\",\n                  \"text_color\": \"<string>\",\n                  \"vehicle\": {\n                    \"name\": \"<string>\",\n                    \"type\": \"<string>\",\n                    \"icon\": \"<uri>\"\n                  },\n                  \"agencies\": [\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    },\n                    {\n                      \"name\": \"<string>\",\n                      \"url\": \"<uri>\",\n                      \"phone\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              \"steps\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/Step detected>\"\n                }\n              ]\n            }\n          ],\n          \"distance\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"duration\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"start_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"end_location\": {\n            \"lat\": \"<double>\",\n            \"lng\": \"<double>\"\n          },\n          \"start_address\": \"<string>\",\n          \"end_address\": \"<string>\",\n          \"duration_in_traffic\": {\n            \"text\": \"<string>\",\n            \"value\": \"<number>\"\n          },\n          \"arrival_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          },\n          \"departure_time\": {\n            \"text\": \"<string>\",\n            \"value\": \"<long>\",\n            \"time_zone\": \"<string>\"\n          }\n        }\n      ],\n      \"overview_polyline\": {\n        \"points\": \"<string>\"\n      },\n      \"bounds\": {\n        \"northeast\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        },\n        \"southwest\": {\n          \"lat\": \"<double>\",\n          \"lng\": \"<double>\"\n        }\n      },\n      \"copyrights\": \"<string>\",\n      \"waypoint_order\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fare\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<number>\",\n        \"text\": \"<string>\"\n      }\n    }\n  ],\n  \"geocoded_waypoints\": [\n    {\n      \"geocoder_status\": \"OK\",\n      \"place_id\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"partial_match\": \"<boolean>\"\n    },\n    {\n      \"geocoder_status\": \"OK\",\n      \"place_id\": \"<string>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"partial_match\": \"<boolean>\"\n    }\n  ],\n  \"error_message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:49:18.000Z",
+                  "updatedAt": "2026-07-28T01:49:18.000Z",
+                  "uid": "35240-5c0f07c6-a489-4cdb-9a9e-09fcce0b265d"
+                },
+                {
+                  "id": "d0b6be5b-7f68-4368-8b03-33b99cad6334",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directions",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                          "key": "origin",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The travel mode for calculating directions. Defaults to driving.",
+                          "key": "mode",
+                          "value": "driving"
+                        },
+                        {
+                          "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                          "key": "waypoints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                          "key": "alternatives",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                          "key": "avoid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language code in which to return results, where available.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the unit system to use when displaying results.",
+                          "key": "units",
+                          "value": "imperial"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                          "key": "arrival_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                          "key": "departure_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                          "key": "traffic_model",
+                          "value": "best_guess"
+                        },
+                        {
+                          "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                          "key": "transit_mode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                          "key": "transit_routing_preference",
+                          "value": "fewer_transfers"
+                        },
+                        {
+                          "description": "(Required) Your application's API key.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:18.000Z",
+                  "updatedAt": "2026-07-28T01:49:18.000Z",
+                  "uid": "35240-d0b6be5b-7f68-4368-8b03-33b99cad6334"
+                },
+                {
+                  "id": "dad778c5-ab6e-45d6-98e6-9c1f063769c8",
+                  "name": "Forbidden - API key is invalid or not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directions",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                          "key": "origin",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The travel mode for calculating directions. Defaults to driving.",
+                          "key": "mode",
+                          "value": "driving"
+                        },
+                        {
+                          "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                          "key": "waypoints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                          "key": "alternatives",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                          "key": "avoid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language code in which to return results, where available.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the unit system to use when displaying results.",
+                          "key": "units",
+                          "value": "imperial"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                          "key": "arrival_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                          "key": "departure_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                          "key": "traffic_model",
+                          "value": "best_guess"
+                        },
+                        {
+                          "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                          "key": "transit_mode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                          "key": "transit_routing_preference",
+                          "value": "fewer_transfers"
+                        },
+                        {
+                          "description": "(Required) Your application's API key.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:18.000Z",
+                  "updatedAt": "2026-07-28T01:49:18.000Z",
+                  "uid": "35240-dad778c5-ab6e-45d6-98e6-9c1f063769c8"
+                },
+                {
+                  "id": "efa68e08-2f3e-40fb-8773-ff17ea1c4d72",
+                  "name": "Too many requests - rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directions",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                          "key": "origin",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The travel mode for calculating directions. Defaults to driving.",
+                          "key": "mode",
+                          "value": "driving"
+                        },
+                        {
+                          "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                          "key": "waypoints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                          "key": "alternatives",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                          "key": "avoid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language code in which to return results, where available.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the unit system to use when displaying results.",
+                          "key": "units",
+                          "value": "imperial"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                          "key": "arrival_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                          "key": "departure_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                          "key": "traffic_model",
+                          "value": "best_guess"
+                        },
+                        {
+                          "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                          "key": "transit_mode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                          "key": "transit_routing_preference",
+                          "value": "fewer_transfers"
+                        },
+                        {
+                          "description": "(Required) Your application's API key.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:18.000Z",
+                  "updatedAt": "2026-07-28T01:49:18.000Z",
+                  "uid": "35240-efa68e08-2f3e-40fb-8773-ff17ea1c4d72"
+                },
+                {
+                  "id": "b4b0e810-c099-49a6-a554-fd39ce9b25a1",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/directions/json?origin=<string>&destination=<string>&mode=driving&waypoints=<string>&alternatives=false&avoid=<string>&language=<string>&units=imperial&region=<string>&arrival_time=<long>&departure_time=<long>&traffic_model=best_guess&transit_mode=<string>&transit_routing_preference=fewer_transfers&key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directions",
+                        "json"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the starting point.",
+                          "key": "origin",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The address, place ID (prefixed with place_id:), or latitude/longitude coordinates of the ending point.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The travel mode for calculating directions. Defaults to driving.",
+                          "key": "mode",
+                          "value": "driving"
+                        },
+                        {
+                          "description": "An array of intermediate locations to include along the route, specified as pipe-separated values. Prefix with optimize:true to allow the Directions service to optimize the route by rearranging waypoints in a more efficient order. Each waypoint can be an address, place ID, or lat/lng pair.",
+                          "key": "waypoints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to true, instructs the Directions service to return more than one route alternative when available.",
+                          "key": "alternatives",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Indicates that the calculated route(s) should avoid the indicated features. Pipe-separated list of restrictions.",
+                          "key": "avoid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language code in which to return results, where available.",
+                          "key": "language",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the unit system to use when displaying results.",
+                          "key": "units",
+                          "value": "imperial"
+                        },
+                        {
+                          "description": "The region code, specified as a ccTLD two-character value. Biases results towards a particular region.",
+                          "key": "region",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The desired arrival time for transit directions, specified as seconds since midnight, January 1, 1970 UTC. Cannot be used with departure_time.",
+                          "key": "arrival_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The desired departure time, specified as seconds since midnight, January 1, 1970 UTC. For transit mode this is required if arrival_time is not specified. For driving mode with traffic_model, use \"now\" or a future timestamp.",
+                          "key": "departure_time",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The assumptions to use when calculating travel time in traffic. Only applies when mode is driving and departure_time is specified.",
+                          "key": "traffic_model",
+                          "value": "best_guess"
+                        },
+                        {
+                          "description": "Specifies one or more preferred modes of transit as a pipe-separated list. Only valid when mode is transit.",
+                          "key": "transit_mode",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies preferences for transit routes. Only valid when mode is transit.",
+                          "key": "transit_routing_preference",
+                          "value": "fewer_transfers"
+                        },
+                        {
+                          "description": "(Required) Your application's API key.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:49:18.000Z",
+                  "updatedAt": "2026-07-28T01:49:18.000Z",
+                  "uid": "35240-b4b0e810-c099-49a6-a554-fd39ce9b25a1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:49:18.000Z",
+              "updatedAt": "2026-07-28T01:49:18.000Z",
+              "uid": "35240-09f2e7a7-7f6a-4b2e-a041-0a4f6548aca6"
+            }
+          ],
+          "id": "ab98ba10-a5ee-4d28-afe0-b1ecc6abc331",
+          "createdAt": "2026-07-28T01:49:18.000Z",
+          "updatedAt": "2026-07-28T01:49:18.000Z",
+          "uid": "35240-ab98ba10-a5ee-4d28-afe0-b1ecc6abc331"
+        }
+      ],
+      "id": "52bac38d-8b89-4318-9c50-26dd4a4ed88b",
+      "createdAt": "2026-07-28T01:49:18.000Z",
+      "updatedAt": "2026-07-28T01:49:18.000Z",
+      "uid": "35240-52bac38d-8b89-4318-9c50-26dd4a4ed88b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}

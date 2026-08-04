@@ -1,0 +1,324 @@
+{
+  "info": {
+    "_postman_id": "57ff3e4b-81b3-499d-a1de-e5fbf7185715",
+    "name": "Google Maps Directions Autocomplete Nearby Search API",
+    "description": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:20.000Z",
+    "updatedAt": "2026-07-28T01:49:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57ff3e4b-81b3-499d-a1de-e5fbf7185715"
+  },
+  "item": [
+    {
+      "name": "places:searchNearby",
+      "item": [
+        {
+          "name": "Search for Places Near a Location",
+          "id": "2069830a-f008-4410-aac9-6dd63fba0431",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"DISTANCE\",\n  \"maxResultCount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places:searchNearby",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places:searchNearby"
+              ]
+            },
+            "description": "Returns a list of places near a specified location. You can refine results by specifying included types, excluded types, primary types, and ranking preferences. A location restriction (circle) is required."
+          },
+          "response": [
+            {
+              "id": "d6475103-ce4f-49ec-906b-b4fdd0bae125",
+              "name": "Nearby search response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"DISTANCE\",\n  \"maxResultCount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:searchNearby?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"places\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"displayName\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primaryType\": \"<string>\",\n      \"primaryTypeDisplayName\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"nationalPhoneNumber\": \"<string>\",\n      \"internationalPhoneNumber\": \"<string>\",\n      \"formattedAddress\": \"<string>\",\n      \"shortFormattedAddress\": \"<string>\",\n      \"addressComponents\": [\n        {\n          \"longText\": \"<string>\",\n          \"shortText\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"languageCode\": \"<string>\"\n        },\n        {\n          \"longText\": \"<string>\",\n          \"shortText\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"languageCode\": \"<string>\"\n        }\n      ],\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"viewport\": {\n        \"low\": {\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        },\n        \"high\": {\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        }\n      },\n      \"rating\": \"<double>\",\n      \"userRatingCount\": \"<integer>\",\n      \"googleMapsUri\": \"<uri>\",\n      \"websiteUri\": \"<uri>\",\n      \"regularOpeningHours\": {\n        \"openNow\": \"<boolean>\",\n        \"periods\": [\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          },\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          }\n        ],\n        \"weekdayDescriptions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"currentOpeningHours\": {\n        \"openNow\": \"<boolean>\",\n        \"periods\": [\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          },\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          }\n        ],\n        \"weekdayDescriptions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"priceLevel\": \"PRICE_LEVEL_EXPENSIVE\",\n      \"businessStatus\": \"OPERATIONAL\",\n      \"utcOffsetMinutes\": \"<integer>\",\n      \"reviews\": [\n        {\n          \"name\": \"<string>\",\n          \"relativePublishTimeDescription\": \"<string>\",\n          \"rating\": \"<double>\",\n          \"text\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"originalText\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"authorAttribution\": {\n            \"displayName\": \"<string>\",\n            \"uri\": \"<uri>\",\n            \"photoUri\": \"<uri>\"\n          },\n          \"publishTime\": \"<dateTime>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"relativePublishTimeDescription\": \"<string>\",\n          \"rating\": \"<double>\",\n          \"text\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"originalText\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"authorAttribution\": {\n            \"displayName\": \"<string>\",\n            \"uri\": \"<uri>\",\n            \"photoUri\": \"<uri>\"\n          },\n          \"publishTime\": \"<dateTime>\"\n        }\n      ],\n      \"photos\": [\n        {\n          \"name\": \"<string>\",\n          \"widthPx\": \"<integer>\",\n          \"heightPx\": \"<integer>\",\n          \"authorAttributions\": [\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            },\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"widthPx\": \"<integer>\",\n          \"heightPx\": \"<integer>\",\n          \"authorAttributions\": [\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            },\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"editorialSummary\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"adrFormatAddress\": \"<string>\",\n      \"iconMaskBaseUri\": \"<uri>\",\n      \"iconBackgroundColor\": \"<string>\",\n      \"plusCode\": {\n        \"globalCode\": \"<string>\",\n        \"compoundCode\": \"<string>\"\n      },\n      \"accessibilityOptions\": {\n        \"wheelchairAccessibleParking\": \"<boolean>\",\n        \"wheelchairAccessibleEntrance\": \"<boolean>\",\n        \"wheelchairAccessibleRestroom\": \"<boolean>\",\n        \"wheelchairAccessibleSeating\": \"<boolean>\"\n      },\n      \"parkingOptions\": {\n        \"freeParkingLot\": \"<boolean>\",\n        \"paidParkingLot\": \"<boolean>\",\n        \"freeStreetParking\": \"<boolean>\",\n        \"paidStreetParking\": \"<boolean>\",\n        \"valetParking\": \"<boolean>\",\n        \"freeGarageParking\": \"<boolean>\",\n        \"paidGarageParking\": \"<boolean>\"\n      },\n      \"paymentOptions\": {\n        \"acceptsCreditCards\": \"<boolean>\",\n        \"acceptsDebitCards\": \"<boolean>\",\n        \"acceptsCashOnly\": \"<boolean>\",\n        \"acceptsNfc\": \"<boolean>\"\n      },\n      \"dineIn\": \"<boolean>\",\n      \"takeout\": \"<boolean>\",\n      \"delivery\": \"<boolean>\",\n      \"curbsidePickup\": \"<boolean>\",\n      \"reservable\": \"<boolean>\",\n      \"servesBreakfast\": \"<boolean>\",\n      \"servesLunch\": \"<boolean>\",\n      \"servesDinner\": \"<boolean>\",\n      \"servesBeer\": \"<boolean>\",\n      \"servesWine\": \"<boolean>\",\n      \"servesVegetarianFood\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"displayName\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primaryType\": \"<string>\",\n      \"primaryTypeDisplayName\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"nationalPhoneNumber\": \"<string>\",\n      \"internationalPhoneNumber\": \"<string>\",\n      \"formattedAddress\": \"<string>\",\n      \"shortFormattedAddress\": \"<string>\",\n      \"addressComponents\": [\n        {\n          \"longText\": \"<string>\",\n          \"shortText\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"languageCode\": \"<string>\"\n        },\n        {\n          \"longText\": \"<string>\",\n          \"shortText\": \"<string>\",\n          \"types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"languageCode\": \"<string>\"\n        }\n      ],\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"viewport\": {\n        \"low\": {\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        },\n        \"high\": {\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        }\n      },\n      \"rating\": \"<double>\",\n      \"userRatingCount\": \"<integer>\",\n      \"googleMapsUri\": \"<uri>\",\n      \"websiteUri\": \"<uri>\",\n      \"regularOpeningHours\": {\n        \"openNow\": \"<boolean>\",\n        \"periods\": [\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          },\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          }\n        ],\n        \"weekdayDescriptions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"currentOpeningHours\": {\n        \"openNow\": \"<boolean>\",\n        \"periods\": [\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          },\n          {\n            \"open\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            },\n            \"close\": {\n              \"day\": \"<integer>\",\n              \"hour\": \"<integer>\",\n              \"minute\": \"<integer>\",\n              \"date\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          }\n        ],\n        \"weekdayDescriptions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"priceLevel\": \"PRICE_LEVEL_MODERATE\",\n      \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n      \"utcOffsetMinutes\": \"<integer>\",\n      \"reviews\": [\n        {\n          \"name\": \"<string>\",\n          \"relativePublishTimeDescription\": \"<string>\",\n          \"rating\": \"<double>\",\n          \"text\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"originalText\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"authorAttribution\": {\n            \"displayName\": \"<string>\",\n            \"uri\": \"<uri>\",\n            \"photoUri\": \"<uri>\"\n          },\n          \"publishTime\": \"<dateTime>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"relativePublishTimeDescription\": \"<string>\",\n          \"rating\": \"<double>\",\n          \"text\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"originalText\": {\n            \"text\": \"<string>\",\n            \"languageCode\": \"<string>\"\n          },\n          \"authorAttribution\": {\n            \"displayName\": \"<string>\",\n            \"uri\": \"<uri>\",\n            \"photoUri\": \"<uri>\"\n          },\n          \"publishTime\": \"<dateTime>\"\n        }\n      ],\n      \"photos\": [\n        {\n          \"name\": \"<string>\",\n          \"widthPx\": \"<integer>\",\n          \"heightPx\": \"<integer>\",\n          \"authorAttributions\": [\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            },\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"widthPx\": \"<integer>\",\n          \"heightPx\": \"<integer>\",\n          \"authorAttributions\": [\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            },\n            {\n              \"displayName\": \"<string>\",\n              \"uri\": \"<uri>\",\n              \"photoUri\": \"<uri>\"\n            }\n          ]\n        }\n      ],\n      \"editorialSummary\": {\n        \"text\": \"<string>\",\n        \"languageCode\": \"<string>\"\n      },\n      \"adrFormatAddress\": \"<string>\",\n      \"iconMaskBaseUri\": \"<uri>\",\n      \"iconBackgroundColor\": \"<string>\",\n      \"plusCode\": {\n        \"globalCode\": \"<string>\",\n        \"compoundCode\": \"<string>\"\n      },\n      \"accessibilityOptions\": {\n        \"wheelchairAccessibleParking\": \"<boolean>\",\n        \"wheelchairAccessibleEntrance\": \"<boolean>\",\n        \"wheelchairAccessibleRestroom\": \"<boolean>\",\n        \"wheelchairAccessibleSeating\": \"<boolean>\"\n      },\n      \"parkingOptions\": {\n        \"freeParkingLot\": \"<boolean>\",\n        \"paidParkingLot\": \"<boolean>\",\n        \"freeStreetParking\": \"<boolean>\",\n        \"paidStreetParking\": \"<boolean>\",\n        \"valetParking\": \"<boolean>\",\n        \"freeGarageParking\": \"<boolean>\",\n        \"paidGarageParking\": \"<boolean>\"\n      },\n      \"paymentOptions\": {\n        \"acceptsCreditCards\": \"<boolean>\",\n        \"acceptsDebitCards\": \"<boolean>\",\n        \"acceptsCashOnly\": \"<boolean>\",\n        \"acceptsNfc\": \"<boolean>\"\n      },\n      \"dineIn\": \"<boolean>\",\n      \"takeout\": \"<boolean>\",\n      \"delivery\": \"<boolean>\",\n      \"curbsidePickup\": \"<boolean>\",\n      \"reservable\": \"<boolean>\",\n      \"servesBreakfast\": \"<boolean>\",\n      \"servesLunch\": \"<boolean>\",\n      \"servesDinner\": \"<boolean>\",\n      \"servesBeer\": \"<boolean>\",\n      \"servesWine\": \"<boolean>\",\n      \"servesVegetarianFood\": \"<boolean>\"\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:49:20.000Z",
+              "updatedAt": "2026-07-28T01:49:20.000Z",
+              "uid": "35240-d6475103-ce4f-49ec-906b-b4fdd0bae125"
+            },
+            {
+              "id": "742713e6-6422-4e08-8252-1e680d1fbefe",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"DISTANCE\",\n  \"maxResultCount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:searchNearby?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:20.000Z",
+              "updatedAt": "2026-07-28T01:49:20.000Z",
+              "uid": "35240-742713e6-6422-4e08-8252-1e680d1fbefe"
+            },
+            {
+              "id": "326f8d1f-8a90-49d1-9adb-ea4f2be271cb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"DISTANCE\",\n  \"maxResultCount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:searchNearby?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:20.000Z",
+              "updatedAt": "2026-07-28T01:49:20.000Z",
+              "uid": "35240-326f8d1f-8a90-49d1-9adb-ea4f2be271cb"
+            },
+            {
+              "id": "6ba24f9b-3b73-4525-a8df-ed6d5130db3c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"DISTANCE\",\n  \"maxResultCount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places:searchNearby?key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "query": [
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:20.000Z",
+              "updatedAt": "2026-07-28T01:49:20.000Z",
+              "uid": "35240-6ba24f9b-3b73-4525-a8df-ed6d5130db3c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:49:20.000Z",
+          "updatedAt": "2026-07-28T01:49:20.000Z",
+          "uid": "35240-2069830a-f008-4410-aac9-6dd63fba0431"
+        }
+      ],
+      "id": "6ff9070b-5a89-45b0-9ee2-663f3e6f8850",
+      "createdAt": "2026-07-28T01:49:20.000Z",
+      "updatedAt": "2026-07-28T01:49:20.000Z",
+      "uid": "35240-6ff9070b-5a89-45b0-9ee2-663f3e6f8850"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://maps.googleapis.com/maps/api"
+    }
+  ]
+}
