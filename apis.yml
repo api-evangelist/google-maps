@@ -1083,11 +1083,3 @@ common:
 - type: Arazzo
   url: arazzo/google-maps-address-to-place-details-workflow.yml
   name: Google Maps Platform Enrich a Postal Address into a Full Place Record
-- type: Capabilities
-  url: capabilities/shared/directions.yaml
-- type: Capabilities
-  url: capabilities/shared/geocoding.yaml
-- type: Capabilities
-  url: capabilities/shared/places.yaml
-- type: Capabilities
-  url: capabilities/location-intelligence.yaml
