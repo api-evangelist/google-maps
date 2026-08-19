@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "b7e47fc0-3a92-4507-9b90-eba3fed56437",
+      "name": "Text Search",
+      "description": {
+        "content": "Search for places using a text query",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7bbf54b-08db-461a-9dc5-d3d68ed1a528",
+          "name": "Search for Places Using a Text Query",
+          "request": {
+            "name": "Search for Places Using a Text Query",
+            "description": {
+              "content": "Returns a list of places matching a text query. You can use natural language queries such as \"pizza in New York\" or \"shoe stores near Burlington\". The service responds with a list of places matching the text string and any location bias or restriction that has been set. The service is especially useful for making ambiguous address queries in an automated system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:searchText"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"textQuery\": \"<string>\",\n  \"includedType\": \"<string>\",\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"<string>\",\n  \"maxResultCount\": \"<integer>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"priceLevels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"openNow\": \"<boolean>\",\n  \"minRating\": \"<double>\",\n  \"strictTypeFiltering\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "003d5bc5-0f52-472e-b256-a1dad559f915",
+              "name": "Text search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"places\": [\n    {\n      \"name\": \"Example Title\",\n      \"id\": \"abc123\",\n      \"types\": {},\n      \"primaryType\": \"example_value\",\n      \"nationalPhoneNumber\": \"example_value\",\n      \"internationalPhoneNumber\": \"example_value\",\n      \"formattedAddress\": \"example_value\",\n      \"shortFormattedAddress\": \"example_value\",\n      \"addressComponents\": {},\n      \"rating\": 42.5,\n      \"userRatingCount\": 10,\n      \"googleMapsUri\": \"https://www.example.com\",\n      \"websiteUri\": \"https://www.example.com\",\n      \"priceLevel\": \"PRICE_LEVEL_UNSPECIFIED\",\n      \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n      \"utcOffsetMinutes\": 10,\n      \"reviews\": {},\n      \"photos\": {},\n      \"adrFormatAddress\": \"example_value\",\n      \"iconMaskBaseUri\": \"https://www.example.com\",\n      \"iconBackgroundColor\": \"example_value\",\n      \"dineIn\": true,\n      \"takeout\": true,\n      \"delivery\": true,\n      \"curbsidePickup\": true,\n      \"reservable\": true,\n      \"servesBreakfast\": true,\n      \"servesLunch\": true,\n      \"servesDinner\": true,\n      \"servesBeer\": true,\n      \"servesWine\": true,\n      \"servesVegetarianFood\": true\n    }\n  ],\n  \"nextPageToken\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "401b41c3-0e32-4261-bc79-43d1f672f532",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7e36a03-af21-492d-90e1-5ea2bd958784",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ab3b05d-21ef-4145-9d0e-3cf7161da09f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"textQuery\": \"example_value\",\n  \"includedType\": \"example_value\",\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"RELEVANCE\",\n  \"maxResultCount\": 10,\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"priceLevels\": [\n    \"PRICE_LEVEL_INEXPENSIVE\"\n  ],\n  \"openNow\": true,\n  \"minRating\": 42.5,\n  \"strictTypeFiltering\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb40f227-c811-431e-9624-57d187a8395a",
+    "name": "Google Maps Directions Autocomplete Text Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}

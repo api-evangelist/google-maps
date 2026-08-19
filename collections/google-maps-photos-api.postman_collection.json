@@ -1,0 +1,388 @@
+{
+  "item": [
+    {
+      "id": "90afd927-f388-430e-8d0c-845fff51f9e1",
+      "name": "Photos",
+      "description": {
+        "content": "Access photos associated with places",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e792e4d-33ca-4d2f-a834-f22055b3db2a",
+          "name": "Get a Place Photo",
+          "request": {
+            "name": "Get a Place Photo",
+            "description": {
+              "content": "Returns a photo for a place. After you get the photo resource name from a Place Details or Search response, use this endpoint to get the photo bytes. Specify maxHeightPx or maxWidthPx (or both) to control the image dimensions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                ":placeId",
+                "photos",
+                ":photoReference",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxHeightPx",
+                  "value": "<integer>",
+                  "description": "Maximum height of the image in pixels. Must be between 1 and 4800. If maxHeightPx is set without maxWidthPx, the image is resized to the specified height, preserving aspect ratio."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxWidthPx",
+                  "value": "<integer>",
+                  "description": "Maximum width of the image in pixels. Must be between 1 and 4800. If maxWidthPx is set without maxHeightPx, the image is resized to the specified width, preserving aspect ratio."
+                },
+                {
+                  "disabled": false,
+                  "key": "skipHttpRedirect",
+                  "value": "false",
+                  "description": "If set to true, skip the default HTTP redirect behavior and return a JSON response containing the photo URI."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "placeId",
+                  "description": "(Required) The place ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "photoReference",
+                  "description": "(Required) The photo resource reference"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8955624f-d3ae-4da8-9ce4-ae0d90fe6050",
+              "name": "Photo media",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"photoUri\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e5a574-dac2-4742-80f4-b4273c7f6578",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0b25c19-6ade-41c9-86d2-8cc377d39249",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d69a0a7-129c-4ec0-8e47-74b86deb5458",
+              "name": "Photo not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":placeId",
+                    "photos",
+                    ":photoReference",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxHeightPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "maxWidthPx",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skipHttpRedirect",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "placeId",
+                      "description": "(Required) The place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photoReference",
+                      "description": "(Required) The photo resource reference"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ba09288-e7ec-4452-bee4-81b0a46e70dc",
+    "name": "Google Maps Directions Autocomplete Photos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}

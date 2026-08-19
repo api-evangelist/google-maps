@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Google Maps Directions API",
+    "name": "Google Maps Autocomplete Directions API",
     "version": "1.0"
   },
   "request": {

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Maps Directions Autocomplete Nearby Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nearby Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Places Near a Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://maps.googleapis.com/maps/api/places:searchNearby",
+            "headers": [
+              {
+                "name": "X-Goog-FieldMask",
+                "value": "places.displayName,places.formattedAddress,places.location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of places near a specified location. You can refine results by specifying included types, excluded types, primary types, and ranking preferences. A location restriction (circle) is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

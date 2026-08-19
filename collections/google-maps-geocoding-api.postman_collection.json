@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "58756463-05f4-4434-9f71-6af27e195c90",
+      "id": "0257f02c-0e46-4331-a5b3-98218f64cae0",
       "name": "Geocoding",
       "description": {
         "content": "Forward and reverse geocoding operations",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "ee2460fb-df7a-4304-b486-a93077ba07e5",
+          "id": "910f283f-7bcd-4f8d-8258-fae2ae275fe4",
           "name": "Geocode an Address or Reverse Geocode Coordinates",
           "request": {
             "name": "Geocode an Address or Reverse Geocode Coordinates",
@@ -100,7 +100,7 @@
           },
           "response": [
             {
-              "id": "fd95fa4b-3a81-491b-9292-893d5bb4cefb",
+              "id": "7111c0e5-ec04-4399-b304-3de581ee751a",
               "name": "Geocoding response",
               "originalRequest": {
                 "url": {
@@ -181,7 +181,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "713254e6-8298-4142-8143-1a9bcbe325d0",
+              "id": "6b0c29b1-2a86-4106-ad65-8bd00181811f",
               "name": "Bad request - invalid parameters",
               "originalRequest": {
                 "url": {
@@ -256,7 +256,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "06e8290d-1fd2-454c-a673-14d778e6c773",
+              "id": "d1e34342-c4de-48ae-a59b-456046a47647",
               "name": "Forbidden - API key is invalid or not authorized",
               "originalRequest": {
                 "url": {
@@ -331,7 +331,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "201a6ad9-3bfd-4f1c-9ce6-2c419a55ea90",
+              "id": "b072e6ee-47ab-411f-838e-31a40dbcde25",
               "name": "Too many requests - rate limit exceeded",
               "originalRequest": {
                 "url": {
@@ -406,7 +406,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "afdee9e6-84f6-4c3b-adc9-005beafc3583",
+              "id": "2027f936-2004-4a72-b04d-101ccc5bbaa0",
               "name": "Internal server error",
               "originalRequest": {
                 "url": {
@@ -516,11 +516,11 @@
     ]
   },
   "info": {
-    "_postman_id": "baa48a25-3e4f-4a7e-8a3b-3e30d64bc7f6",
-    "name": "Google Maps Geocoding API",
+    "_postman_id": "63afb4af-3ba9-4d08-92f2-56c4ef0d17f1",
+    "name": "Google Maps Directions Autocomplete Geocoding API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Google Maps Geocoding API converts between addresses and geographic coordinates. It supports forward geocoding (address to coordinates) and reverse geocoding (coordinates to address). Results include formatted addresses, address components, geometry with location coordinates, place IDs, and location type classifications.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
       "type": "text/plain"
     }
   }

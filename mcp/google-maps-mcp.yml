@@ -30,3 +30,9 @@ tools:
 - name: getPlacePhoto
   description: Get a Place Photo
   source_operation: openapi/google-maps-places-api.yml#getPlacePhoto
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

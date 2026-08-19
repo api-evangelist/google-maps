@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Maps Directions Autocomplete Place Details API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Place Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Details About a Place",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://maps.googleapis.com/maps/api/places/:placeId",
+            "headers": [
+              {
+                "name": "X-Goog-FieldMask",
+                "value": "places.displayName,places.formattedAddress,places.location"
+              }
+            ],
+            "params": [
+              {
+                "name": "placeId",
+                "value": "ChIJN1t_tDeuEmsRUsoyG83frY4",
+                "type": "path",
+                "description": "The resource name of a place in the format places/{placeId}."
+              },
+              {
+                "name": "languageCode",
+                "value": "en",
+                "type": "query",
+                "description": "The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages."
+              },
+              {
+                "name": "regionCode",
+                "value": "US",
+                "type": "query",
+                "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing."
+              },
+              {
+                "name": "sessionToken",
+                "value": "",
+                "type": "query",
+                "description": "A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a place identified by its resource name. Use the fieldMask parameter to specify which fields to return. Only fields specified in the field mask are returned; requesting fewer fields reduces cost and improves performance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

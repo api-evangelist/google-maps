@@ -1,0 +1,271 @@
+{
+  "item": [
+    {
+      "id": "ea47255f-1d80-44ea-8475-87f21cd6d76c",
+      "name": "Autocomplete",
+      "description": {
+        "content": "Get place predictions based on text input",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eca3ef9c-bdac-4b86-b873-5fd68add6068",
+          "name": "Get Place Autocomplete Predictions",
+          "request": {
+            "name": "Get Place Autocomplete Predictions",
+            "description": {
+              "content": "Returns predictions for the given input text. Predictions include place predictions and query predictions. Use session tokens to group autocomplete requests for billing purposes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"locationBias\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedRegionCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"origin\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"inputOffset\": \"<integer>\",\n  \"includeQueryPredictions\": \"<boolean>\",\n  \"sessionToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb9d470d-f2cb-4be6-aa1f-fcc7b5c0b39f",
+              "name": "Autocomplete response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suggestions\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd06d8b5-bc7d-4d80-9c3b-3afe919a37a2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ecdfe978-4674-42d7-bb4d-cdbfc53a53fa",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d836528b-5fd1-420f-9089-5bb5b5b3bbf5",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"example_value\",\n  \"locationBias\": {},\n  \"locationRestriction\": {},\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"includedRegionCodes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"origin\": {\n    \"latitude\": 42.5,\n    \"longitude\": 42.5\n  },\n  \"inputOffset\": 10,\n  \"includeQueryPredictions\": true,\n  \"sessionToken\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fab32ad1-f7c2-4b35-ad5a-4522c3738b9e",
+    "name": "Google Maps Directions Autocomplete API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Maps Directions Autocomplete Text Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Places Using a Text Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://maps.googleapis.com/maps/api/places:searchText",
+            "headers": [
+              {
+                "name": "X-Goog-FieldMask",
+                "value": "places.displayName,places.formattedAddress,places.location"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of places matching a text query. You can use natural language queries such as \"pizza in New York\" or \"shoe stores near Burlington\". The service responds with a list of places matching the text string and any location bias or restriction that has been set. The service is especially useful for making ambiguous address queries in an automated system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "fa66fa94-ce8f-47d4-b108-bc39147327d2",
+      "name": "Nearby Search",
+      "description": {
+        "content": "Search for places near a specific location",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6a34210-4420-4a98-99ed-041c46ee468a",
+          "name": "Search for Places Near a Location",
+          "request": {
+            "name": "Search for Places Near a Location",
+            "description": {
+              "content": "Returns a list of places near a specified location. You can refine results by specifying included types, excluded types, primary types, and ranking preferences. A location restriction (circle) is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places:searchNearby"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                "key": "X-Goog-FieldMask",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationRestriction\": {\n    \"circle\": {\n      \"center\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"radius\": \"<double>\"\n    },\n    \"rectangle\": {\n      \"low\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"high\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    }\n  },\n  \"includedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languageCode\": \"<string>\",\n  \"regionCode\": \"<string>\",\n  \"rankPreference\": \"<string>\",\n  \"maxResultCount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8321b484-01cf-4ef7-a6e8-e106b6a6a099",
+              "name": "Nearby search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"places\": [\n    {\n      \"name\": \"Example Title\",\n      \"id\": \"abc123\",\n      \"types\": {},\n      \"primaryType\": \"example_value\",\n      \"nationalPhoneNumber\": \"example_value\",\n      \"internationalPhoneNumber\": \"example_value\",\n      \"formattedAddress\": \"example_value\",\n      \"shortFormattedAddress\": \"example_value\",\n      \"addressComponents\": {},\n      \"rating\": 42.5,\n      \"userRatingCount\": 10,\n      \"googleMapsUri\": \"https://www.example.com\",\n      \"websiteUri\": \"https://www.example.com\",\n      \"priceLevel\": \"PRICE_LEVEL_UNSPECIFIED\",\n      \"businessStatus\": \"BUSINESS_STATUS_UNSPECIFIED\",\n      \"utcOffsetMinutes\": 10,\n      \"reviews\": {},\n      \"photos\": {},\n      \"adrFormatAddress\": \"example_value\",\n      \"iconMaskBaseUri\": \"https://www.example.com\",\n      \"iconBackgroundColor\": \"example_value\",\n      \"dineIn\": true,\n      \"takeout\": true,\n      \"delivery\": true,\n      \"curbsidePickup\": true,\n      \"reservable\": true,\n      \"servesBreakfast\": true,\n      \"servesLunch\": true,\n      \"servesDinner\": true,\n      \"servesBeer\": true,\n      \"servesWine\": true,\n      \"servesVegetarianFood\": true\n    }\n  ],\n  \"nextPageToken\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a138b283-735d-4234-87bb-f924703ba276",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69f4c2bf-de55-4c50-a81d-d650205c928e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3087bb5a-586d-4f28-91e0-8e06c58b238e",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places:searchNearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).",
+                    "key": "X-Goog-FieldMask",
+                    "value": "places.displayName,places.formattedAddress,places.location"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"includedTypes\": [\n    \"example_value\"\n  ],\n  \"excludedTypes\": [\n    \"example_value\"\n  ],\n  \"includedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"excludedPrimaryTypes\": [\n    \"example_value\"\n  ],\n  \"languageCode\": \"example_value\",\n  \"regionCode\": \"example_value\",\n  \"rankPreference\": \"POPULARITY\",\n  \"maxResultCount\": 10,\n  \"locationRestriction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://maps.googleapis.com/maps/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "67e742ee-1f79-4247-b83c-34e16b00851a",
+    "name": "Google Maps Directions Autocomplete Nearby Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.\n\nContact Support:\n Name: Google Maps Platform Team",
+      "type": "text/plain"
+    }
+  }
+}
