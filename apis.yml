@@ -40,6 +40,11 @@ apis:
   - Android
   - Maps
   - Mobile
+  - SDK
+  tags_raw:
+  - Android
+  - Maps
+  - Mobile
   - Sdk
   properties:
   - type: Documentation
@@ -53,6 +58,11 @@ apis:
     Add maps to iOS applications with automatic server access, map display, and gesture handling.
   humanUrl: https://developers.google.com/maps/documentation/ios-sdk
   tags:
+  - iOS
+  - Maps
+  - Mobile
+  - SDK
+  tags_raw:
   - Ios
   - Maps
   - Mobile
@@ -88,6 +98,11 @@ apis:
   - Android
   - Mobile
   - Navigation
+  - SDK
+  tags_raw:
+  - Android
+  - Mobile
+  - Navigation
   - Sdk
   properties:
   - type: Documentation
@@ -102,6 +117,11 @@ apis:
     configuration.
   humanUrl: https://developers.google.com/maps/documentation/navigation/ios-sdk
   tags:
+  - iOS
+  - Mobile
+  - Navigation
+  - SDK
+  tags_raw:
   - Ios
   - Mobile
   - Navigation
@@ -119,6 +139,11 @@ apis:
   - Cross-Platform
   - Flutter
   - Navigation
+  - React Native
+  tags_raw:
+  - Cross-Platform
+  - Flutter
+  - Navigation
   - React-Native
   properties:
   - type: Documentation
@@ -129,6 +154,10 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/places
   baseUrl: https://maps.googleapis.com/maps/api/place
   tags:
+  - Places
+  - POI
+  - Search
+  tags_raw:
   - Places
   - Poi
   - Search
@@ -149,6 +178,11 @@ apis:
   - Android
   - Mobile
   - Places
+  - SDK
+  tags_raw:
+  - Android
+  - Mobile
+  - Places
   - Sdk
   properties:
   - type: Documentation
@@ -158,6 +192,11 @@ apis:
     Access rich place information including names, addresses, ratings, and photos in iOS applications.
   humanUrl: https://developers.google.com/maps/documentation/places/ios-sdk
   tags:
+  - iOS
+  - Mobile
+  - Places
+  - SDK
+  tags_raw:
   - Ios
   - Mobile
   - Places
@@ -247,6 +286,10 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/maps-static
   baseUrl: https://maps.googleapis.com/maps/api/staticmap
   tags:
+  - Image
+  - Maps
+  - Static
+  tags_raw:
   - Images
   - Maps
   - Static
@@ -280,6 +323,10 @@ apis:
   tags:
   - Imagery
   - Panorama
+  - Street View
+  tags_raw:
+  - Imagery
+  - Panorama
   - Street-View
   properties:
   - type: Documentation
@@ -292,6 +339,10 @@ apis:
     URL schemes.
   humanUrl: https://developers.google.com/maps/documentation/urls
   tags:
+  - Cross-Platform
+  - Deep Linking
+  - URLs
+  tags_raw:
   - Cross-Platform
   - Deep-Linking
   - Urls
@@ -318,6 +369,10 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/geolocation
   baseUrl: https://www.googleapis.com/geolocation/v1
   tags:
+  - Cell Towers
+  - Geolocation
+  - Wi-Fi
+  tags_raw:
   - Cell-Towers
   - Geolocation
   - Wifi
@@ -335,6 +390,10 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/timezone
   baseUrl: https://maps.googleapis.com/maps/api/timezone
   tags:
+  - Daylight-Savings
+  - Timezone
+  - UTC Offset
+  tags_raw:
   - Daylight-Savings
   - Timezone
   - Utc-Offset
@@ -372,6 +431,11 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/aerial-view
   baseUrl: https://aerialview.googleapis.com
   tags:
+  - 3D
+  - Aerial
+  - Video
+  - Visualization
+  tags_raw:
   - 3d
   - Aerial
   - Video
@@ -392,6 +456,11 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/tile
   baseUrl: https://tile.googleapis.com/v1
   tags:
+  - 3D
+  - Photorealistic
+  - Rendering
+  - Tiles
+  tags_raw:
   - 3d
   - Photorealistic
   - Rendering
@@ -447,6 +516,11 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/placesinsights
   tags:
   - Analytics
+  - BigQuery
+  - Insights
+  - Places
+  tags_raw:
+  - Analytics
   - Bigquery
   - Insights
   - Places
@@ -462,6 +536,11 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/air-quality
   baseUrl: https://airquality.googleapis.com/v1
   tags:
+  - Air Quality
+  - Environment
+  - Health
+  - Pollution
+  tags_raw:
   - Air-Quality
   - Environment
   - Health
@@ -550,6 +629,11 @@ apis:
   - Analytics
   - Imagery
   - Insights
+  - Street View
+  tags_raw:
+  - Analytics
+  - Imagery
+  - Insights
   - Street-View
   properties:
   - type: Documentation
@@ -566,6 +650,11 @@ apis:
     observations.
   humanUrl: https://developers.google.com/maps/documentation/imagery-insights
   tags:
+  - Artificial Intelligence
+  - Analytics
+  - Imagery
+  - Insights
+  tags_raw:
   - Ai
   - Analytics
   - Imagery
