@@ -13,8 +13,14 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: placesApi
-  url: ../openapi/google-maps-places-api.yml
+- name: photosApi
+  url: ../openapi/google-maps-photos-api-openapi.yml
+  type: openapi
+- name: placeDetailsApi
+  url: ../openapi/google-maps-place-details-api-openapi.yml
+  type: openapi
+- name: textSearchApi
+  url: ../openapi/google-maps-text-search-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: place-search-to-photo

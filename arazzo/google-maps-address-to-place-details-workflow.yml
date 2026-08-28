@@ -15,10 +15,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: geocodingApi
-  url: ../openapi/google-maps-geocoding-api.yml
+  url: ../openapi/google-maps-geocoding-api-openapi.yml
   type: openapi
-- name: placesApi
-  url: ../openapi/google-maps-places-api.yml
+- name: placeDetailsApi
+  url: ../openapi/google-maps-place-details-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: address-to-place-details

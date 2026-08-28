@@ -12,11 +12,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: geocodingApi
-  url: ../openapi/google-maps-geocoding-api.yml
-  type: openapi
 - name: directionsApi
-  url: ../openapi/google-maps-directions-api.yml
+  url: ../openapi/google-maps-directions-api-openapi.yml
+  type: openapi
+- name: geocodingApi
+  url: ../openapi/google-maps-geocoding-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: address-to-route

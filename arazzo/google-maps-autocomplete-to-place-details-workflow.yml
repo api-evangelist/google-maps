@@ -13,8 +13,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: placesApi
-  url: ../openapi/google-maps-places-api.yml
+- name: autocompleteApi
+  url: ../openapi/google-maps-autocomplete-api-openapi.yml
+  type: openapi
+- name: placeDetailsApi
+  url: ../openapi/google-maps-place-details-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: autocomplete-to-place-details

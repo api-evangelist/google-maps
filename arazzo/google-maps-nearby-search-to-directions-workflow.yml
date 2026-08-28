@@ -13,11 +13,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: placesApi
-  url: ../openapi/google-maps-places-api.yml
-  type: openapi
 - name: directionsApi
-  url: ../openapi/google-maps-directions-api.yml
+  url: ../openapi/google-maps-directions-api-openapi.yml
+  type: openapi
+- name: nearbySearchApi
+  url: ../openapi/google-maps-nearby-search-api-openapi.yml
+  type: openapi
+- name: placeDetailsApi
+  url: ../openapi/google-maps-place-details-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: nearby-search-to-directions
