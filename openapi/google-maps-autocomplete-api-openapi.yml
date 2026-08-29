@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Google Maps Directions Autocomplete API
-  description: The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.
+  title: Google Maps Places API (New) Autocomplete API
+  description: The Places API (New) lets you search for place information using HTTP requests. It provides endpoints for text search, nearby search, place details, autocomplete, and place photos. The API returns comprehensive place data including names, addresses, types, ratings, reviews, opening hours, and photos. This is the next-generation Places API built on Google's latest infrastructure.
   version: '1.0'
   termsOfService: https://cloud.google.com/maps-platform/terms
   contact:
@@ -13,8 +13,8 @@ info:
   x-logo:
     url: https://developers.google.com/maps/images/maps-icon.svg
 servers:
-- url: https://maps.googleapis.com/maps/api
-  description: Google Maps Directions API production server
+- url: https://places.googleapis.com/v1
+  description: Google Maps Places API (New) production server
 security:
 - apiKey: []
 tags:
@@ -79,31 +79,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LatLng:
-      type: object
-      description: A latitude/longitude coordinate pair
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Latitude in decimal degrees
-          example: -33.8688
-        longitude:
-          type: number
-          format: double
-          description: Longitude in decimal degrees
-          example: 151.2093
-      required:
-      - latitude
-      - longitude
-    StructuredFormat:
-      type: object
-      description: Contains the main text and secondary text of a prediction
-      properties:
-        mainText:
-          $ref: '#/components/schemas/FormattableText'
-        secondaryText:
-          $ref: '#/components/schemas/FormattableText'
     FormattableText:
       type: object
       description: Text with structured formatting information
@@ -123,6 +98,124 @@ components:
               endOffset:
                 type: integer
           example: []
+    Circle:
+      type: object
+      description: A circle defined by center point and radius
+      properties:
+        center:
+          $ref: '#/components/schemas/LatLng'
+        radius:
+          type: number
+          format: double
+          description: The radius of the circle in meters
+          example: 500.0
+      required:
+      - center
+      - radius
+    Rectangle:
+      type: object
+      description: A rectangular area defined by two corners
+      properties:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    PlacePrediction:
+      type: object
+      description: A place prediction
+      properties:
+        place:
+          type: string
+          description: The resource name of the suggested place in the format places/{placeId}
+          example: example_value
+        placeId:
+          type: string
+          description: The place ID of the suggested place
+          example: '500123'
+        text:
+          $ref: '#/components/schemas/FormattableText'
+        structuredFormat:
+          $ref: '#/components/schemas/StructuredFormat'
+        types:
+          type: array
+          description: List of types that apply to this place
+          items:
+            type: string
+          example: []
+        distanceMeters:
+          type: integer
+          description: The distance in meters from the origin
+          example: 10
+    LocationRestriction:
+      type: object
+      description: The region to restrict results to. Only results inside the restriction are returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    AutocompleteResponse:
+      type: object
+      description: Response from the autocomplete endpoint
+      properties:
+        suggestions:
+          type: array
+          description: List of autocomplete suggestions
+          items:
+            $ref: '#/components/schemas/Suggestion'
+          example: []
+    StructuredFormat:
+      type: object
+      description: Contains the main text and secondary text of a prediction
+      properties:
+        mainText:
+          $ref: '#/components/schemas/FormattableText'
+        secondaryText:
+          $ref: '#/components/schemas/FormattableText'
+    LatLng:
+      type: object
+      description: A latitude/longitude coordinate pair
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: 151.2093
+      required:
+      - latitude
+      - longitude
+    LocationBias:
+      type: object
+      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    Suggestion:
+      type: object
+      description: A single autocomplete suggestion
+      properties:
+        placePrediction:
+          $ref: '#/components/schemas/PlacePrediction'
+        queryPrediction:
+          $ref: '#/components/schemas/QueryPrediction'
+    QueryPrediction:
+      type: object
+      description: A query prediction
+      properties:
+        text:
+          $ref: '#/components/schemas/FormattableText'
+        structuredFormat:
+          $ref: '#/components/schemas/StructuredFormat'
     AutocompleteRequest:
       type: object
       description: Request body for place autocomplete predictions
@@ -171,105 +264,12 @@ components:
           example: example_value
       required:
       - input
-    AutocompleteResponse:
-      type: object
-      description: Response from the autocomplete endpoint
-      properties:
-        suggestions:
-          type: array
-          description: List of autocomplete suggestions
-          items:
-            $ref: '#/components/schemas/Suggestion'
-          example: []
-    Suggestion:
-      type: object
-      description: A single autocomplete suggestion
-      properties:
-        placePrediction:
-          $ref: '#/components/schemas/PlacePrediction'
-        queryPrediction:
-          $ref: '#/components/schemas/QueryPrediction'
-    Circle:
-      type: object
-      description: A circle defined by center point and radius
-      properties:
-        center:
-          $ref: '#/components/schemas/LatLng'
-        radius:
-          type: number
-          format: double
-          description: The radius of the circle in meters
-          example: 500.0
-      required:
-      - center
-      - radius
-    Rectangle:
-      type: object
-      description: A rectangular area defined by two corners
-      properties:
-        low:
-          $ref: '#/components/schemas/LatLng'
-        high:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - low
-      - high
-    LocationBias:
-      type: object
-      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
-      properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
-    QueryPrediction:
-      type: object
-      description: A query prediction
-      properties:
-        text:
-          $ref: '#/components/schemas/FormattableText'
-        structuredFormat:
-          $ref: '#/components/schemas/StructuredFormat'
-    LocationRestriction:
-      type: object
-      description: The region to restrict results to. Only results inside the restriction are returned.
-      properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
-    PlacePrediction:
-      type: object
-      description: A place prediction
-      properties:
-        place:
-          type: string
-          description: The resource name of the suggested place in the format places/{placeId}
-          example: example_value
-        placeId:
-          type: string
-          description: The place ID of the suggested place
-          example: '500123'
-        text:
-          $ref: '#/components/schemas/FormattableText'
-        structuredFormat:
-          $ref: '#/components/schemas/StructuredFormat'
-        types:
-          type: array
-          description: List of types that apply to this place
-          items:
-            type: string
-          example: []
-        distanceMeters:
-          type: integer
-          description: The distance in meters from the origin
-          example: 10
   securitySchemes:
     apiKey:
       type: apiKey
-      name: key
-      in: query
+      name: X-Goog-Api-Key
+      in: header
       description: Google Maps Platform API key
 externalDocs:
-  description: Google Maps Directions API Documentation
-  url: https://developers.google.com/maps/documentation/directions/overview
+  description: Google Maps Places API (New) Documentation
+  url: https://developers.google.com/maps/documentation/places/web-service/op-overview

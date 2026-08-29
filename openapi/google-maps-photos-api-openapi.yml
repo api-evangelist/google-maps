@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Google Maps Directions Autocomplete Photos API
-  description: The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.
+  title: Google Maps Places API (New) Photos API
+  description: The Places API (New) lets you search for place information using HTTP requests. It provides endpoints for text search, nearby search, place details, autocomplete, and place photos. The API returns comprehensive place data including names, addresses, types, ratings, reviews, opening hours, and photos. This is the next-generation Places API built on Google's latest infrastructure.
   version: '1.0'
   termsOfService: https://cloud.google.com/maps-platform/terms
   contact:
@@ -13,8 +13,8 @@ info:
   x-logo:
     url: https://developers.google.com/maps/images/maps-icon.svg
 servers:
-- url: https://maps.googleapis.com/maps/api
-  description: Google Maps Directions API production server
+- url: https://places.googleapis.com/v1
+  description: Google Maps Places API (New) production server
 security:
 - apiKey: []
 tags:
@@ -116,9 +116,9 @@ components:
   securitySchemes:
     apiKey:
       type: apiKey
-      name: key
-      in: query
+      name: X-Goog-Api-Key
+      in: header
       description: Google Maps Platform API key
 externalDocs:
-  description: Google Maps Directions API Documentation
-  url: https://developers.google.com/maps/documentation/directions/overview
+  description: Google Maps Places API (New) Documentation
+  url: https://developers.google.com/maps/documentation/places/web-service/op-overview

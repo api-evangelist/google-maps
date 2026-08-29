@@ -1,18 +1,14 @@
 {
   "provider": "google-maps",
   "sources": [
-    "google-maps-autocomplete-api-openapi.yml",
-    "google-maps-directions-api-openapi.yml",
-    "google-maps-geocoding-api-openapi.yml",
-    "google-maps-nearby-search-api-openapi.yml",
-    "google-maps-photos-api-openapi.yml",
-    "google-maps-place-details-api-openapi.yml",
-    "google-maps-text-search-api-openapi.yml"
+    "_original/google-maps-directions-api.yml",
+    "_original/google-maps-geocoding-api.yml",
+    "_original/google-maps-places-api.yml"
   ],
   "outputs": [
-    "google-maps-autocomplete-api-openapi.yml",
     "google-maps-directions-api-openapi.yml",
     "google-maps-geocoding-api-openapi.yml",
+    "google-maps-autocomplete-api-openapi.yml",
     "google-maps-nearby-search-api-openapi.yml",
     "google-maps-photos-api-openapi.yml",
     "google-maps-place-details-api-openapi.yml",
@@ -21,6 +17,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "google-maps-directions-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "google-maps-geocoding-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "google-maps-places-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "google-maps-autocomplete-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-directions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-geocoding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-nearby-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-photos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-place-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-maps-text-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

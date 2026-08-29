@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Google Maps Directions Autocomplete Geocoding API
-  description: The Google Maps Directions API returns directions between locations using HTTP requests. Directions may specify origins, destinations, and waypoints as text strings (e.g., an address or place name), place IDs, or latitude/longitude coordinates. The API supports driving, walking, bicycling, and transit travel modes with real-time traffic awareness.
+  title: Google Maps Geocoding API
+  description: The Google Maps Geocoding API converts between addresses and geographic coordinates. It supports forward geocoding (address to coordinates) and reverse geocoding (coordinates to address). Results include formatted addresses, address components, geometry with location coordinates, place IDs, and location type classifications.
   version: '1.0'
   termsOfService: https://cloud.google.com/maps-platform/terms
   contact:
@@ -14,7 +14,7 @@ info:
     url: https://developers.google.com/maps/images/maps-icon.svg
 servers:
 - url: https://maps.googleapis.com/maps/api
-  description: Google Maps Directions API production server
+  description: Google Maps Geocoding API production server
 security:
 - apiKey: []
 tags:
@@ -131,6 +131,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Geometry:
+      type: object
+      description: Geometry information about the geocoding result
+      properties:
+        location:
+          $ref: '#/components/schemas/LatLng'
+        location_type:
+          type: string
+          description: The type of location returned. ROOFTOP indicates a precise geocode, RANGE_INTERPOLATED indicates an approximation between two precise points, GEOMETRIC_CENTER indicates a geometric center, and APPROXIMATE indicates an approximation.
+          enum:
+          - ROOFTOP
+          - RANGE_INTERPOLATED
+          - GEOMETRIC_CENTER
+          - APPROXIMATE
+          example: ROOFTOP
+        viewport:
+          $ref: '#/components/schemas/Bounds'
+        bounds:
+          $ref: '#/components/schemas/Bounds'
+      required:
+      - location
+      - location_type
+      - viewport
     LatLng:
       type: object
       description: A latitude/longitude coordinate pair
@@ -172,46 +195,18 @@ components:
       - long_name
       - short_name
       - types
-    Bounds:
+    PlusCode:
       type: object
-      description: A bounding box defined by northeast and southwest corners
+      description: An encoded location reference, derived from latitude and longitude coordinates, that represents an area. Plus codes can be used as a replacement for street addresses in places where they do not exist.
       properties:
-        northeast:
-          $ref: '#/components/schemas/LatLng'
-        southwest:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - northeast
-      - southwest
-    GeocodingResponse:
-      type: object
-      description: The response from the Geocoding API
-      properties:
-        status:
+        global_code:
           type: string
-          description: Status code indicating the outcome of the request.
-          enum:
-          - OK
-          - ZERO_RESULTS
-          - OVER_DAILY_LIMIT
-          - OVER_QUERY_LIMIT
-          - REQUEST_DENIED
-          - INVALID_REQUEST
-          - UNKNOWN_ERROR
-          example: OK
-        results:
-          type: array
-          description: Array of geocoded address results
-          items:
-            $ref: '#/components/schemas/GeocodingResult'
-          example: []
-        error_message:
+          description: The global (full) plus code consisting of area code and local code (e.g., 849VCWC8+R9).
+          example: 849VCWC8+R9
+        compound_code:
           type: string
-          description: Human-readable description of the error, present when status is not OK.
-          example: example_value
-      required:
-      - status
-      - results
+          description: The compound plus code consisting of the local code and a locality description (e.g., CWC8+R9 Mountain View, CA, USA).
+          example: CWC8+R9 Mountain View, CA, USA
     GeocodingResult:
       type: object
       description: A single geocoding result
@@ -251,41 +246,46 @@ components:
       - geometry
       - place_id
       - types
-    Geometry:
+    GeocodingResponse:
       type: object
-      description: Geometry information about the geocoding result
+      description: The response from the Geocoding API
       properties:
-        location:
-          $ref: '#/components/schemas/LatLng'
-        location_type:
+        status:
           type: string
-          description: The type of location returned. ROOFTOP indicates a precise geocode, RANGE_INTERPOLATED indicates an approximation between two precise points, GEOMETRIC_CENTER indicates a geometric center, and APPROXIMATE indicates an approximation.
+          description: Status code indicating the outcome of the request.
           enum:
-          - ROOFTOP
-          - RANGE_INTERPOLATED
-          - GEOMETRIC_CENTER
-          - APPROXIMATE
-          example: ROOFTOP
-        viewport:
-          $ref: '#/components/schemas/Bounds'
-        bounds:
-          $ref: '#/components/schemas/Bounds'
+          - OK
+          - ZERO_RESULTS
+          - OVER_DAILY_LIMIT
+          - OVER_QUERY_LIMIT
+          - REQUEST_DENIED
+          - INVALID_REQUEST
+          - UNKNOWN_ERROR
+          example: OK
+        results:
+          type: array
+          description: Array of geocoded address results
+          items:
+            $ref: '#/components/schemas/GeocodingResult'
+          example: []
+        error_message:
+          type: string
+          description: Human-readable description of the error, present when status is not OK.
+          example: example_value
       required:
-      - location
-      - location_type
-      - viewport
-    PlusCode:
+      - status
+      - results
+    Bounds:
       type: object
-      description: An encoded location reference, derived from latitude and longitude coordinates, that represents an area. Plus codes can be used as a replacement for street addresses in places where they do not exist.
+      description: A bounding box defined by northeast and southwest corners
       properties:
-        global_code:
-          type: string
-          description: The global (full) plus code consisting of area code and local code (e.g., 849VCWC8+R9).
-          example: 849VCWC8+R9
-        compound_code:
-          type: string
-          description: The compound plus code consisting of the local code and a locality description (e.g., CWC8+R9 Mountain View, CA, USA).
-          example: CWC8+R9 Mountain View, CA, USA
+        northeast:
+          $ref: '#/components/schemas/LatLng'
+        southwest:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - northeast
+      - southwest
   securitySchemes:
     apiKey:
       type: apiKey
@@ -293,5 +293,5 @@ components:
       in: query
       description: Google Maps Platform API key
 externalDocs:
-  description: Google Maps Directions API Documentation
-  url: https://developers.google.com/maps/documentation/directions/overview
+  description: Google Maps Geocoding API Documentation
+  url: https://developers.google.com/maps/documentation/geocoding/overview
