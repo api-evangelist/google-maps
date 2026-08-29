@@ -2,6 +2,18 @@ aid: google-maps
 name: Google Maps Platform
 description: Google Maps Platform offers APIs and SDKs for maps, routes, and places
   functionality.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
