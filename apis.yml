@@ -52,7 +52,7 @@ apis:
   - Android
   - Maps
   - Mobile
-  - SDK
+  - Sdk
   tags_raw:
   - Android
   - Maps
@@ -70,10 +70,10 @@ apis:
     Add maps to iOS applications with automatic server access, map display, and gesture handling.
   humanUrl: https://developers.google.com/maps/documentation/ios-sdk
   tags:
-  - iOS
+  - Ios
   - Maps
   - Mobile
-  - SDK
+  - Sdk
   tags_raw:
   - Ios
   - Maps
@@ -110,7 +110,7 @@ apis:
   - Android
   - Mobile
   - Navigation
-  - SDK
+  - Sdk
   tags_raw:
   - Android
   - Mobile
@@ -129,10 +129,10 @@ apis:
     configuration.
   humanUrl: https://developers.google.com/maps/documentation/navigation/ios-sdk
   tags:
-  - iOS
+  - Ios
   - Mobile
   - Navigation
-  - SDK
+  - Sdk
   tags_raw:
   - Ios
   - Mobile
@@ -151,7 +151,7 @@ apis:
   - Cross-Platform
   - Flutter
   - Navigation
-  - React Native
+  - React-Native
   tags_raw:
   - Cross-Platform
   - Flutter
@@ -167,7 +167,7 @@ apis:
   baseUrl: https://maps.googleapis.com/maps/api/place
   tags:
   - Places
-  - POI
+  - Poi
   - Search
   tags_raw:
   - Places
@@ -190,7 +190,7 @@ apis:
   - Android
   - Mobile
   - Places
-  - SDK
+  - Sdk
   tags_raw:
   - Android
   - Mobile
@@ -204,10 +204,10 @@ apis:
     Access rich place information including names, addresses, ratings, and photos in iOS applications.
   humanUrl: https://developers.google.com/maps/documentation/places/ios-sdk
   tags:
-  - iOS
+  - Ios
   - Mobile
   - Places
-  - SDK
+  - Sdk
   tags_raw:
   - Ios
   - Mobile
@@ -335,7 +335,7 @@ apis:
   tags:
   - Imagery
   - Panorama
-  - Street View
+  - Street-View
   tags_raw:
   - Imagery
   - Panorama
@@ -352,7 +352,7 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/urls
   tags:
   - Cross-Platform
-  - Deep Linking
+  - Deep-Linking
   - URLs
   tags_raw:
   - Cross-Platform
@@ -381,9 +381,9 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/geolocation
   baseUrl: https://www.googleapis.com/geolocation/v1
   tags:
-  - Cell Towers
+  - Cell-Towers
   - Geolocation
-  - Wi-Fi
+  - Wifi
   tags_raw:
   - Cell-Towers
   - Geolocation
@@ -404,7 +404,7 @@ apis:
   tags:
   - Daylight-Savings
   - Timezone
-  - UTC Offset
+  - Utc-Offset
   tags_raw:
   - Daylight-Savings
   - Timezone
@@ -528,7 +528,7 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/placesinsights
   tags:
   - Analytics
-  - BigQuery
+  - Bigquery
   - Insights
   - Places
   tags_raw:
@@ -548,7 +548,7 @@ apis:
   humanUrl: https://developers.google.com/maps/documentation/air-quality
   baseUrl: https://airquality.googleapis.com/v1
   tags:
-  - Air Quality
+  - Air-Quality
   - Environment
   - Health
   - Pollution
@@ -641,7 +641,7 @@ apis:
   - Analytics
   - Imagery
   - Insights
-  - Street View
+  - Street-View
   tags_raw:
   - Analytics
   - Imagery
