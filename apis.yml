@@ -1055,6 +1055,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Website
+  url: https://www.google.com/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/google-maps-platform/overview
 - type: AgenticAccess
@@ -1185,3 +1187,5 @@ common:
 - type: Arazzo
   url: arazzo/google-maps-address-to-place-details-workflow.yml
   name: Google Maps Platform Enrich a Postal Address into a Full Place Record
+x-parent: google
+x-relationship: product
