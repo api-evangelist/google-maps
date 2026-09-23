@@ -79,25 +79,30 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    FormattableText:
+    QueryPrediction:
       type: object
-      description: Text with structured formatting information
+      description: A query prediction
       properties:
         text:
-          type: string
-          description: The full text string
-          example: example_value
-        matches:
-          type: array
-          description: List of string ranges identifying where the input request matched in the text
-          items:
-            type: object
-            properties:
-              startOffset:
-                type: integer
-              endOffset:
-                type: integer
-          example: []
+          $ref: '#/components/schemas/FormattableText'
+        structuredFormat:
+          $ref: '#/components/schemas/StructuredFormat'
+    Suggestion:
+      type: object
+      description: A single autocomplete suggestion
+      properties:
+        placePrediction:
+          $ref: '#/components/schemas/PlacePrediction'
+        queryPrediction:
+          $ref: '#/components/schemas/QueryPrediction'
+    LocationRestriction:
+      type: object
+      description: The region to restrict results to. Only results inside the restriction are returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
     Circle:
       type: object
       description: A circle defined by center point and radius
@@ -112,17 +117,14 @@ components:
       required:
       - center
       - radius
-    Rectangle:
+    StructuredFormat:
       type: object
-      description: A rectangular area defined by two corners
+      description: Contains the main text and secondary text of a prediction
       properties:
-        low:
-          $ref: '#/components/schemas/LatLng'
-        high:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - low
-      - high
+        mainText:
+          $ref: '#/components/schemas/FormattableText'
+        secondaryText:
+          $ref: '#/components/schemas/FormattableText'
     PlacePrediction:
       type: object
       description: A place prediction
@@ -149,32 +151,6 @@ components:
           type: integer
           description: The distance in meters from the origin
           example: 10
-    LocationRestriction:
-      type: object
-      description: The region to restrict results to. Only results inside the restriction are returned.
-      properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
-    AutocompleteResponse:
-      type: object
-      description: Response from the autocomplete endpoint
-      properties:
-        suggestions:
-          type: array
-          description: List of autocomplete suggestions
-          items:
-            $ref: '#/components/schemas/Suggestion'
-          example: []
-    StructuredFormat:
-      type: object
-      description: Contains the main text and secondary text of a prediction
-      properties:
-        mainText:
-          $ref: '#/components/schemas/FormattableText'
-        secondaryText:
-          $ref: '#/components/schemas/FormattableText'
     LatLng:
       type: object
       description: A latitude/longitude coordinate pair
@@ -192,30 +168,17 @@ components:
       required:
       - latitude
       - longitude
-    LocationBias:
+    Rectangle:
       type: object
-      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
+      description: A rectangular area defined by two corners
       properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
-    Suggestion:
-      type: object
-      description: A single autocomplete suggestion
-      properties:
-        placePrediction:
-          $ref: '#/components/schemas/PlacePrediction'
-        queryPrediction:
-          $ref: '#/components/schemas/QueryPrediction'
-    QueryPrediction:
-      type: object
-      description: A query prediction
-      properties:
-        text:
-          $ref: '#/components/schemas/FormattableText'
-        structuredFormat:
-          $ref: '#/components/schemas/StructuredFormat'
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
     AutocompleteRequest:
       type: object
       description: Request body for place autocomplete predictions
@@ -264,6 +227,43 @@ components:
           example: example_value
       required:
       - input
+    AutocompleteResponse:
+      type: object
+      description: Response from the autocomplete endpoint
+      properties:
+        suggestions:
+          type: array
+          description: List of autocomplete suggestions
+          items:
+            $ref: '#/components/schemas/Suggestion'
+          example: []
+    FormattableText:
+      type: object
+      description: Text with structured formatting information
+      properties:
+        text:
+          type: string
+          description: The full text string
+          example: example_value
+        matches:
+          type: array
+          description: List of string ranges identifying where the input request matched in the text
+          items:
+            type: object
+            properties:
+              startOffset:
+                type: integer
+              endOffset:
+                type: integer
+          example: []
+    LocationBias:
+      type: object
+      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
   securitySchemes:
     apiKey:
       type: apiKey

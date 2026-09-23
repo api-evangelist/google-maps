@@ -21,7 +21,8 @@
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "google-maps-directions-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "google-maps-geocoding-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "google-maps-places-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "google-maps-places-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "google-maps-autocomplete-api-openapi.yml: previously refined output, superseded by openapi/_original/",

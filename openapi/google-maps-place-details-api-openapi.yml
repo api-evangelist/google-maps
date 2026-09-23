@@ -155,46 +155,73 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    regionCode:
+      name: regionCode
+      in: query
+      description: The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.
+      schema:
+        type: string
+      example: US
+    fieldMask:
+      name: X-Goog-FieldMask
+      in: header
+      required: true
+      description: 'A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).'
+      schema:
+        type: string
+      example: places.displayName,places.formattedAddress,places.location
+    languageCode:
+      name: languageCode
+      in: query
+      description: The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.
+      schema:
+        type: string
+      example: en
+    sessionToken:
+      name: sessionToken
+      in: query
+      description: A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.
+      schema:
+        type: string
   schemas:
-    Photo:
+    Point:
       type: object
-      description: A photo associated with a place
+      description: A point in time on a weekly schedule
       properties:
-        name:
-          type: string
-          description: The resource name of the photo in the format places/{placeId}/photos/{photoReference}
-          example: Example Title
-        widthPx:
+        day:
           type: integer
-          description: Maximum available width in pixels
+          description: Day of the week (0=Sunday, 6=Saturday)
+          minimum: 0
+          maximum: 6
           example: 10
-        heightPx:
+        hour:
           type: integer
-          description: Maximum available height in pixels
+          description: Hour in 24-hour format (0-23)
+          minimum: 0
+          maximum: 23
           example: 10
-        authorAttributions:
-          type: array
-          description: The authors of this photo
-          items:
-            $ref: '#/components/schemas/AuthorAttribution'
-          example: []
-    LatLng:
-      type: object
-      description: A latitude/longitude coordinate pair
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Latitude in decimal degrees
-          example: -33.8688
-        longitude:
-          type: number
-          format: double
-          description: Longitude in decimal degrees
-          example: 151.2093
+        minute:
+          type: integer
+          description: Minute (0-59)
+          minimum: 0
+          maximum: 59
+          example: 10
+        date:
+          type: object
+          description: A specific date for current opening hours
+          properties:
+            year:
+              type: integer
+            month:
+              type: integer
+            day:
+              type: integer
+          example: example_value
       required:
-      - latitude
-      - longitude
+      - day
+      - hour
+      - minute
     OpeningHours:
       type: object
       description: Information about the opening hours of a place
@@ -217,6 +244,153 @@ components:
           example:
           - 'Monday: 9:00 AM - 5:00 PM'
           - 'Tuesday: 9:00 AM - 5:00 PM'
+    PlusCode:
+      type: object
+      description: A plus code (Open Location Code)
+      properties:
+        globalCode:
+          type: string
+          description: The full plus code (global code)
+          example: 4RRH57G3+6R
+        compoundCode:
+          type: string
+          description: The compound plus code with locality reference
+          example: 57G3+6R Pyrmont, New South Wales, Australia
+    Review:
+      type: object
+      description: A review of a place submitted by a user
+      properties:
+        name:
+          type: string
+          description: The resource name of the review
+          example: Example Title
+        relativePublishTimeDescription:
+          type: string
+          description: A human-readable relative time description
+          example: a month ago
+        rating:
+          type: number
+          format: double
+          description: The star rating of this review (1.0-5.0)
+          minimum: 1.0
+          maximum: 5.0
+          example: 42.5
+        text:
+          $ref: '#/components/schemas/LocalizedText'
+        originalText:
+          $ref: '#/components/schemas/LocalizedText'
+        authorAttribution:
+          $ref: '#/components/schemas/AuthorAttribution'
+        publishTime:
+          type: string
+          format: date-time
+          description: Timestamp of when the review was published
+          example: '2026-01-15T10:30:00Z'
+    PaymentOptions:
+      type: object
+      description: Payment options accepted by a place
+      properties:
+        acceptsCreditCards:
+          type: boolean
+          example: true
+        acceptsDebitCards:
+          type: boolean
+          example: true
+        acceptsCashOnly:
+          type: boolean
+          example: true
+        acceptsNfc:
+          type: boolean
+          example: true
+    Viewport:
+      type: object
+      description: A rectangular viewport defined by two diagonally opposite points
+      properties:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    LatLng:
+      type: object
+      description: A latitude/longitude coordinate pair
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: 151.2093
+      required:
+      - latitude
+      - longitude
+    LocalizedText:
+      type: object
+      description: A localized text string
+      properties:
+        text:
+          type: string
+          description: The localized text value
+          example: example_value
+        languageCode:
+          type: string
+          description: BCP-47 language code of the text
+          example: example_value
+      required:
+      - text
+    ParkingOptions:
+      type: object
+      description: Parking options at a place
+      properties:
+        freeParkingLot:
+          type: boolean
+          example: true
+        paidParkingLot:
+          type: boolean
+          example: true
+        freeStreetParking:
+          type: boolean
+          example: true
+        paidStreetParking:
+          type: boolean
+          example: true
+        valetParking:
+          type: boolean
+          example: true
+        freeGarageParking:
+          type: boolean
+          example: true
+        paidGarageParking:
+          type: boolean
+          example: true
+    PlaceAddressComponent:
+      type: object
+      description: An address component of a place
+      properties:
+        longText:
+          type: string
+          description: The full text of the address component
+          example: example_value
+        shortText:
+          type: string
+          description: An abbreviated text for the address component
+          example: example_value
+        types:
+          type: array
+          description: The types of this address component
+          items:
+            type: string
+          example: []
+        languageCode:
+          type: string
+          description: The language code for this component
+          example: example_value
     AccessibilityOptions:
       type: object
       description: Accessibility features of a place
@@ -233,6 +407,56 @@ components:
         wheelchairAccessibleSeating:
           type: boolean
           example: true
+    AuthorAttribution:
+      type: object
+      description: Information about the author of a review
+      properties:
+        displayName:
+          type: string
+          description: Name of the review author
+          example: example_value
+        uri:
+          type: string
+          format: uri
+          description: URI of the author's profile
+          example: https://www.example.com
+        photoUri:
+          type: string
+          format: uri
+          description: URI of the author's profile photo
+          example: https://www.example.com
+    Photo:
+      type: object
+      description: A photo associated with a place
+      properties:
+        name:
+          type: string
+          description: The resource name of the photo in the format places/{placeId}/photos/{photoReference}
+          example: Example Title
+        widthPx:
+          type: integer
+          description: Maximum available width in pixels
+          example: 10
+        heightPx:
+          type: integer
+          description: Maximum available height in pixels
+          example: 10
+        authorAttributions:
+          type: array
+          description: The authors of this photo
+          items:
+            $ref: '#/components/schemas/AuthorAttribution'
+          example: []
+    Period:
+      type: object
+      description: A period the place is open during the week
+      properties:
+        open:
+          $ref: '#/components/schemas/Point'
+        close:
+          $ref: '#/components/schemas/Point'
+      required:
+      - open
     Place:
       type: object
       description: A complete place representation from the Places API (New)
@@ -411,230 +635,6 @@ components:
         servesVegetarianFood:
           type: boolean
           example: true
-    AuthorAttribution:
-      type: object
-      description: Information about the author of a review
-      properties:
-        displayName:
-          type: string
-          description: Name of the review author
-          example: example_value
-        uri:
-          type: string
-          format: uri
-          description: URI of the author's profile
-          example: https://www.example.com
-        photoUri:
-          type: string
-          format: uri
-          description: URI of the author's profile photo
-          example: https://www.example.com
-    ParkingOptions:
-      type: object
-      description: Parking options at a place
-      properties:
-        freeParkingLot:
-          type: boolean
-          example: true
-        paidParkingLot:
-          type: boolean
-          example: true
-        freeStreetParking:
-          type: boolean
-          example: true
-        paidStreetParking:
-          type: boolean
-          example: true
-        valetParking:
-          type: boolean
-          example: true
-        freeGarageParking:
-          type: boolean
-          example: true
-        paidGarageParking:
-          type: boolean
-          example: true
-    PlusCode:
-      type: object
-      description: A plus code (Open Location Code)
-      properties:
-        globalCode:
-          type: string
-          description: The full plus code (global code)
-          example: 4RRH57G3+6R
-        compoundCode:
-          type: string
-          description: The compound plus code with locality reference
-          example: 57G3+6R Pyrmont, New South Wales, Australia
-    Period:
-      type: object
-      description: A period the place is open during the week
-      properties:
-        open:
-          $ref: '#/components/schemas/Point'
-        close:
-          $ref: '#/components/schemas/Point'
-      required:
-      - open
-    LocalizedText:
-      type: object
-      description: A localized text string
-      properties:
-        text:
-          type: string
-          description: The localized text value
-          example: example_value
-        languageCode:
-          type: string
-          description: BCP-47 language code of the text
-          example: example_value
-      required:
-      - text
-    Viewport:
-      type: object
-      description: A rectangular viewport defined by two diagonally opposite points
-      properties:
-        low:
-          $ref: '#/components/schemas/LatLng'
-        high:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - low
-      - high
-    PlaceAddressComponent:
-      type: object
-      description: An address component of a place
-      properties:
-        longText:
-          type: string
-          description: The full text of the address component
-          example: example_value
-        shortText:
-          type: string
-          description: An abbreviated text for the address component
-          example: example_value
-        types:
-          type: array
-          description: The types of this address component
-          items:
-            type: string
-          example: []
-        languageCode:
-          type: string
-          description: The language code for this component
-          example: example_value
-    PaymentOptions:
-      type: object
-      description: Payment options accepted by a place
-      properties:
-        acceptsCreditCards:
-          type: boolean
-          example: true
-        acceptsDebitCards:
-          type: boolean
-          example: true
-        acceptsCashOnly:
-          type: boolean
-          example: true
-        acceptsNfc:
-          type: boolean
-          example: true
-    Point:
-      type: object
-      description: A point in time on a weekly schedule
-      properties:
-        day:
-          type: integer
-          description: Day of the week (0=Sunday, 6=Saturday)
-          minimum: 0
-          maximum: 6
-          example: 10
-        hour:
-          type: integer
-          description: Hour in 24-hour format (0-23)
-          minimum: 0
-          maximum: 23
-          example: 10
-        minute:
-          type: integer
-          description: Minute (0-59)
-          minimum: 0
-          maximum: 59
-          example: 10
-        date:
-          type: object
-          description: A specific date for current opening hours
-          properties:
-            year:
-              type: integer
-            month:
-              type: integer
-            day:
-              type: integer
-          example: example_value
-      required:
-      - day
-      - hour
-      - minute
-    Review:
-      type: object
-      description: A review of a place submitted by a user
-      properties:
-        name:
-          type: string
-          description: The resource name of the review
-          example: Example Title
-        relativePublishTimeDescription:
-          type: string
-          description: A human-readable relative time description
-          example: a month ago
-        rating:
-          type: number
-          format: double
-          description: The star rating of this review (1.0-5.0)
-          minimum: 1.0
-          maximum: 5.0
-          example: 42.5
-        text:
-          $ref: '#/components/schemas/LocalizedText'
-        originalText:
-          $ref: '#/components/schemas/LocalizedText'
-        authorAttribution:
-          $ref: '#/components/schemas/AuthorAttribution'
-        publishTime:
-          type: string
-          format: date-time
-          description: Timestamp of when the review was published
-          example: '2026-01-15T10:30:00Z'
-  parameters:
-    sessionToken:
-      name: sessionToken
-      in: query
-      description: A random string that groups an autocomplete session for billing. The session begins with an autocomplete request and concludes with a place details or address validation call.
-      schema:
-        type: string
-    fieldMask:
-      name: X-Goog-FieldMask
-      in: header
-      required: true
-      description: 'A comma-separated list of place data fields to return. Use field masking to specify which fields to include in the response. For example: places.displayName,places.formattedAddress. Use * to return all fields (not recommended in production).'
-      schema:
-        type: string
-      example: places.displayName,places.formattedAddress,places.location
-    languageCode:
-      name: languageCode
-      in: query
-      description: The language code (BCP-47) to use for returning results. If not specified, results may be in mixed languages.
-      schema:
-        type: string
-      example: en
-    regionCode:
-      name: regionCode
-      in: query
-      description: The Unicode country/region code (CLDR) of the location where the request is coming from. Used for formatting and biasing.
-      schema:
-        type: string
-      example: US
   securitySchemes:
     apiKey:
       type: apiKey
