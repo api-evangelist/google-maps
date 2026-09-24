@@ -42,6 +42,7 @@ tags:
 - Places
 - Routing
 - Solar
+- Geospatial
 apis:
 - name: Maps SDK for Android
   description: >-
@@ -717,8 +718,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -767,8 +766,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -817,8 +814,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -867,8 +862,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -917,8 +910,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -967,8 +958,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
@@ -1017,8 +1006,6 @@ apis:
     url: https://developers.google.com/maps/documentation/javascript/releases
   - type: Support
     url: https://developers.google.com/maps/documentation/javascript/support
-  - type: GraphQL
-    url: graphql/google-maps-graphql.md
   - type: Documentation
     url: https://developers.google.com/maps/documentation/geocoding/overview
   - type: GettingStarted
