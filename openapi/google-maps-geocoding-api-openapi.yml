@@ -131,29 +131,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PlusCode:
+    LatLng:
       type: object
-      description: An encoded location reference, derived from latitude and longitude coordinates, that represents an area. Plus codes can be used as a replacement for street addresses in places where they do not exist.
+      description: A latitude/longitude coordinate pair
       properties:
-        global_code:
-          type: string
-          description: The global (full) plus code consisting of area code and local code (e.g., 849VCWC8+R9).
-          example: 849VCWC8+R9
-        compound_code:
-          type: string
-          description: The compound plus code consisting of the local code and a locality description (e.g., CWC8+R9 Mountain View, CA, USA).
-          example: CWC8+R9 Mountain View, CA, USA
-    Bounds:
-      type: object
-      description: A bounding box defined by northeast and southwest corners
-      properties:
-        northeast:
-          $ref: '#/components/schemas/LatLng'
-        southwest:
-          $ref: '#/components/schemas/LatLng'
+        lat:
+          type: number
+          format: double
+          description: Latitude in decimal degrees
+          example: 37.4224764
+        lng:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: -122.0842499
       required:
-      - northeast
-      - southwest
+      - lat
+      - lng
     GeocodingResult:
       type: object
       description: A single geocoding result
@@ -193,23 +187,6 @@ components:
       - geometry
       - place_id
       - types
-    LatLng:
-      type: object
-      description: A latitude/longitude coordinate pair
-      properties:
-        lat:
-          type: number
-          format: double
-          description: Latitude in decimal degrees
-          example: 37.4224764
-        lng:
-          type: number
-          format: double
-          description: Longitude in decimal degrees
-          example: -122.0842499
-      required:
-      - lat
-      - lng
     GeocodingResponse:
       type: object
       description: The response from the Geocoding API
@@ -263,6 +240,17 @@ components:
       - long_name
       - short_name
       - types
+    Bounds:
+      type: object
+      description: A bounding box defined by northeast and southwest corners
+      properties:
+        northeast:
+          $ref: '#/components/schemas/LatLng'
+        southwest:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - northeast
+      - southwest
     Geometry:
       type: object
       description: Geometry information about the geocoding result
@@ -286,6 +274,18 @@ components:
       - location
       - location_type
       - viewport
+    PlusCode:
+      type: object
+      description: An encoded location reference, derived from latitude and longitude coordinates, that represents an area. Plus codes can be used as a replacement for street addresses in places where they do not exist.
+      properties:
+        global_code:
+          type: string
+          description: The global (full) plus code consisting of area code and local code (e.g., 849VCWC8+R9).
+          example: 849VCWC8+R9
+        compound_code:
+          type: string
+          description: The compound plus code consisting of the local code and a locality description (e.g., CWC8+R9 Mountain View, CA, USA).
+          example: CWC8+R9 Mountain View, CA, USA
   securitySchemes:
     apiKey:
       type: apiKey

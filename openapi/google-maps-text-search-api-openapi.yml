@@ -111,78 +111,45 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SearchPlacesResponse:
+    Viewport:
       type: object
-      description: Response from text search and nearby search
+      description: A rectangular viewport defined by two diagonally opposite points
       properties:
-        places:
-          type: array
-          description: List of places matching the search criteria
-          items:
-            $ref: '#/components/schemas/Place'
-          example: []
-        nextPageToken:
-          type: string
-          description: A token that can be sent as pageToken in a subsequent request to retrieve the next page of results.
-          example: example_value
-    PlusCode:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    Circle:
       type: object
-      description: A plus code (Open Location Code)
+      description: A circle defined by center point and radius
       properties:
-        globalCode:
-          type: string
-          description: The full plus code (global code)
-          example: 4RRH57G3+6R
-        compoundCode:
-          type: string
-          description: The compound plus code with locality reference
-          example: 57G3+6R Pyrmont, New South Wales, Australia
-    PlaceAddressComponent:
+        center:
+          $ref: '#/components/schemas/LatLng'
+        radius:
+          type: number
+          format: double
+          description: The radius of the circle in meters
+          example: 500.0
+      required:
+      - center
+      - radius
+    LocalizedText:
       type: object
-      description: An address component of a place
+      description: A localized text string
       properties:
-        longText:
+        text:
           type: string
-          description: The full text of the address component
+          description: The localized text value
           example: example_value
-        shortText:
-          type: string
-          description: An abbreviated text for the address component
-          example: example_value
-        types:
-          type: array
-          description: The types of this address component
-          items:
-            type: string
-          example: []
         languageCode:
           type: string
-          description: The language code for this component
+          description: BCP-47 language code of the text
           example: example_value
-    AccessibilityOptions:
-      type: object
-      description: Accessibility features of a place
-      properties:
-        wheelchairAccessibleParking:
-          type: boolean
-          example: true
-        wheelchairAccessibleEntrance:
-          type: boolean
-          example: true
-        wheelchairAccessibleRestroom:
-          type: boolean
-          example: true
-        wheelchairAccessibleSeating:
-          type: boolean
-          example: true
-    LocationRestriction:
-      type: object
-      description: The region to restrict results to. Only results inside the restriction are returned.
-      properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
+      required:
+      - text
     Place:
       type: object
       description: A complete place representation from the Places API (New)
@@ -361,38 +328,95 @@ components:
         servesVegetarianFood:
           type: boolean
           example: true
-    LocalizedText:
+    AccessibilityOptions:
       type: object
-      description: A localized text string
+      description: Accessibility features of a place
       properties:
-        text:
-          type: string
-          description: The localized text value
-          example: example_value
-        languageCode:
-          type: string
-          description: BCP-47 language code of the text
-          example: example_value
+        wheelchairAccessibleParking:
+          type: boolean
+          example: true
+        wheelchairAccessibleEntrance:
+          type: boolean
+          example: true
+        wheelchairAccessibleRestroom:
+          type: boolean
+          example: true
+        wheelchairAccessibleSeating:
+          type: boolean
+          example: true
+    LocationRestriction:
+      type: object
+      description: The region to restrict results to. Only results inside the restriction are returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    LatLng:
+      type: object
+      description: A latitude/longitude coordinate pair
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: 151.2093
       required:
-      - text
-    AuthorAttribution:
+      - latitude
+      - longitude
+    SearchPlacesResponse:
       type: object
-      description: Information about the author of a review
+      description: Response from text search and nearby search
       properties:
-        displayName:
+        places:
+          type: array
+          description: List of places matching the search criteria
+          items:
+            $ref: '#/components/schemas/Place'
+          example: []
+        nextPageToken:
           type: string
-          description: Name of the review author
+          description: A token that can be sent as pageToken in a subsequent request to retrieve the next page of results.
           example: example_value
-        uri:
+    OpeningHours:
+      type: object
+      description: Information about the opening hours of a place
+      properties:
+        openNow:
+          type: boolean
+          description: Whether the place is currently open
+          example: true
+        periods:
+          type: array
+          description: The periods that this place is open during the week. Periods covering a full day have an open event with day 0 and time 0000, and no close event.
+          items:
+            $ref: '#/components/schemas/Period'
+          example: []
+        weekdayDescriptions:
+          type: array
+          description: Localized strings describing the opening hours for each day of the week
+          items:
+            type: string
+          example:
+          - 'Monday: 9:00 AM - 5:00 PM'
+          - 'Tuesday: 9:00 AM - 5:00 PM'
+    PlusCode:
+      type: object
+      description: A plus code (Open Location Code)
+      properties:
+        globalCode:
           type: string
-          format: uri
-          description: URI of the author's profile
-          example: https://www.example.com
-        photoUri:
+          description: The full plus code (global code)
+          example: 4RRH57G3+6R
+        compoundCode:
           type: string
-          format: uri
-          description: URI of the author's profile photo
-          example: https://www.example.com
+          description: The compound plus code with locality reference
+          example: 57G3+6R Pyrmont, New South Wales, Australia
     Rectangle:
       type: object
       description: A rectangular area defined by two corners
@@ -404,61 +428,28 @@ components:
       required:
       - low
       - high
-    Point:
+    PlaceAddressComponent:
       type: object
-      description: A point in time on a weekly schedule
+      description: An address component of a place
       properties:
-        day:
-          type: integer
-          description: Day of the week (0=Sunday, 6=Saturday)
-          minimum: 0
-          maximum: 6
-          example: 10
-        hour:
-          type: integer
-          description: Hour in 24-hour format (0-23)
-          minimum: 0
-          maximum: 23
-          example: 10
-        minute:
-          type: integer
-          description: Minute (0-59)
-          minimum: 0
-          maximum: 59
-          example: 10
-        date:
-          type: object
-          description: A specific date for current opening hours
-          properties:
-            year:
-              type: integer
-            month:
-              type: integer
-            day:
-              type: integer
+        longText:
+          type: string
+          description: The full text of the address component
           example: example_value
-      required:
-      - day
-      - hour
-      - minute
-    LocationBias:
-      type: object
-      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
-      properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
-    Period:
-      type: object
-      description: A period the place is open during the week
-      properties:
-        open:
-          $ref: '#/components/schemas/Point'
-        close:
-          $ref: '#/components/schemas/Point'
-      required:
-      - open
+        shortText:
+          type: string
+          description: An abbreviated text for the address component
+          example: example_value
+        types:
+          type: array
+          description: The types of this address component
+          items:
+            type: string
+          example: []
+        languageCode:
+          type: string
+          description: The language code for this component
+          example: example_value
     SearchTextRequest:
       type: object
       description: Request body for text search
@@ -524,45 +515,24 @@ components:
           example: true
       required:
       - textQuery
-    OpeningHours:
+    AuthorAttribution:
       type: object
-      description: Information about the opening hours of a place
+      description: Information about the author of a review
       properties:
-        openNow:
-          type: boolean
-          description: Whether the place is currently open
-          example: true
-        periods:
-          type: array
-          description: The periods that this place is open during the week. Periods covering a full day have an open event with day 0 and time 0000, and no close event.
-          items:
-            $ref: '#/components/schemas/Period'
-          example: []
-        weekdayDescriptions:
-          type: array
-          description: Localized strings describing the opening hours for each day of the week
-          items:
-            type: string
-          example:
-          - 'Monday: 9:00 AM - 5:00 PM'
-          - 'Tuesday: 9:00 AM - 5:00 PM'
-    LatLng:
-      type: object
-      description: A latitude/longitude coordinate pair
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Latitude in decimal degrees
-          example: -33.8688
-        longitude:
-          type: number
-          format: double
-          description: Longitude in decimal degrees
-          example: 151.2093
-      required:
-      - latitude
-      - longitude
+        displayName:
+          type: string
+          description: Name of the review author
+          example: example_value
+        uri:
+          type: string
+          format: uri
+          description: URI of the author's profile
+          example: https://www.example.com
+        photoUri:
+          type: string
+          format: uri
+          description: URI of the author's profile photo
+          example: https://www.example.com
     Review:
       type: object
       description: A review of a place submitted by a user
@@ -593,20 +563,16 @@ components:
           format: date-time
           description: Timestamp of when the review was published
           example: '2026-01-15T10:30:00Z'
-    Circle:
+    Period:
       type: object
-      description: A circle defined by center point and radius
+      description: A period the place is open during the week
       properties:
-        center:
-          $ref: '#/components/schemas/LatLng'
-        radius:
-          type: number
-          format: double
-          description: The radius of the circle in meters
-          example: 500.0
+        open:
+          $ref: '#/components/schemas/Point'
+        close:
+          $ref: '#/components/schemas/Point'
       required:
-      - center
-      - radius
+      - open
     Photo:
       type: object
       description: A photo associated with a place
@@ -629,33 +595,6 @@ components:
           items:
             $ref: '#/components/schemas/AuthorAttribution'
           example: []
-    PaymentOptions:
-      type: object
-      description: Payment options accepted by a place
-      properties:
-        acceptsCreditCards:
-          type: boolean
-          example: true
-        acceptsDebitCards:
-          type: boolean
-          example: true
-        acceptsCashOnly:
-          type: boolean
-          example: true
-        acceptsNfc:
-          type: boolean
-          example: true
-    Viewport:
-      type: object
-      description: A rectangular viewport defined by two diagonally opposite points
-      properties:
-        low:
-          $ref: '#/components/schemas/LatLng'
-        high:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - low
-      - high
     ParkingOptions:
       type: object
       description: Parking options at a place
@@ -681,6 +620,67 @@ components:
         paidGarageParking:
           type: boolean
           example: true
+    PaymentOptions:
+      type: object
+      description: Payment options accepted by a place
+      properties:
+        acceptsCreditCards:
+          type: boolean
+          example: true
+        acceptsDebitCards:
+          type: boolean
+          example: true
+        acceptsCashOnly:
+          type: boolean
+          example: true
+        acceptsNfc:
+          type: boolean
+          example: true
+    Point:
+      type: object
+      description: A point in time on a weekly schedule
+      properties:
+        day:
+          type: integer
+          description: Day of the week (0=Sunday, 6=Saturday)
+          minimum: 0
+          maximum: 6
+          example: 10
+        hour:
+          type: integer
+          description: Hour in 24-hour format (0-23)
+          minimum: 0
+          maximum: 23
+          example: 10
+        minute:
+          type: integer
+          description: Minute (0-59)
+          minimum: 0
+          maximum: 59
+          example: 10
+        date:
+          type: object
+          description: A specific date for current opening hours
+          properties:
+            year:
+              type: integer
+            month:
+              type: integer
+            day:
+              type: integer
+          example: example_value
+      required:
+      - day
+      - hour
+      - minute
+    LocationBias:
+      type: object
+      description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
   parameters:
     fieldMask:
       name: X-Goog-FieldMask
