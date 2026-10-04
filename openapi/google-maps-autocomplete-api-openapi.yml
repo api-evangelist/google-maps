@@ -79,14 +79,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LocationRestriction:
+    FormattableText:
       type: object
-      description: The region to restrict results to. Only results inside the restriction are returned.
+      description: Text with structured formatting information
       properties:
-        circle:
-          $ref: '#/components/schemas/Circle'
-        rectangle:
-          $ref: '#/components/schemas/Rectangle'
+        text:
+          type: string
+          description: The full text string
+          example: example_value
+        matches:
+          type: array
+          description: List of string ranges identifying where the input request matched in the text
+          items:
+            type: object
+            properties:
+              startOffset:
+                type: integer
+              endOffset:
+                type: integer
+          example: []
     LatLng:
       type: object
       description: A latitude/longitude coordinate pair
@@ -126,80 +137,6 @@ components:
           $ref: '#/components/schemas/PlacePrediction'
         queryPrediction:
           $ref: '#/components/schemas/QueryPrediction'
-    FormattableText:
-      type: object
-      description: Text with structured formatting information
-      properties:
-        text:
-          type: string
-          description: The full text string
-          example: example_value
-        matches:
-          type: array
-          description: List of string ranges identifying where the input request matched in the text
-          items:
-            type: object
-            properties:
-              startOffset:
-                type: integer
-              endOffset:
-                type: integer
-          example: []
-    QueryPrediction:
-      type: object
-      description: A query prediction
-      properties:
-        text:
-          $ref: '#/components/schemas/FormattableText'
-        structuredFormat:
-          $ref: '#/components/schemas/StructuredFormat'
-    PlacePrediction:
-      type: object
-      description: A place prediction
-      properties:
-        place:
-          type: string
-          description: The resource name of the suggested place in the format places/{placeId}
-          example: example_value
-        placeId:
-          type: string
-          description: The place ID of the suggested place
-          example: '500123'
-        text:
-          $ref: '#/components/schemas/FormattableText'
-        structuredFormat:
-          $ref: '#/components/schemas/StructuredFormat'
-        types:
-          type: array
-          description: List of types that apply to this place
-          items:
-            type: string
-          example: []
-        distanceMeters:
-          type: integer
-          description: The distance in meters from the origin
-          example: 10
-    Rectangle:
-      type: object
-      description: A rectangular area defined by two corners
-      properties:
-        low:
-          $ref: '#/components/schemas/LatLng'
-        high:
-          $ref: '#/components/schemas/LatLng'
-      required:
-      - low
-      - high
-    AutocompleteResponse:
-      type: object
-      description: Response from the autocomplete endpoint
-      properties:
-        suggestions:
-          type: array
-          description: List of autocomplete suggestions
-          items:
-            $ref: '#/components/schemas/Suggestion'
-          example: []
     AutocompleteRequest:
       type: object
       description: Request body for place autocomplete predictions
@@ -248,14 +185,69 @@ components:
           example: example_value
       required:
       - input
-    StructuredFormat:
+    AutocompleteResponse:
       type: object
-      description: Contains the main text and secondary text of a prediction
+      description: Response from the autocomplete endpoint
       properties:
-        mainText:
+        suggestions:
+          type: array
+          description: List of autocomplete suggestions
+          items:
+            $ref: '#/components/schemas/Suggestion'
+          example: []
+    LocationRestriction:
+      type: object
+      description: The region to restrict results to. Only results inside the restriction are returned.
+      properties:
+        circle:
+          $ref: '#/components/schemas/Circle'
+        rectangle:
+          $ref: '#/components/schemas/Rectangle'
+    PlacePrediction:
+      type: object
+      description: A place prediction
+      properties:
+        place:
+          type: string
+          description: The resource name of the suggested place in the format places/{placeId}
+          example: example_value
+        placeId:
+          type: string
+          description: The place ID of the suggested place
+          example: '500123'
+        text:
           $ref: '#/components/schemas/FormattableText'
-        secondaryText:
+        structuredFormat:
+          $ref: '#/components/schemas/StructuredFormat'
+        types:
+          type: array
+          description: List of types that apply to this place
+          items:
+            type: string
+          example: []
+        distanceMeters:
+          type: integer
+          description: The distance in meters from the origin
+          example: 10
+    Rectangle:
+      type: object
+      description: A rectangular area defined by two corners
+      properties:
+        low:
+          $ref: '#/components/schemas/LatLng'
+        high:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - low
+      - high
+    QueryPrediction:
+      type: object
+      description: A query prediction
+      properties:
+        text:
           $ref: '#/components/schemas/FormattableText'
+        structuredFormat:
+          $ref: '#/components/schemas/StructuredFormat'
     LocationBias:
       type: object
       description: The region to bias results to. Results in the specified region are ranked higher but results outside the region may still be returned.
@@ -264,6 +256,14 @@ components:
           $ref: '#/components/schemas/Circle'
         rectangle:
           $ref: '#/components/schemas/Rectangle'
+    StructuredFormat:
+      type: object
+      description: Contains the main text and secondary text of a prediction
+      properties:
+        mainText:
+          $ref: '#/components/schemas/FormattableText'
+        secondaryText:
+          $ref: '#/components/schemas/FormattableText'
   securitySchemes:
     apiKey:
       type: apiKey

@@ -187,105 +187,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Route:
-      type: object
-      description: A single route containing a set of legs from the origin to the destination with any specified waypoints.
-      properties:
-        summary:
-          type: string
-          description: A short textual description for the route, suitable for naming and disambiguating the route from alternatives.
-          example: I-93 N
-        legs:
-          type: array
-          description: Array of route legs, one for each segment between waypoints. A route with no waypoints will contain one leg.
-          items:
-            $ref: '#/components/schemas/Leg'
-          example: []
-        waypoint_order:
-          type: array
-          description: An array indicating the order of any waypoints in the calculated route. Waypoints may be reordered if the request was passed optimize:true.
-          items:
-            type: integer
-          example: []
-        overview_polyline:
-          $ref: '#/components/schemas/Polyline'
-        bounds:
-          $ref: '#/components/schemas/Bounds'
-        copyrights:
-          type: string
-          description: Copyright text for display
-          example: Map data ©2026 Google
-        warnings:
-          type: array
-          description: Warnings to be displayed when showing the route
-          items:
-            type: string
-          example: []
-        fare:
-          $ref: '#/components/schemas/Fare'
-      required:
-      - summary
-      - legs
-      - overview_polyline
-      - bounds
-      - copyrights
-    Fare:
-      type: object
-      description: The total fare for a transit route
-      properties:
-        currency:
-          type: string
-          description: ISO 4217 currency code
-          example: USD
-        value:
-          type: number
-          description: The total fare amount in the specified currency
-          example: 6.5
-        text:
-          type: string
-          description: Human-readable fare text
-          example: $6.50
-      required:
-      - currency
-      - value
-      - text
-    Polyline:
-      type: object
-      description: An encoded polyline representation of a route or step
-      properties:
-        points:
-          type: string
-          description: An encoded polyline string using the Encoded Polyline Algorithm. Decode to obtain a series of lat/lng coordinates.
-          example: example_value
-      required:
-      - points
-    TransitStop:
-      type: object
-      description: A transit stop
-      properties:
-        name:
-          type: string
-          description: The name of the transit stop
-          example: Example Title
-        location:
-          $ref: '#/components/schemas/LatLng'
-    LatLng:
-      type: object
-      description: A latitude/longitude coordinate pair
-      properties:
-        lat:
-          type: number
-          format: double
-          description: Latitude in decimal degrees
-          example: 42.5
-        lng:
-          type: number
-          format: double
-          description: Longitude in decimal degrees
-          example: 42.5
-      required:
-      - lat
-      - lng
     TransitLine:
       type: object
       description: Information about a transit line
@@ -330,17 +231,48 @@ components:
               phone:
                 type: string
           example: []
-    Bounds:
+    Route:
       type: object
-      description: A bounding box defined by northeast and southwest corners
+      description: A single route containing a set of legs from the origin to the destination with any specified waypoints.
       properties:
-        northeast:
-          $ref: '#/components/schemas/LatLng'
-        southwest:
-          $ref: '#/components/schemas/LatLng'
+        summary:
+          type: string
+          description: A short textual description for the route, suitable for naming and disambiguating the route from alternatives.
+          example: I-93 N
+        legs:
+          type: array
+          description: Array of route legs, one for each segment between waypoints. A route with no waypoints will contain one leg.
+          items:
+            $ref: '#/components/schemas/Leg'
+          example: []
+        waypoint_order:
+          type: array
+          description: An array indicating the order of any waypoints in the calculated route. Waypoints may be reordered if the request was passed optimize:true.
+          items:
+            type: integer
+          example: []
+        overview_polyline:
+          $ref: '#/components/schemas/Polyline'
+        bounds:
+          $ref: '#/components/schemas/Bounds'
+        copyrights:
+          type: string
+          description: Copyright text for display
+          example: Map data ©2026 Google
+        warnings:
+          type: array
+          description: Warnings to be displayed when showing the route
+          items:
+            type: string
+          example: []
+        fare:
+          $ref: '#/components/schemas/Fare'
       required:
-      - northeast
-      - southwest
+      - summary
+      - legs
+      - overview_polyline
+      - bounds
+      - copyrights
     TransitDetails:
       type: object
       description: Transit-specific information for transit steps
@@ -367,21 +299,40 @@ components:
           example: 10
         line:
           $ref: '#/components/schemas/TransitLine'
-    TextValuePair:
+    TimeZoneTextValue:
       type: object
-      description: A text and numeric value pair used for distance, duration, and fare amounts
+      description: A time value with text representation and time zone
       properties:
         text:
           type: string
-          description: Human-readable text representation
-          example: 541 km
+          description: Human-readable time string
+          example: example_value
         value:
+          type: integer
+          format: int64
+          description: Time expressed in seconds since epoch
+          example: 10
+        time_zone:
+          type: string
+          description: The time zone of this time value
+          example: America/New_York
+    LatLng:
+      type: object
+      description: A latitude/longitude coordinate pair
+      properties:
+        lat:
           type: number
-          description: Numeric value. For distance, expressed in meters. For duration, expressed in seconds. For fare, expressed in the currency indicated.
-          example: 541000
+          format: double
+          description: Latitude in decimal degrees
+          example: 42.5
+        lng:
+          type: number
+          format: double
+          description: Longitude in decimal degrees
+          example: 42.5
       required:
-      - text
-      - value
+      - lat
+      - lng
     Leg:
       type: object
       description: A leg of a route, representing the journey between two waypoints or the origin/destination.
@@ -422,85 +373,36 @@ components:
       - end_location
       - start_address
       - end_address
-    GeocodedWaypoint:
+    Polyline:
       type: object
-      description: Geocoded information for a waypoint
+      description: An encoded polyline representation of a route or step
       properties:
-        geocoder_status:
+        points:
           type: string
-          description: Status of the geocoding operation
-          enum:
-          - OK
-          - ZERO_RESULTS
-          example: OK
-        place_id:
-          type: string
-          description: Place ID of the geocoded waypoint
-          example: '500123'
-        types:
-          type: array
-          description: Address type(s) of the geocoded waypoint
-          items:
-            type: string
-          example: []
-        partial_match:
-          type: boolean
-          description: Whether the geocoder did not return an exact match
-          example: true
-    DirectionsResponse:
-      type: object
-      description: The response from the Directions API
-      properties:
-        status:
-          type: string
-          description: Status code of the directions request
-          enum:
-          - OK
-          - NOT_FOUND
-          - ZERO_RESULTS
-          - MAX_WAYPOINTS_EXCEEDED
-          - INVALID_REQUEST
-          - OVER_DAILY_LIMIT
-          - OVER_QUERY_LIMIT
-          - REQUEST_DENIED
-          - UNKNOWN_ERROR
-          example: OK
-        routes:
-          type: array
-          description: Array of routes from the origin to the destination. Each route contains legs, overview polylines, warnings, and waypoint order.
-          items:
-            $ref: '#/components/schemas/Route'
-          example: []
-        geocoded_waypoints:
-          type: array
-          description: Contains geocoding information for the origin, destination, and each waypoint.
-          items:
-            $ref: '#/components/schemas/GeocodedWaypoint'
-          example: []
-        error_message:
-          type: string
-          description: Human-readable error message when status is not OK
+          description: An encoded polyline string using the Encoded Polyline Algorithm. Decode to obtain a series of lat/lng coordinates.
           example: example_value
       required:
-      - status
-      - routes
-    TimeZoneTextValue:
+      - points
+    Fare:
       type: object
-      description: A time value with text representation and time zone
+      description: The total fare for a transit route
       properties:
+        currency:
+          type: string
+          description: ISO 4217 currency code
+          example: USD
+        value:
+          type: number
+          description: The total fare amount in the specified currency
+          example: 6.5
         text:
           type: string
-          description: Human-readable time string
-          example: example_value
-        value:
-          type: integer
-          format: int64
-          description: Time expressed in seconds since epoch
-          example: 10
-        time_zone:
-          type: string
-          description: The time zone of this time value
-          example: America/New_York
+          description: Human-readable fare text
+          example: $6.50
+      required:
+      - currency
+      - value
+      - text
     Step:
       type: object
       description: A single step of a route leg
@@ -548,6 +450,104 @@ components:
       - end_location
       - polyline
       - travel_mode
+    TextValuePair:
+      type: object
+      description: A text and numeric value pair used for distance, duration, and fare amounts
+      properties:
+        text:
+          type: string
+          description: Human-readable text representation
+          example: 541 km
+        value:
+          type: number
+          description: Numeric value. For distance, expressed in meters. For duration, expressed in seconds. For fare, expressed in the currency indicated.
+          example: 541000
+      required:
+      - text
+      - value
+    TransitStop:
+      type: object
+      description: A transit stop
+      properties:
+        name:
+          type: string
+          description: The name of the transit stop
+          example: Example Title
+        location:
+          $ref: '#/components/schemas/LatLng'
+    DirectionsResponse:
+      type: object
+      description: The response from the Directions API
+      properties:
+        status:
+          type: string
+          description: Status code of the directions request
+          enum:
+          - OK
+          - NOT_FOUND
+          - ZERO_RESULTS
+          - MAX_WAYPOINTS_EXCEEDED
+          - INVALID_REQUEST
+          - OVER_DAILY_LIMIT
+          - OVER_QUERY_LIMIT
+          - REQUEST_DENIED
+          - UNKNOWN_ERROR
+          example: OK
+        routes:
+          type: array
+          description: Array of routes from the origin to the destination. Each route contains legs, overview polylines, warnings, and waypoint order.
+          items:
+            $ref: '#/components/schemas/Route'
+          example: []
+        geocoded_waypoints:
+          type: array
+          description: Contains geocoding information for the origin, destination, and each waypoint.
+          items:
+            $ref: '#/components/schemas/GeocodedWaypoint'
+          example: []
+        error_message:
+          type: string
+          description: Human-readable error message when status is not OK
+          example: example_value
+      required:
+      - status
+      - routes
+    Bounds:
+      type: object
+      description: A bounding box defined by northeast and southwest corners
+      properties:
+        northeast:
+          $ref: '#/components/schemas/LatLng'
+        southwest:
+          $ref: '#/components/schemas/LatLng'
+      required:
+      - northeast
+      - southwest
+    GeocodedWaypoint:
+      type: object
+      description: Geocoded information for a waypoint
+      properties:
+        geocoder_status:
+          type: string
+          description: Status of the geocoding operation
+          enum:
+          - OK
+          - ZERO_RESULTS
+          example: OK
+        place_id:
+          type: string
+          description: Place ID of the geocoded waypoint
+          example: '500123'
+        types:
+          type: array
+          description: Address type(s) of the geocoded waypoint
+          items:
+            type: string
+          example: []
+        partial_match:
+          type: boolean
+          description: Whether the geocoder did not return an exact match
+          example: true
   securitySchemes:
     apiKey:
       type: apiKey
