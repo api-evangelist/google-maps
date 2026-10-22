@@ -118,3 +118,51 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: google-maps-raycast
+  label: Raycast
+  partner: raycast
+  partner_name: Raycast
+  category: Raycast Store extension (community wrapper)
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  evidence: https://www.raycast.com/ratoru/google-maps-search
+  source: edge
+  relationship: connector-coverage
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - lichinlin
+    - ratoru
+    matched_domain: google.com
+    matched_by: domain+name-among-holders
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: Google Maps Search
+      store_url: https://www.raycast.com/ratoru/google-maps-search
+      installs: 53267
+      categories:
+      - Web
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/google-maps-search/
+      author: ratoru
+    - title: Google Maps Explorer
+      store_url: https://www.raycast.com/lichinlin/findnearby
+      installs: 562
+      categories:
+      - Fun
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/findnearby/
+      author: lichinlin
+    categories:
+    - Fun
+    - Web
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
